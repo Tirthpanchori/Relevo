@@ -159,21 +159,26 @@ class ContainerSamples:
 
 def revision():
     digest = hashlib.sha256()
+    runtime_digest = hashlib.sha256()
     files = sorted((ROOT / "backend/src").rglob("*.py")) + [
         ROOT / "backend/uv.lock",
         ROOT / "compose.yaml",
         Path(__file__),
     ]
     for path in files:
-        digest.update(
+        encoded = (
             path.relative_to(ROOT).as_posix().encode()
             + b"\0"
             + path.read_bytes()
             + b"\0"
         )
+        digest.update(encoded)
+        if path != Path(__file__):
+            runtime_digest.update(encoded)
     return {
         "git_commit": command(["git", "rev-parse", "HEAD"]),
         "source_sha256": digest.hexdigest(),
+        "runtime_source_sha256": runtime_digest.hexdigest(),
         "dirty": bool(
             command(["git", "status", "--porcelain", "--untracked-files=no"])
         ),
@@ -503,6 +508,48 @@ async def main(args):
     )
     output.parent.mkdir(parents=True, exist_ok=True)
     record = metadata(engine, args)
+    if args.resume_from:
+        previous = json.loads(Path(args.resume_from).read_text(encoding="utf-8"))
+        assert canonical_json(previous["configuration"]) == canonical_json(
+            record["configuration"]
+        ), "Resume configuration differs"
+        assert previous["variant"] == args.variant, "Resume variant differs"
+        assert previous["revision"]["image_id"] == record["revision"]["image_id"], (
+            "Runtime image differs"
+        )
+        command(
+            [
+                "git",
+                "diff",
+                "--exit-code",
+                previous["revision"]["git_commit"],
+                "--",
+                "backend/src",
+                "backend/uv.lock",
+                "compose.yaml",
+            ]
+        )
+        previous.setdefault("resumptions", []).append(
+            {
+                "captured_at": record["captured_at"],
+                "revision": record["revision"],
+                "note": "Only missing cases rerun; runtime source/image/configuration verified unchanged.",
+            }
+        )
+        if "interrupted_case" in previous:
+            previous.setdefault("excluded_cases", []).append(
+                {
+                    "failure_type": previous.pop("failure_type"),
+                    "case": previous.pop("interrupted_case"),
+                }
+            )
+        previous["revision"]["runtime_source_sha256"] = record["revision"][
+            "runtime_source_sha256"
+        ]
+        record = previous
+    completed = {
+        (run["repeat"], run["workers"], run["workload"]) for run in record["runs"]
+    }
     settings = ClientSettings(
         api_url="http://127.0.0.1:18000",
         api_token=token,
@@ -514,6 +561,8 @@ async def main(args):
             for repeat in range(1, args.repeats + 1):
                 for workers in args.workers:
                     for workload in WORKLOADS:
+                        if (repeat, workers, workload) in completed:
+                            continue
                         try:
                             result = await run_case(
                                 engine, client, token, args, workload, workers, repeat
@@ -559,6 +608,10 @@ if __name__ == "__main__":
     parser.add_argument("--repeats", type=int, default=3)
     parser.add_argument("--workers", nargs="+", type=int, default=[1, 3, 5])
     parser.add_argument("--monitor", type=float, default=0.05)
+    parser.add_argument(
+        "--resume-from",
+        help="Preserve and resume an interrupted matrix with identical runtime/configuration",
+    )
     args = parser.parse_args()
     assert (
         10 <= args.jobs <= 1000

@@ -66,7 +66,11 @@ def main(baseline_path, candidate_path, output):
         | {"monitor_seconds": candidate["configuration"]["monitor_seconds"]}
         == candidate["configuration"]
     )
-    assert base["revision"]["source_sha256"] == candidate["revision"]["source_sha256"]
+    assert (
+        base["revision"]["runtime_source_sha256"]
+        == candidate["revision"]["runtime_source_sha256"]
+    )
+    assert base["revision"]["image_id"] == candidate["revision"]["image_id"]
     assert len(base["runs"]) == len(candidate["runs"])
     lines = [
         "# Local backend benchmark comparison",

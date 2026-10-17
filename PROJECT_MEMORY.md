@@ -350,3 +350,16 @@ verification exist. Record later changes and completed milestones here.
   No performance result or promoted optimization exists yet; worker monitor
   interval remains 0.05 seconds. Next: committed baseline, repeated measurements,
   one measured improvement, hosted CI, clean-checkout audit, and Phase 7 gate.
+
+## Benchmark baseline milestone - 2026-10-18
+
+- P7.4 baseline is complete: 18 retained cases, 540 measured jobs, two workloads,
+  three repetitions, and 1/3/5 workers. Raw timings, request percentiles, container
+  resource/lock samples, hardware/versions, source/image hashes, and unchanged
+  PostgreSQL durability settings are in `benchmarks/raw/baseline-complete.json`.
+- Excluded sampling/interruption/timeout runs are preserved and described in
+  `benchmarks/README.md`. Fifteen valid cases were preserved across the timeout;
+  three missing cases resumed only after runtime/configuration identity checks.
+- Test the 5 ms child-monitor candidate against the 50 ms baseline before changing
+  the default. P7.5/P7.6, clean-checkout verification, final log-redaction audit,
+  and documentation closeout remain. Do not start the frontend.

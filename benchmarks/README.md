@@ -10,8 +10,10 @@ jobs before a shared database-time eligibility gate. There are three repetitions
 at each of 1, 3, and 5 workers. Both variants use identical workloads: canonical
 hashing of `{"message": "x" * 1024}` and a 0.25-second timed handler. The timed
 handler sleeps; it represents waiting work, not CPU-intensive computation.
-Submission concurrency is eight. Throughput is jobs divided by database-measured
-eligibility-to-last-terminal time. Queue delay excludes intentional scheduling.
+Submission concurrency is eight. Throughput is jobs divided by the interval from
+eligibility to the last recorded finish timestamp. That timestamp is selected
+inside the terminal transition transaction, before its commit acknowledgment;
+this is not a measurement of commit-ack wall time. Queue delay excludes intentional scheduling.
 Attempt duration includes process startup, execution, supervision, and reporting.
 The script validates every acknowledged ID, exact result, single attempt/token,
 and ordered submitted/claimed/succeeded history before retaining a case.
@@ -51,6 +53,15 @@ single-attempt performance guard rejected the case; the partial matrix is
 `raw/discarded-interrupted-baseline.json`, and the actual job's sanitized history
 is `raw/interrupted-case.json`. Both are excluded from throughput comparisons.
 Subsequent harness failures preserve job/attempt diagnostics before stopping.
+
+The next matrix reached 15/18 valid cases before a bounded observer timeout.
+`raw/baseline.json` retains that original recording and its pending/running job
+diagnostics. `--resume-from` can write a new completed artifact without overwriting
+it: configuration and image ID must match, and Git must show no runtime-source,
+lockfile, or Compose difference. Each resumed case starts with fresh database
+contents and warmup; completed cases are preserved. Resume metadata records both
+harness revisions and the common runtime-source hash. Interrupted cases remain
+listed separately and contribute no throughput value.
 
 The script stops benchmark services on exit and preserves the named benchmark
 volume. Start the profile services again before another matrix. Exporters and

@@ -33,6 +33,7 @@ For a consequential new choice, append an entry with an ID, date, status, contex
 | [D023](#d023---independent-business-transactions-and-actual-recordings) | Independent business transactions and actual recordings | Accepted |
 | [D024](#d024---isolated-tcp-faults-and-process-crash-proof) | Isolated TCP faults and process-crash proof | Accepted |
 | [D025](#d025---durable-history-separated-from-bounded-runtime-telemetry) | Durable history separated from bounded runtime telemetry | Accepted |
+| [D026](#d026---bounded-measurement-and-worker-monitor-experiment) | Bounded measurement and worker monitor experiment | Proposed; measurement in progress |
 
 ## D001 - Backend correctness before frontend
 
@@ -433,6 +434,34 @@ including durable metric persistence across API recreation, rollback/log safety,
 redaction/cardinality, trace parentage, authenticated scrape access, and malformed
 timing metadata. The actual monitoring smoke verifies all three scrape targets,
 the provisioned dashboard, and an exported worker/API trace.
+
+## D026 - Bounded measurement and worker monitor experiment
+
+**Date:** 2026-10-18. **Status:** Proposed; no default change yet. **Origin:** Phase 7.
+
+Use an isolated, guarded benchmark database with normal PostgreSQL durability,
+fixed task inputs, ten warmup jobs, thirty measured jobs, and three repetitions
+at 1/3/5 workers. Keep raw job timings, API histograms, resource/lock samples,
+runtime image/source/lock hashes, hardware, and configuration. Before retaining
+a case, verify exact results, every acknowledged ID, one attempt/token per job,
+and ordered committed history. Performance cases with extra recovery attempts or
+timeouts are excluded and preserved as diagnostics; they do not disappear into
+an average. Resuming requires the same runtime source/image/configuration and
+records the new harness revision. See the [method](benchmarks/README.md).
+
+Baseline observations show hashing itself takes a fraction of a millisecond,
+while spawn-through-cleanup takes hundreds of milliseconds. The current worker
+checks child completion at most every 50 ms. Test one narrow candidate: reduce
+that interval to 5 ms, leaving spawning, leases, heartbeats, task isolation,
+transactions, and durability unchanged. This can reduce completion-detection
+delay while increasing parent wakeups. Measure identical workloads and resource
+use before selecting a default. Per-task process startup remains a separate cost.
+
+Search budget: at most two candidates, thirty minutes of measured execution,
+INR 0 spend, and writes only to the benchmark database. Require repeated evidence,
+the full correctness suite, and a further baseline/candidate confirmation before
+promotion. Rollback is restoring `RELEVO_WORKER_MONITOR_SECONDS=0.05`. Results and
+promotion status will be added after verification; no speedup is claimed yet.
 
 ## Decisions still open
 
