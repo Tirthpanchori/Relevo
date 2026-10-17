@@ -67,7 +67,7 @@ Run the suite against a separate ephemeral test database, not the development da
 docker compose --profile test run --build --rm tests
 ```
 
-The test service starts its own PostgreSQL instance on localhost port `55433`. Integration tests refuse database names that do not end in `_test`. The suite includes real spawned handlers and PostgreSQL transactions, competing recovery scans, worker/scheduler replacement, lost claim/report responses, rollback/commit failures, lock waits across expiry, stale-owner rejection, retry budgets, authentication, and byte limits. Some fault boundaries use controlled transports/direct database checkpoints; full proxy/network/process-failure proof belongs to Phase 6.
+The test service starts its own PostgreSQL instance on localhost port `55433`. Integration tests refuse database names that do not end in `_test`. The suite includes real spawned handlers and PostgreSQL transactions, competing recovery scans, worker/scheduler replacement, lost claim/report responses, rollback/commit failures, lock waits across expiry, stale-owner rejection, retry budgets, authentication, and byte limits. The test profile also starts the isolated Toxiproxy and fault API for actual TCP interruption/latency tests. Separate smoke scripts exercise container restarts and process crashes; see [Phase 6 evidence](implementation-plan.md#phase-6---failure-proof-business-effects-and-developer-tools).
 
 For logs and a non-destructive stop:
 
@@ -145,7 +145,7 @@ reads its token from the environment and never accepts a token argument.
 | [Compose](compose.yaml) / [Dockerfile](backend/Dockerfile) | Local runtime, migration ordering, and isolated test services. |
 | [CI](.github/workflows/backend.yml) | Locked dependencies, lint/format checks, and PostgreSQL tests. |
 
-For host-based development, the local environment is `backend/.venv`; uv `0.13.1` and `backend/uv.lock` reproduce its dependencies. Container startup/testing does not require a global uv installation. Metrics currently contain baseline Python/process collectors; engine-specific telemetry arrives in Phase 7.
+For host-based development, the local environment is `backend/.venv`; uv `0.13.1` and `backend/uv.lock` reproduce its dependencies. Container startup/testing does not require a global uv installation. Protected metrics include durable job/transition/retry/timing aggregates and runtime HTTP/database/worker telemetry. See [D025](decision.md#d025---durable-history-separated-from-bounded-runtime-telemetry) for reset, privacy, and aggregation limits.
 
 [Worker smoke](scripts/smoke_worker.py) checks live hashing and a transient-failure retry. [Crash/recovery smoke](scripts/smoke_recovery.py) deliberately stops/restarts the local Compose worker and scheduler, checks replacement execution, and sends a stale report. With the host development environment installed, run either script from the repository root after loading `.env`:
 

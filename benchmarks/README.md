@@ -18,7 +18,7 @@ and ordered submitted/claimed/succeeded history before retaining a case.
 
 Raw JSON includes per-job timings, inclusive interpolated p50/p95/p99 client
 request latency (submission and ten post-run inspections), API/worker histogram
-deltas, sampled container CPU/resident memory, PostgreSQL lock-wait/active
+deltas, sampled container CPU/memory, PostgreSQL lock-wait/active
 connection samples, dependency/lock versions, durability settings, source hash,
 Git revision, image ID, and Docker/host resources. Docker CPU is percent of one
 core; container memory includes children. Samples miss brief peaks. PostgreSQL
@@ -44,6 +44,13 @@ An initial harness run was discarded because Windows Docker's ANSI control
 sequences prevented parsing resource samples. Its partial timings are retained
 as `raw/discarded-sampling-pilot.json`, clearly excluded from comparisons. The
 parser now removes those control sequences and rejects cases without samples.
+
+A later baseline case encountered an unexplained service-log gap and one lease
+expiry. The scheduler recovered the job and its second attempt succeeded. The
+single-attempt performance guard rejected the case; the partial matrix is
+`raw/discarded-interrupted-baseline.json`, and the actual job's sanitized history
+is `raw/interrupted-case.json`. Both are excluded from throughput comparisons.
+Subsequent harness failures preserve job/attempt diagnostics before stopping.
 
 The script stops benchmark services on exit and preserves the named benchmark
 volume. Start the profile services again before another matrix. Exporters and

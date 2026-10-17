@@ -196,7 +196,7 @@ Traceable captures and reproduction commands are in [artifacts/replays](artifact
 - [ ] Every failure-matrix scenario passes repeatedly; acknowledged-job accounting and history consistency are asserted.
 - [ ] Business-effect duplication and its idempotent alternative are demonstrated separately from executor-state fencing.
 - [ ] API, worker, and scheduler restart independently; client/CLI demos work; documented Compose startup works from a clean checkout.
-- [ ] CI runs the essential integration/recovery suite with no credentials in source or fixtures.
+- [x] CI runs the essential integration/recovery suite with no credentials in source or fixtures. [Hosted run 39023521222](https://github.com/Tirthpanchori/Relevo/actions/runs/39023521222) passed for `43ef7a8`; staged review verified local credentials stayed ignored.
 - [ ] Metrics, raw benchmark measurements, methodology, one measured optimization, and traceable replay recordings exist.
 - [ ] Published wording matches tested guarantees and explains downtime, retry exhaustion, duplicated execution, and storage-loss limits.
 
@@ -234,4 +234,4 @@ Stop after Phase 7 for that discussion; do not start Phase 8 automatically.
 
 ## Next session
 
-Continue **Phase 7**: add protected metrics, traces, and structured logs; measure repeated 1/3/5-worker workloads; test one measured optimization; then audit every backend gate. The user is creating a GitHub repository for hosted CI. Stop for a conversation before any frontend work.
+Continue **Phase 7**: P7.1-P7.3 and the first hosted CI run pass. Finish repeated 1/3/5-worker benchmarks, test one measured optimization, verify clean-checkout startup, and audit every backend gate. `origin` is the user-provided GitHub repository. Stop for a conversation before any frontend work.

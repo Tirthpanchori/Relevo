@@ -1,0 +1,135 @@
+{
+  "format_version": 1,
+  "scenario": "unplanned-benchmark-interruption",
+  "captured_at": "2026-10-17T10:16:17.497836+00:00",
+  "source": {
+    "path": "scripts/benchmark.py",
+    "sha256": "8eb927e08fc4e1bfee742fbf4513628d126de7a50f227d2f636ebdfe24583e77"
+  },
+  "revision": {
+    "git_commit": "84e7d053457149c2d39adbb7071a7c4c1d162fd1",
+    "backend_tree_sha256": "379c0bda0fab80a47e3fbb0cc7a2c4d0a073c2641bf8dd8aa931180090a0103c"
+  },
+  "environment": {
+    "python": "3.13.9",
+    "postgres": "18.6 (Debian 18.6-1.pgdg12+2)",
+    "schema_version": "0003"
+  },
+  "configuration": {
+    "lease_seconds": 15.0,
+    "heartbeat_seconds": 5.0,
+    "recovery_scan_seconds": 2.0,
+    "recovery_batch_size": 100,
+    "max_attempts": 3,
+    "retry_base_seconds": 1.0,
+    "retry_max_seconds": 30.0,
+    "task_timeout_seconds": 60.0
+  },
+  "observations": [
+    {
+      "observation": "The first attempt expired after 61.717691 seconds; a second attempt succeeded. The single-attempt performance guard rejected this case. No cause for the service-log time gap is established."
+    }
+  ],
+  "job": {
+    "id": "9aaff70a-38b8-46b1-8806-36641ed5b24c",
+    "task_type": "timed_work",
+    "state": "succeeded",
+    "attempt_count": 2,
+    "max_attempts": 3,
+    "event_sequence": 5,
+    "current_attempt_id": null,
+    "created_at": "2026-10-17T10:12:23.970772+00:00",
+    "updated_at": "2026-10-17T10:14:03.517996+00:00",
+    "finished_at": "2026-10-17T10:14:03.517996+00:00",
+    "available_at": "2026-10-17T10:13:36.034234+00:00"
+  },
+  "attempts": [
+    {
+      "id": "9e17172f-a0eb-4ab0-89b7-6c9e389bb859",
+      "number": 1,
+      "fencing_token": 1,
+      "worker_id": "worker-1706175d-83d2-4cf3-b6a5-4cf8e591a555",
+      "state": "expired",
+      "started_at": "2026-10-17T10:12:33.335732+00:00",
+      "lease_expires_at": "2026-10-17T10:12:48.335732+00:00",
+      "finished_at": "2026-10-17T10:13:35.053423+00:00",
+      "error_code": "lease_expired"
+    },
+    {
+      "id": "c8fa784a-f324-4353-ab68-5a167f15fa7e",
+      "number": 2,
+      "fencing_token": 2,
+      "worker_id": "worker-1706175d-83d2-4cf3-b6a5-4cf8e591a555",
+      "state": "succeeded",
+      "started_at": "2026-10-17T10:14:02.826860+00:00",
+      "lease_expires_at": "2026-10-17T10:14:17.826860+00:00",
+      "finished_at": "2026-10-17T10:14:03.517996+00:00",
+      "error_code": null
+    }
+  ],
+  "events": [
+    {
+      "sequence": 1,
+      "attempt_id": null,
+      "kind": "submitted",
+      "occurred_at": "2026-10-17T10:12:23.970772+00:00",
+      "data": {
+        "state": "pending"
+      }
+    },
+    {
+      "sequence": 2,
+      "attempt_id": "9e17172f-a0eb-4ab0-89b7-6c9e389bb859",
+      "kind": "claimed",
+      "occurred_at": "2026-10-17T10:12:33.335732+00:00",
+      "data": {
+        "state": "running",
+        "worker_id": "worker-1706175d-83d2-4cf3-b6a5-4cf8e591a555",
+        "fencing_token": 1,
+        "attempt_number": 1,
+        "queue_delay_seconds": 6.458162
+      }
+    },
+    {
+      "sequence": 3,
+      "attempt_id": "9e17172f-a0eb-4ab0-89b7-6c9e389bb859",
+      "kind": "expired",
+      "occurred_at": "2026-10-17T10:13:35.053423+00:00",
+      "data": {
+        "state": "pending",
+        "worker_id": "worker-1706175d-83d2-4cf3-b6a5-4cf8e591a555",
+        "available_at": "2026-10-17T10:13:36.034234+00:00",
+        "fencing_token": 1,
+        "retry_scheduled": true,
+        "attempt_duration_seconds": 61.717691
+      }
+    },
+    {
+      "sequence": 4,
+      "attempt_id": "c8fa784a-f324-4353-ab68-5a167f15fa7e",
+      "kind": "claimed",
+      "occurred_at": "2026-10-17T10:14:02.826860+00:00",
+      "data": {
+        "state": "running",
+        "worker_id": "worker-1706175d-83d2-4cf3-b6a5-4cf8e591a555",
+        "fencing_token": 2,
+        "attempt_number": 2,
+        "queue_delay_seconds": 26.792626
+      }
+    },
+    {
+      "sequence": 5,
+      "attempt_id": "c8fa784a-f324-4353-ab68-5a167f15fa7e",
+      "kind": "succeeded",
+      "occurred_at": "2026-10-17T10:14:03.517996+00:00",
+      "data": {
+        "state": "succeeded",
+        "available_at": "2026-10-17T10:13:36.034234+00:00",
+        "fencing_token": 2,
+        "retry_scheduled": false,
+        "attempt_duration_seconds": 0.691136
+      }
+    }
+  ],
+  "business_effects": []
+}

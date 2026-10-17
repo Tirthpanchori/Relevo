@@ -262,6 +262,36 @@ def metadata(engine, args):
     }
 
 
+def interrupted_case(engine, workload, workers, repeat):
+    with engine.connect() as connection:
+        jobs = [
+            dict(row)
+            for row in connection.execute(
+                text("""
+            SELECT id,state,attempt_count,event_sequence,created_at,finished_at
+            FROM jobs ORDER BY created_at,id
+        """)
+            ).mappings()
+        ]
+        attempts = [
+            dict(row)
+            for row in connection.execute(
+                text("""
+            SELECT job_id,number,state,fencing_token,started_at,lease_expires_at,finished_at,
+                   error->>'code' AS error_code FROM attempts ORDER BY job_id,number
+        """)
+            ).mappings()
+        ]
+    return {
+        "workload": workload,
+        "workers": workers,
+        "repeat": repeat,
+        "status": "excluded: performance case did not pass its single-attempt accounting guard",
+        "jobs": jobs,
+        "attempts": attempts,
+    }
+
+
 async def submit_batch(client, task_type, payload, count, key, run_at=None):
     semaphore = asyncio.Semaphore(8)
 
@@ -484,9 +514,20 @@ async def main(args):
             for repeat in range(1, args.repeats + 1):
                 for workers in args.workers:
                     for workload in WORKLOADS:
-                        result = await run_case(
-                            engine, client, token, args, workload, workers, repeat
-                        )
+                        try:
+                            result = await run_case(
+                                engine, client, token, args, workload, workers, repeat
+                            )
+                        except Exception as exc:
+                            record["interrupted_case"] = interrupted_case(
+                                engine, workload, workers, repeat
+                            )
+                            record["failure_type"] = type(exc).__name__
+                            output.write_text(
+                                json.dumps(record, indent=2, default=str) + "\n",
+                                encoding="utf-8",
+                            )
+                            raise
                         record["runs"].append(result)
                         output.write_text(
                             json.dumps(record, indent=2) + "\n", encoding="utf-8"

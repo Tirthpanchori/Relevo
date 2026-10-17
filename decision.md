@@ -32,6 +32,7 @@ For a consequential new choice, append an entry with an ID, date, status, contex
 | [D022](#d022---explicit-async-client-and-immutable-retries) | Explicit async client and immutable retries | Accepted |
 | [D023](#d023---independent-business-transactions-and-actual-recordings) | Independent business transactions and actual recordings | Accepted |
 | [D024](#d024---isolated-tcp-faults-and-process-crash-proof) | Isolated TCP faults and process-crash proof | Accepted |
+| [D025](#d025---durable-history-separated-from-bounded-runtime-telemetry) | Durable history separated from bounded runtime telemetry | Accepted |
 
 ## D001 - Backend correctness before frontend
 

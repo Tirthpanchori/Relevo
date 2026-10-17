@@ -327,6 +327,13 @@ verification exist. Record later changes and completed milestones here.
   finish observability checks, measure repeated 1/3/5-worker workloads, test one
   bounded optimization, and audit the backend gate with actual results.
 
+- GitHub checkpoint `43ef7a8` is pushed to the user-provided repository. Hosted
+  Actions run 39023521222 passed (including the full 195-test container suite).
+  Local secret review passed; `.env` and monitoring credentials stay ignored.
+  A corrected benchmark harness checkpoint `84e7d05` adds ANSI-safe Docker stats
+  parsing and rejects missing resource samples. The discarded initial sampling
+  pilot is preserved and excluded from performance comparisons.
+
 ## Phase 7 observability checkpoint - 2026-10-17
 
 - P7.1-P7.3 verified: per-process protected metrics, redacted structured committed
