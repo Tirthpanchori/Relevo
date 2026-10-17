@@ -1,14 +1,14 @@
 {
   "format_version": 1,
   "scenario": "worker-crash-recovery",
-  "captured_at": "2026-10-17T09:38:19.010897+00:00",
+  "captured_at": "2026-10-17T20:37:53.076771+00:00",
   "source": {
     "path": "scripts/smoke_recovery.py",
-    "sha256": "abe9b6d6068b3cb267c71c5bb851481b7acd4fec027b7a8943e2536d03a7b8a7"
+    "sha256": "4ee4e4bd927e5cb00456392b6e20ebfde1a5039f89838cfa060ccc4b3d5cac12"
   },
   "revision": {
-    "git_commit": null,
-    "backend_tree_sha256": "453335540ef5a70318462649b2ae141074f8ca7353392d1863471bd1b8c25f14"
+    "git_commit": "9af3ab8c680d1dad901266d8d3e53bc15930c415",
+    "backend_tree_sha256": "811af32867c99bdba829975195feadf4343a7801638b0691e25fa4127affaa6f"
   },
   "environment": {
     "python": "3.13.9",
@@ -38,43 +38,48 @@
     },
     {
       "checkpoint": "stale_completion_rejected",
-      "status_code": 409
+      "status_code": 409,
+      "attempts_checked": 1
+    },
+    {
+      "checkpoint": "only_first_worker_death_was_injected",
+      "additional_expired_attempts_observed": 0
     }
   ],
   "job": {
-    "id": "8ba92150-1af7-45f5-9e1e-70306fec62f9",
+    "id": "003950e9-00a6-4e71-96bc-871ce898490e",
     "task_type": "timed_work",
     "state": "succeeded",
     "attempt_count": 2,
     "max_attempts": 3,
     "event_sequence": 5,
     "current_attempt_id": null,
-    "created_at": "2026-10-17T09:37:44.354589+00:00",
-    "updated_at": "2026-10-17T09:38:17.410360+00:00",
-    "finished_at": "2026-10-17T09:38:17.410360+00:00",
-    "available_at": "2026-10-17T09:38:08.839270+00:00"
+    "created_at": "2026-10-17T20:37:20.535065+00:00",
+    "updated_at": "2026-10-17T20:37:50.134010+00:00",
+    "finished_at": "2026-10-17T20:37:50.134010+00:00",
+    "available_at": "2026-10-17T20:37:41.643044+00:00"
   },
   "attempts": [
     {
-      "id": "e3284ac5-77de-4eb7-a6ce-ea6c5b268581",
+      "id": "df470419-d16a-45b7-b4d6-670d504feb9f",
       "number": 1,
       "fencing_token": 1,
-      "worker_id": "worker-ea14dd3f-b3fe-4549-87f7-e9beafd5a290",
+      "worker_id": "worker-4c6df8b0-daf2-47ac-b47e-13286c828c67",
       "state": "expired",
-      "started_at": "2026-10-17T09:37:46.696631+00:00",
-      "lease_expires_at": "2026-10-17T09:38:01.696631+00:00",
-      "finished_at": "2026-10-17T09:38:08.105380+00:00",
+      "started_at": "2026-10-17T20:37:20.759943+00:00",
+      "lease_expires_at": "2026-10-17T20:37:35.759943+00:00",
+      "finished_at": "2026-10-17T20:37:40.775168+00:00",
       "error_code": "lease_expired"
     },
     {
-      "id": "66513ac7-1f58-4b41-adc9-9496b4800b25",
+      "id": "63f646c3-f0a6-4403-a6df-e48bac93d333",
       "number": 2,
       "fencing_token": 2,
-      "worker_id": "worker-77d5c122-934f-4ac7-a030-97359706f0f6",
+      "worker_id": "worker-dee4ffd9-4b17-41e4-a0ab-bede26df5519",
       "state": "succeeded",
-      "started_at": "2026-10-17T09:38:08.999432+00:00",
-      "lease_expires_at": "2026-10-17T09:38:29.006015+00:00",
-      "finished_at": "2026-10-17T09:38:17.410360+00:00",
+      "started_at": "2026-10-17T20:37:41.727773+00:00",
+      "lease_expires_at": "2026-10-17T20:38:01.730335+00:00",
+      "finished_at": "2026-10-17T20:37:50.134010+00:00",
       "error_code": null
     }
   ],
@@ -83,58 +88,62 @@
       "sequence": 1,
       "attempt_id": null,
       "kind": "submitted",
-      "occurred_at": "2026-10-17T09:37:44.354589+00:00",
+      "occurred_at": "2026-10-17T20:37:20.535065+00:00",
       "data": {
         "state": "pending"
       }
     },
     {
       "sequence": 2,
-      "attempt_id": "e3284ac5-77de-4eb7-a6ce-ea6c5b268581",
+      "attempt_id": "df470419-d16a-45b7-b4d6-670d504feb9f",
       "kind": "claimed",
-      "occurred_at": "2026-10-17T09:37:46.696631+00:00",
+      "occurred_at": "2026-10-17T20:37:20.759943+00:00",
       "data": {
         "state": "running",
-        "worker_id": "worker-ea14dd3f-b3fe-4549-87f7-e9beafd5a290",
+        "worker_id": "worker-4c6df8b0-daf2-47ac-b47e-13286c828c67",
         "fencing_token": 1,
-        "attempt_number": 1
+        "attempt_number": 1,
+        "queue_delay_seconds": 0.224878
       }
     },
     {
       "sequence": 3,
-      "attempt_id": "e3284ac5-77de-4eb7-a6ce-ea6c5b268581",
+      "attempt_id": "df470419-d16a-45b7-b4d6-670d504feb9f",
       "kind": "expired",
-      "occurred_at": "2026-10-17T09:38:08.105380+00:00",
+      "occurred_at": "2026-10-17T20:37:40.775168+00:00",
       "data": {
         "state": "pending",
-        "worker_id": "worker-ea14dd3f-b3fe-4549-87f7-e9beafd5a290",
-        "available_at": "2026-10-17T09:38:08.839270+00:00",
+        "worker_id": "worker-4c6df8b0-daf2-47ac-b47e-13286c828c67",
+        "available_at": "2026-10-17T20:37:41.643044+00:00",
         "fencing_token": 1,
-        "retry_scheduled": true
+        "retry_scheduled": true,
+        "attempt_duration_seconds": 20.015225
       }
     },
     {
       "sequence": 4,
-      "attempt_id": "66513ac7-1f58-4b41-adc9-9496b4800b25",
+      "attempt_id": "63f646c3-f0a6-4403-a6df-e48bac93d333",
       "kind": "claimed",
-      "occurred_at": "2026-10-17T09:38:08.999432+00:00",
+      "occurred_at": "2026-10-17T20:37:41.727773+00:00",
       "data": {
         "state": "running",
-        "worker_id": "worker-77d5c122-934f-4ac7-a030-97359706f0f6",
+        "worker_id": "worker-dee4ffd9-4b17-41e4-a0ab-bede26df5519",
         "fencing_token": 2,
-        "attempt_number": 2
+        "attempt_number": 2,
+        "queue_delay_seconds": 0.084729
       }
     },
     {
       "sequence": 5,
-      "attempt_id": "66513ac7-1f58-4b41-adc9-9496b4800b25",
+      "attempt_id": "63f646c3-f0a6-4403-a6df-e48bac93d333",
       "kind": "succeeded",
-      "occurred_at": "2026-10-17T09:38:17.410360+00:00",
+      "occurred_at": "2026-10-17T20:37:50.134010+00:00",
       "data": {
         "state": "succeeded",
-        "available_at": "2026-10-17T09:38:08.839270+00:00",
+        "available_at": "2026-10-17T20:37:41.643044+00:00",
         "fencing_token": 2,
-        "retry_scheduled": false
+        "retry_scheduled": false,
+        "attempt_duration_seconds": 8.406237
       }
     }
   ],

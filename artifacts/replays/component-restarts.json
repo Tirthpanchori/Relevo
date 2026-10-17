@@ -1,14 +1,14 @@
 {
   "format_version": 1,
   "scenario": "component-restarts",
-  "captured_at": "2026-10-16T04:23:16.809548+00:00",
+  "captured_at": "2026-10-17T20:38:29.142342+00:00",
   "source": {
     "path": "scripts/smoke_restarts.py",
-    "sha256": "601331ee7809755a35dae3b5bbc2f1f95366f5a478861af19f4df19e81e2fd58"
+    "sha256": "a57bdeba9c52b1ad6ac7dfe0787b1fdfba50ee5f40e596c959cfb1d68062d8b4"
   },
   "revision": {
-    "git_commit": null,
-    "backend_tree_sha256": "0106e9dea592c2ed4c64ba5de56895d8460ac1a87c2e447b780db9b3371966a1"
+    "git_commit": "9af3ab8c680d1dad901266d8d3e53bc15930c415",
+    "backend_tree_sha256": "811af32867c99bdba829975195feadf4343a7801638b0691e25fa4127affaa6f"
   },
   "environment": {
     "python": "3.13.9",
@@ -44,28 +44,28 @@
     }
   ],
   "job": {
-    "id": "cf26a302-68dc-43b2-a2af-254ffce5f524",
+    "id": "82831579-656c-426d-9c52-dd4c0357db5f",
     "task_type": "hash_payload",
     "state": "succeeded",
     "attempt_count": 1,
     "max_attempts": 3,
     "event_sequence": 3,
     "current_attempt_id": null,
-    "created_at": "2026-10-16T04:22:47.715900+00:00",
-    "updated_at": "2026-10-16T04:23:14.816163+00:00",
-    "finished_at": "2026-10-16T04:23:14.816163+00:00",
-    "available_at": "2026-10-16T04:22:47.715900+00:00"
+    "created_at": "2026-10-17T20:38:01.370751+00:00",
+    "updated_at": "2026-10-17T20:38:27.586520+00:00",
+    "finished_at": "2026-10-17T20:38:27.586520+00:00",
+    "available_at": "2026-10-17T20:38:01.370751+00:00"
   },
   "attempts": [
     {
-      "id": "86fef0d2-be96-4777-ac52-5e691f3d8102",
+      "id": "914d4767-cebe-48e9-b231-ed8c5e78f3c3",
       "number": 1,
       "fencing_token": 1,
-      "worker_id": "worker-ea14dd3f-b3fe-4549-87f7-e9beafd5a290",
+      "worker_id": "worker-91e62bdf-f77e-4aae-bc48-84bb96ebcb0c",
       "state": "succeeded",
-      "started_at": "2026-10-16T04:23:14.478911+00:00",
-      "lease_expires_at": "2026-10-16T04:23:29.478911+00:00",
-      "finished_at": "2026-10-16T04:23:14.816163+00:00",
+      "started_at": "2026-10-17T20:38:27.096497+00:00",
+      "lease_expires_at": "2026-10-17T20:38:42.096497+00:00",
+      "finished_at": "2026-10-17T20:38:27.586520+00:00",
       "error_code": null
     }
   ],
@@ -74,36 +74,38 @@
       "sequence": 1,
       "attempt_id": null,
       "kind": "submitted",
-      "occurred_at": "2026-10-16T04:22:47.715900+00:00",
+      "occurred_at": "2026-10-17T20:38:01.370751+00:00",
       "data": {
         "state": "pending"
       }
     },
     {
       "sequence": 2,
-      "attempt_id": "86fef0d2-be96-4777-ac52-5e691f3d8102",
+      "attempt_id": "914d4767-cebe-48e9-b231-ed8c5e78f3c3",
       "kind": "claimed",
-      "occurred_at": "2026-10-16T04:23:14.478911+00:00",
+      "occurred_at": "2026-10-17T20:38:27.096497+00:00",
       "data": {
         "state": "running",
-        "worker_id": "worker-ea14dd3f-b3fe-4549-87f7-e9beafd5a290",
+        "worker_id": "worker-91e62bdf-f77e-4aae-bc48-84bb96ebcb0c",
         "fencing_token": 1,
-        "attempt_number": 1
+        "attempt_number": 1,
+        "queue_delay_seconds": 25.725746
       }
     },
     {
       "sequence": 3,
-      "attempt_id": "86fef0d2-be96-4777-ac52-5e691f3d8102",
+      "attempt_id": "914d4767-cebe-48e9-b231-ed8c5e78f3c3",
       "kind": "succeeded",
-      "occurred_at": "2026-10-16T04:23:14.816163+00:00",
+      "occurred_at": "2026-10-17T20:38:27.586520+00:00",
       "data": {
         "state": "succeeded",
-        "available_at": "2026-10-16T04:22:47.715900+00:00",
+        "available_at": "2026-10-17T20:38:01.370751+00:00",
         "fencing_token": 1,
-        "retry_scheduled": false
+        "retry_scheduled": false,
+        "attempt_duration_seconds": 0.490023
       }
     }
   ],
   "business_effects": [],
-  "also_verified_terminal_job_id": "75bd7042-9adc-42e2-b86e-53cf70d0fa11"
+  "also_verified_terminal_job_id": "8cc7f927-072b-4e20-b93e-efc80ddf7b3a"
 }

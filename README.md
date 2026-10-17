@@ -8,11 +8,11 @@ Relevo is a backend systems portfolio project: an application submits background
 
 ## Current status
 
-**2026-10-18: Phases 1-6 verified; Phase 7 clean-checkout/CI closeout in progress.**
+**2026-10-18: Phases 1-7 complete; backend readiness gate passed.**
 
-All ten API endpoints, supervised workers, independent recovery, the Python client/CLI, and the failure scenarios are implemented. Separate business-effect tests demonstrate duplicate execution and transactional idempotency. Protected telemetry and optional local monitoring are verified; benchmarks are in progress. Frontend work will wait for a conversation with the user.
+All ten API endpoints, supervised workers, independent recovery, the Python client/CLI, and the failure scenarios are implemented. Separate business-effect tests demonstrate duplicate execution and transactional idempotency. Protected telemetry, local monitoring, repeated benchmarks, and the bounded tuning experiment are verified. Frontend work will wait for a conversation with the user.
 
-Verification: **196 tests passed on Windows/Python 3.13.9 and Linux/Python 3.13.16 against PostgreSQL 18.6**, including the latest server-log redaction fix and the 5 ms monitor configuration; Phase 6's 81 integration checks passed three additional rounds. Real TCP faults, worker/SQL process crashes, component restarts, and business-effect proofs have [traceable evidence](artifacts/replays/README.md). Migration `0003` adds the separate demo schema. Source is pushed to [the repository](https://github.com/Tirthpanchori/Relevo), and [hosted CI passed](https://github.com/Tirthpanchori/Relevo/actions/runs/39023521222) for the earlier `43ef7a8` checkpoint.
+Verification: **197 tests passed on Windows/Python 3.13.9, Linux/Python 3.13.16, and a fresh checkout against PostgreSQL 18.6**. [Hosted CI passed](https://github.com/Tirthpanchori/Relevo/actions/runs/39067364211) for code checkpoint `9af3ab8`. Real TCP faults, process crashes/restarts, business-effect proofs, and actual recordings have [traceable evidence](artifacts/replays/README.md). [Benchmark reports](benchmarks/README.md) include 1,440 retained measured jobs, raw JSON/CSV, and explicit limitations. See the [complete backend gate](implementation-plan.md#backend-gate---all-items-required-before-phase-8) and [repository](https://github.com/Tirthpanchori/Relevo).
 
 ## Project documents
 
@@ -26,7 +26,7 @@ Verification: **196 tests passed on Windows/Python 3.13.9 and Linux/Python 3.13.
 
 At the start of development, read project memory, this README, the plan's current phase, and relevant decisions. Keep progress/evidence in the plan, rationale in the decision log, behavior in the working guide, and actual setup commands here.
 
-## Intended behavior
+## Implemented backend behavior
 
 - Save acknowledged jobs durably and deduplicate submissions with required idempotency keys.
 - Atomically claim eligible work, issue expiring leases/fencing tokens, and reject stale state updates.
@@ -146,7 +146,29 @@ reads its token from the environment and never accepts a token argument.
 | [Compose](compose.yaml) / [Dockerfile](backend/Dockerfile) | Local runtime, migration ordering, and isolated test services. |
 | [CI](.github/workflows/backend.yml) | Locked dependencies, lint/format checks, and PostgreSQL tests. |
 
-For host-based development, the local environment is `backend/.venv`; uv `0.13.1` and `backend/uv.lock` reproduce its dependencies. Container startup/testing does not require a global uv installation. Protected metrics include durable job/transition/retry/timing aggregates and runtime HTTP/database/worker telemetry. See [D025](decision.md#d025---durable-history-separated-from-bounded-runtime-telemetry) for reset, privacy, and aggregation limits.
+For optional host-based development and benchmark/capture scripts, prepare local
+tools from the root (Windows/Python 3.13):
+
+```powershell
+python -m venv .tools
+.tools/Scripts/python.exe -m pip install uv==0.13.1
+$env:UV_CACHE_DIR = Join-Path (Get-Location) '.cache/uv'
+.tools/Scripts/uv.exe sync --project backend --locked
+```
+
+This creates `backend/.venv` from `backend/uv.lock` without a machine-wide uv
+installation. Container startup/testing uses its own locked environment. Protected
+metrics include durable job/transition/retry/timing aggregates and runtime
+HTTP/database/worker telemetry. See [D025](decision.md#d025---durable-history-separated-from-bounded-runtime-telemetry)
+for reset, privacy, and aggregation limits.
+
+`python scripts/verify_clean_checkout.py` verifies committed `HEAD` using a local
+clone, new credentials, Compose startup, saved terminal replay after restart, and
+the complete container suite. It temporarily stops development/test services,
+removes only its newly created verification project/data, and restores development
+services. On Windows it requests awake time only while running; the power plan is
+preserved. Its [capture](artifacts/verification/clean-checkout.json) records the
+actual checked commit and test count.
 
 [Worker smoke](scripts/smoke_worker.py) checks live hashing and a transient-failure retry. [Crash/recovery smoke](scripts/smoke_recovery.py) deliberately stops/restarts the local Compose worker and scheduler, checks replacement execution, and sends a stale report. With the host development environment installed, run either script from the repository root after loading `.env`:
 
@@ -165,4 +187,6 @@ Deployment is **free-only: INR 0 recurring budget**. GitHub Pages is the propose
 
 ## Next step
 
-Complete [Phase 7](implementation-plan.md#phase-7---observe-benchmark-and-close-the-backend-gate): observability, measured workloads, one verified improvement, and the backend gate. Discuss frontend direction with the user before Phase 8.
+Discuss the explanatory frontend's direction and scope before Phase 8. The backend
+gate has passed; React/JavaScript frontend implementation and free deployment
+remain. The public explanation must preserve the recorded evidence and limitations.

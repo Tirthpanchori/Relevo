@@ -26,12 +26,12 @@ Indicative allocation: weeks 1-2 for Phases 1-3, weeks 3-4 for Phases 4-5, weeks
 | 3 | Atomic claims, leases, and fenced outcomes | Complete |
 | 4 | Supervised worker runtime and registered handlers | Complete |
 | 5 | Delayed execution, retries, and independent recovery | Complete |
-| 6 | Fault tests, business-effect demonstration, Python client/CLI | Complete locally |
-| 7 | Telemetry, benchmarks, and backend readiness gate | In progress |
+| 6 | Fault tests, business-effect demonstration, Python client/CLI | Complete: local and hosted CI |
+| 7 | Telemetry, benchmarks, and backend readiness gate | Complete: backend gate passed |
 | 8 | Explanatory React frontend using recorded evidence | Planned |
 | 9 | Reproducible packaging and free deployment | Planned |
 
-Phases 1-6 have runnable code and local verification. The current observability checkpoint passes 195 tests on Windows and Linux, plus Phase 6's 81 integration checks repeated three further rounds. Actual component crashes/restarts and business-effect duplication/idempotency are demonstrated, and sanitized replay recordings exist. Phase 7 telemetry is verified and benchmarks are in progress. [Hosted CI passed](https://github.com/Tirthpanchori/Relevo/actions/runs/39023521222) for source checkpoint `43ef7a8`; frontend and cloud deployment have not begun.
+**Phases 1-7 are complete; the backend readiness gate passed on 2026-10-18.** The final code checkpoint passes 197 tests on Windows/Linux, a fresh-checkout 197-test run, and [hosted CI](https://github.com/Tirthpanchori/Relevo/actions/runs/39067364211). Phase 6's 81 integration checks also passed three additional rounds. Real crash/restart/effect evidence, protected monitoring/traces, 1,440 retained benchmark jobs, and an explicitly limited tuning option are recorded below. Frontend and cloud deployment have not begun. Have the required frontend conversation before Phase 8.
 
 ### V1 boundaries
 
@@ -186,7 +186,7 @@ Traceable captures and reproduction commands are in [artifacts/replays](artifact
 - [x] P7.3 Treat PostgreSQL events as durable history; process counters/traces can miss observations or reset on restart. Separate event-derived totals from runtime telemetry in reports.
 - [x] P7.4 Benchmark identical short/long workloads with 1, 3, and 5 workers. Record warmup, repeated runs, workload/handler parameters, hardware, configuration, dependency versions, revision, raw measurements, throughput, queue delay, API latency percentiles, CPU/memory, and database contention. Keep durability settings unchanged.
 - [x] P7.5 Identify one measured bottleneck, make a bounded improvement, rerun the same workload, and publish before/after results with limitations. Preserve correctness tests; do not assume worker count produces linear scaling.
-- [ ] P7.6 Run the backend gate below and update this plan, the decision log, working guide, README, and memory with actual evidence.
+- [x] P7.6 Run the backend gate below and update this plan, the decision log, working guide, README, and memory with actual evidence.
 
 **Observability evidence (2026-10-17):** [runtime telemetry](backend/src/relevo/observability.py), [durable collector](backend/src/relevo/observability_db.py), [integration checks](backend/tests/integration/test_observability.py), [monitoring overlay](infra/compose.observability.yaml), and [actual smoke capture](artifacts/observability/local-smoke.json). Full suites passed **195 tests on Windows/Python 3.13.9 (49.33 seconds) and Linux/Python 3.13.16 (32.08 seconds)**, including real TCP faults. [Monitoring smoke](scripts/smoke_observability.py) verified healthy API/worker/scheduler targets, the provisioned Grafana dashboard, and a distributed worker/API trace. [D025](decision.md#d025---durable-history-separated-from-bounded-runtime-telemetry) records timing, privacy, restart, and retained-history scan limits. Benchmark/CI verification was pending at this checkpoint; see the subsequent milestones below.
 
@@ -198,17 +198,19 @@ Traceable captures and reproduction commands are in [artifacts/replays](artifact
 
 ### Backend gate - all items required before Phase 8
 
-- [x] Durable submission, deduplication, claims, leases, fencing, delayed eligibility, bounded retries, and recovery have passing real-PostgreSQL tests. See Phases 2-6 and the 195-test Windows/Linux checkpoint above.
+- [x] Durable submission, deduplication, claims, leases, fencing, delayed eligibility, bounded retries, and recovery have passing real-PostgreSQL tests. See Phases 2-6 and the final 197-test Windows/Linux checkpoint below.
 - [x] Every failure-matrix scenario passes repeatedly; acknowledged-job accounting and history consistency are asserted. See Phase 6's 243 additional integration executions and [accounting checks](backend/tests/accounting.py).
 - [x] Business-effect duplication and its idempotent alternative are demonstrated separately from executor-state fencing. See [effect tests](backend/tests/integration/test_effects.py) and [actual captures](artifacts/replays/README.md).
-- [ ] API, worker, and scheduler restart independently; client/CLI demos work; documented Compose startup works from a clean checkout.
-- [x] CI runs the essential integration/recovery suite with no credentials in source or fixtures. [Hosted run 39023521222](https://github.com/Tirthpanchori/Relevo/actions/runs/39023521222) passed for `43ef7a8`; staged review verified local credentials stayed ignored.
-- [ ] Metrics, raw benchmark measurements, methodology, one measured optimization, and traceable replay recordings exist.
-- [ ] Published wording matches tested guarantees and explains downtime, retry exhaustion, duplicated execution, and storage-loss limits.
+- [x] API, worker, and scheduler restart independently; client/CLI demos work; documented Compose startup works from a clean checkout. See the [197-test fresh-checkout capture](artifacts/verification/clean-checkout.json), [restart capture](artifacts/replays/component-restarts.json), and [worker crash capture](artifacts/replays/worker-crash-recovery.json).
+- [x] CI runs the essential integration/recovery suite with no credentials in source or fixtures. [Hosted run 39067364211](https://github.com/Tirthpanchori/Relevo/actions/runs/39067364211) passed for `9af3ab8`; [sanitized evidence](artifacts/verification/hosted-ci.json) records the verified SHA/steps. Staged secret review passed.
+- [x] Metrics, raw benchmark measurements, methodology, one measured optimization, and traceable replay recordings exist. See [monitoring capture](artifacts/observability/local-smoke.json), [benchmark method/reports](benchmarks/README.md), [installed tuning check](artifacts/verification/worker-tuning.json), and [replays](artifacts/replays/README.md).
+- [x] Published wording matches tested guarantees and explains downtime, retry exhaustion, duplicated execution, and storage-loss limits. See [working guide](working.md), [README](README.md), and D025-D027; no universal speedup or fixed recovery-attempt count is claimed.
 
 **Completion check:** each checked item links to its implementation and evidence. Any failed item keeps the gate open.
 
-**Evidence:** pending implementation.
+**Final gate evidence (2026-10-18):** code checkpoint `9af3ab8` passes **197 checks on Windows/Python 3.13.9 (39.23s), Linux/Python 3.13.16 (29.25s), and a fresh committed checkout (197 tests, 27.80s)** against PostgreSQL 18.6/schema `0003`. Fresh credentials reject the old token; installed CLI jobs succeed before/after restart, saved terminal data/history stay identical, and the worker identity changes. Verification containers/network/new volume were removed and development storage/services restored. Hosted CI passes the same essential container/fault suite.
+
+Refreshed actual captures against `9af3ab8` prove worker SIGKILL/replacement/stale rejection and API/PostgreSQL restart/SIGKILL survival. The stronger crash harness checks bounded expired prefixes, contiguous tokens/numbers, every old owner's rejection, immutable terminal state, and matching committed history. The earlier extra-expiry run remains an explicitly labeled diagnostic (D027). Final monitoring verifies all three scrape targets, dashboard provisioning, and worker/API trace export. The optional 5 ms Compose setting ran a real CLI job successfully and was restored to 50 ms. Repeated/confirmation reports retain raw timings, source/image metadata, resource samples, regressions, and revision-specific limitations. No frontend or cloud deployment was started.
 
 ## Phase 8 - Build the explanatory frontend
 
@@ -240,4 +242,4 @@ Stop after Phase 7 for that discussion; do not start Phase 8 automatically.
 
 ## Next session
 
-Continue **Phase 7**: P7.1-P7.3 and the first hosted CI run pass. Finish repeated 1/3/5-worker benchmarks, test one measured optimization, verify clean-checkout startup, and audit every backend gate. `origin` is the user-provided GitHub repository. Stop for a conversation before any frontend work.
+Backend work through **Phase 7 is complete**. Have the requested conversation about frontend direction and scope before P8.1. Phase 8 frontend and Phase 9 free deployment remain; do not start them automatically. Keep the 50 ms default unless workload-specific measurements justify the optional setting, and preserve the verified guarantees/limitations in the public explanation.

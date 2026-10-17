@@ -441,8 +441,9 @@ default logging configuration demonstrated that its non-propagating handler
 could print an uncaught exception message outside the root JSON formatter. Route
 all Uvicorn loggers through that formatter and retain only the exception class.
 The new regression and all four targeted observability checks pass. The updated
-196-test suite passes on Windows (36.72s) and Linux (28.83s); installed-image and
-clean-checkout verification remain part of the final gate.
+196-test candidate suite passed on Windows (36.72s) and Linux (28.83s). The final
+access-log policy regression raises the suite to 197; the updated Windows/Linux,
+fresh-checkout, installed monitoring, and hosted CI checks all pass at `9af3ab8`.
 
 ## D026 - Bounded measurement and worker monitor experiment
 
@@ -515,6 +516,10 @@ The audit also found that redirecting Uvicorn's access logger enabled it despite
 logging regressions are covered, and the full suite passes **197 tests on Windows
 (39.23s) and Linux (29.25s)**. Version-specific benchmark notes identify the earlier
 logging behavior; its overhead is not silently attributed to later revisions.
+
+The updated smoke passed against `9af3ab8` with actual worker SIGKILL, an
+`expired,succeeded` sequence, and all stale/immutability/history checks. The earlier
+three-attempt diagnostic remains published. Both records describe actual runs.
 
 ## Decisions still open
 

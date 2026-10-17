@@ -1,7 +1,7 @@
 {
-  "captured_at": "2026-10-17T10:02:23.572096+00:00",
+  "captured_at": "2026-10-17T20:40:13.525737+00:00",
   "source": "scripts/smoke_observability.py",
-  "job_id": "f290545e-155e-4174-8149-c65e800f5b1a",
+  "job_id": "2a9ebcd6-5477-40a9-b9b2-2d1d82ff76d7",
   "prometheus_targets": {
     "api": "up",
     "scheduler": "up",
@@ -10,7 +10,7 @@
   "grafana_dashboard": "relevo-engine",
   "distributed_traces": [
     {
-      "trace_id": "f7f7a6b216a7666a410502da3740b7d7",
+      "trace_id": "ae86024bd8742e424001a6b51ed434d7",
       "services": [
         "relevo-api",
         "relevo-worker"

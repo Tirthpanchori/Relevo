@@ -21,6 +21,8 @@ The effect captures were refreshed against verified commit `d3cc16b` on
 2026-10-18. The crash smoke now checks the actual bounded-recovery contract,
 including every expired owner's stale report and unchanged terminal state,
 instead of promising exactly two attempts; additional expiries are labeled.
+Worker-crash and component-restart captures were refreshed against `9af3ab8`,
+which passes the 197-test local/container/clean-checkout suite and hosted CI.
 
 The effect harness runs hashing plus a separate business transaction under
 instrumented coordinator control. It drops completion before the coordinator

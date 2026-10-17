@@ -398,3 +398,26 @@ verification exist. Record later changes and completed milestones here.
 - A crash-recording refresh succeeded on attempt three after an extra expiry.
   Preserve its diagnostic; D027 updates the harness to assert bounded valid
   expiry/history/fencing instead of an unsupported exact-two-attempt promise.
+
+## Backend readiness gate complete - 2026-10-18
+
+- Phases 1-7 and every backend gate are complete. Stop for the user-required
+  frontend conversation; no React/Vite/frontend or cloud deployment has begun.
+- Final code checkpoint `9af3ab8` passes 197 tests on Windows (39.23s), Linux
+  (29.25s), a fresh checkout (197 tests, 27.80s), and hosted CI 39067364211.
+- Fresh-checkout proof uses different credentials, rejects the original token,
+  runs CLI before/after restart, preserves identical terminal job/history, and
+  observes a new worker identity. Only new verification resources were removed;
+  development storage/services were restored. Capture: `artifacts/verification`.
+- Current crash/restart captures reference `9af3ab8`; effect captures reference
+  verified `d3cc16b`. The extra-expiry diagnostic remains explicitly labeled.
+  D027's stronger bounded-recovery smoke passes with actual SIGKILL and stale 409.
+- Final monitoring smoke passes API/worker/scheduler targets, Grafana provisioning,
+  and real distributed trace export. Compose 5 ms tuning completed a real CLI
+  job, then restored the default 50 ms. Monitoring is running locally.
+- Benchmark reports retain 1,440 measured jobs, raw timings/resources, regression
+  and revision notes. Keep the conservative default; 5 ms is optional tuning, not
+  a universal speedup. No exactly-once/uptime/storage-destruction claims.
+- Remaining work: Phase 8 explanatory React/JavaScript frontend after discussion;
+  Phase 9 free-only deployment/backup-restore/final packaging. No additional PC
+  application or permanent power-setting change was required for Phase 7.

@@ -140,4 +140,9 @@ The default remains 50 ms; 5 ms is an optional worker setting for workloads wher
 local measurements justify it. Starting a separate process for every task still
 has a cost. These are local measurements, not a promise about other machines.
 
-After that evidence exists, the public frontend will replay actual captured test events, clearly labeled with their source and revision. A visitor can explore worker failure and recovery while the live engine is offline. The whole engine will also run locally through Compose. The build order and completion checks are in [implementation-plan.md](implementation-plan.md).
+The backend gate has passed, including a fresh-checkout run and hosted CI. After
+the required frontend conversation, the public explanation can replay these
+actual captured events, clearly labeled with their source and revision. A visitor
+will be able to explore failure/recovery while the live engine is offline. The
+complete engine already runs locally through Compose. The build order and
+evidence are in [implementation-plan.md](implementation-plan.md).
