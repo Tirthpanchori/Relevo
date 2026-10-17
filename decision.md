@@ -33,7 +33,7 @@ For a consequential new choice, append an entry with an ID, date, status, contex
 | [D023](#d023---independent-business-transactions-and-actual-recordings) | Independent business transactions and actual recordings | Accepted |
 | [D024](#d024---isolated-tcp-faults-and-process-crash-proof) | Isolated TCP faults and process-crash proof | Accepted |
 | [D025](#d025---durable-history-separated-from-bounded-runtime-telemetry) | Durable history separated from bounded runtime telemetry | Accepted |
-| [D026](#d026---bounded-measurement-and-worker-monitor-experiment) | Bounded measurement and worker monitor experiment | Proposed; measurement in progress |
+| [D026](#d026---bounded-measurement-and-worker-monitor-experiment) | Bounded measurement and worker monitor experiment | Accepted: 50 ms default, opt-in 5 ms tuning |
 
 ## D001 - Backend correctness before frontend
 
@@ -439,12 +439,13 @@ the provisioned dashboard, and an exported worker/API trace.
 default logging configuration demonstrated that its non-propagating handler
 could print an uncaught exception message outside the root JSON formatter. Route
 all Uvicorn loggers through that formatter and retain only the exception class.
-The new regression and all four targeted observability checks pass. The complete
-updated suite and installed image remain to be reverified before closing Phase 7.
+The new regression and all four targeted observability checks pass. The updated
+196-test suite passes on Windows (36.72s) and Linux (28.83s); installed-image and
+clean-checkout verification remain part of the final gate.
 
 ## D026 - Bounded measurement and worker monitor experiment
 
-**Date:** 2026-10-18. **Status:** Proposed; no default change yet. **Origin:** Phase 7.
+**Date:** 2026-10-18. **Status:** Accepted: retain 50 ms default; expose opt-in 5 ms tuning. **Origin:** Phase 7.
 
 Use an isolated, guarded benchmark database with normal PostgreSQL durability,
 fixed task inputs, ten warmup jobs, thirty measured jobs, and three repetitions
@@ -467,13 +468,33 @@ use before selecting a default. Per-task process startup remains a separate cost
 Search budget: at most two candidates, thirty minutes of measured execution,
 INR 0 spend, and writes only to the benchmark database. Require repeated evidence,
 the full correctness suite, and a further baseline/candidate confirmation before
-promotion. Rollback is restoring `RELEVO_WORKER_MONITOR_SECONDS=0.05`. Results and
-promotion status will be added after verification; no speedup is claimed yet.
+promotion. Rollback is restoring `RELEVO_WORKER_MONITOR_SECONDS=0.05` or unsetting it.
+
+**Result:** the [three-repeat comparison](benchmarks/comparison.md) contains 1,080
+measured jobs; the [same-image confirmation](benchmarks/confirmation.md) adds 360.
+All retained cases passed result/ID/attempt/history checks, and the full 196-test
+suite passes with 5 ms configured on Windows/Linux. Confirmation measured short
+hashing at 3.103 to 4.001 jobs/s with one worker (+28.9%) and 7.303 to 8.940 with
+three (+22.4%). Five-worker hashing was nearly unchanged. Timed-work throughput
+regressed in that confirmation (7.6%, 2.6%, and 23.4% for 1/3/5 workers).
+
+Therefore keep 50 ms as the general default. Make 5 ms available through the
+validated worker setting and Compose environment for short-task workloads, with
+the measured limitations visible. It is a bounded optional improvement, not a
+universal speedup or new execution guarantee. Per-task process startup remains
+substantial; changing that isolation boundary was outside this experiment.
+
+**Measurement recovery:** Windows power events matched the rejected confirmation
+pause; idle sleep was configured at 180 seconds. Scripts now use a scoped
+`ES_SYSTEM_REQUIRED` request and restore the previous thread state on exit,
+without editing the power plan. See [power evidence](artifacts/verification/host-power.json)
+and the [Windows API](https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-setthreadexecutionstate).
+Earlier unexplained interruptions remain labeled as such; no cause is invented.
 
 ## Decisions still open
 
-- Request/response schemas, initial error codes, serialized-byte convention, and dependency pins are resolved in Phase 1/2. Retry backoff/jitter parameters are resolved in D018 and scheduler integration in D021; broader network/crash proof remains for Phase 6.
+- Contracts, byte conventions, dependency pins, retry policy, and recovery are resolved in D015-D021; Phase 6 supplies the network/crash/business-effect proof.
 - Frontend visual direction: establish in Phase 8 from the verified engine story.
-- Actual public repository URL and free hosting availability/configuration: resolve in Phase 9. No repository URL or deployment should be invented.
+- The repository is https://github.com/Tirthpanchori/Relevo. Free hosting availability/configuration remains for Phase 9; no deployment is claimed.
 
-These open details do not block backend failure testing. Broader changes to durability, ownership, effect semantics, or budget require a new linked decision entry.
+Broader changes to durability, ownership, effect semantics, or budget require a new linked decision entry.

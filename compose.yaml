@@ -54,6 +54,7 @@ services:
     environment:
       RELEVO_API_URL: http://api:8000
       RELEVO_METRICS_PORT: "8001"
+      RELEVO_WORKER_MONITOR_SECONDS: ${RELEVO_WORKER_MONITOR_SECONDS:-0.05}
       RELEVO_API_TOKEN: ${RELEVO_API_TOKEN:?Run python scripts/configure.py}
     command: ["python", "-m", "relevo.worker"]
     depends_on:

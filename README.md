@@ -8,7 +8,7 @@ Relevo is a backend systems portfolio project: an application submits background
 
 ## Current status
 
-**2026-10-18: Phases 1-6 verified; Phase 7 final measurement/checkout verification in progress.**
+**2026-10-18: Phases 1-6 verified; Phase 7 clean-checkout/CI closeout in progress.**
 
 All ten API endpoints, supervised workers, independent recovery, the Python client/CLI, and the failure scenarios are implemented. Separate business-effect tests demonstrate duplicate execution and transactional idempotency. Protected telemetry and optional local monitoring are verified; benchmarks are in progress. Frontend work will wait for a conversation with the user.
 
@@ -35,7 +35,7 @@ At the start of development, read project memory, this README, the plan's curren
 - Preserve attempt history and commit transition events with state changes.
 - Demonstrate crash/network/race behavior and measure performance with 1, 3, and 5 workers.
 
-Submission, deduplication, inspection, claims, leased ownership, supervised handler execution, fenced outcomes, expiry recovery, and committed transition history are implemented. Performance evidence remains planned. Recovery may execute a handler more than once. Ownership checks reject stale state updates; external business effects need their own idempotency protection. Relevo does not claim exactly-once execution, uninterrupted uptime, or resilience to destroyed database storage. See the [working guide](working.md) for examples and boundaries.
+Submission, deduplication, inspection, claims, leased ownership, supervised handler execution, fenced outcomes, expiry recovery, and committed transition history are implemented. [Repeated measurements](benchmarks/comparison.md) and [confirmation](benchmarks/confirmation.md) record actual results and limitations. The default remains a 50 ms worker monitor interval; 5 ms is optional short-task tuning, with documented timed-work regressions. Recovery may execute a handler more than once. Ownership checks reject stale state updates; external business effects need their own idempotency protection. Relevo does not claim exactly-once execution, uninterrupted uptime, or resilience to destroyed database storage. See the [working guide](working.md) for examples and boundaries.
 
 ## Agreed stack
 
@@ -95,10 +95,11 @@ Prometheus reads it from an ignored secret file. Monitoring data is temporary.
 
 The [verified smoke](scripts/smoke_observability.py) checks all three scrape targets,
 dashboard provisioning, and actual worker/API trace export. The full current
-suite passes 195 tests on Windows and Linux. Durable counts/timings come from
+suite passes 196 tests on Windows and Linux. Durable counts/timings come from
 PostgreSQL events; process counters can reset and traces can be lost. Retained
 event aggregation scans history and is intended for this bounded local workload.
-The [benchmark method](benchmarks/README.md) is ready; results are still pending.
+The [benchmark method and recordings](benchmarks/README.md) include the completed
+comparison, confirmation, raw JSON/CSV, and workload-specific tuning instructions.
 
 ### Try submission from PowerShell
 

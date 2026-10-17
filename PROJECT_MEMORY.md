@@ -371,3 +371,19 @@ verification exist. Record later changes and completed milestones here.
 - Fixed a proven Uvicorn exception-log redaction bypass. Full updated suite with
   5 ms configured passes 196 tests on Windows (36.72s) and Linux (28.83s).
   The default remains 50 ms until the separate same-image confirmation passes.
+
+## Phase 7 measurement decision - 2026-10-18
+
+- Confirmation completed all twelve cases (360 measured jobs); combined with the
+  repeated matrices, 1,440 retained measured jobs have exact result/attempt/history
+  validation. Reports/CSV/raw metadata are under `benchmarks/`.
+- Keep the 50 ms monitor default. The configurable 5 ms option improved short jobs
+  with one/three workers in confirmation but slowed timed work. D026 records the
+  opt-in tradeoff; do not claim a blanket speedup or promote the candidate globally.
+- Verified Windows' 180-second idle sleep and matching Modern Standby events for
+  the rejected confirmation. Benchmark/checkout scripts now use temporary scoped
+  awake requests; they restore prior thread state and do not edit the power plan.
+- Uvicorn redaction regression fixed; full 196-test Windows/Linux checks pass.
+  P7.5 is complete as measured optional tuning. Next: commit/push current evidence,
+  clean-checkout startup/CLI/restart/full-suite verification, current hosted CI,
+  and final P7.6 documentation/gate. No frontend work is authorized yet.

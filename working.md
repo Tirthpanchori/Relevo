@@ -132,6 +132,12 @@ PostgreSQL persistence is essential. The design targets process crashes and temp
 
 ## How we will demonstrate this
 
-PostgreSQL/TCP tests cover the failure matrix and check accounting after every test. Actual smoke scripts kill workers and PostgreSQL, pause recovery, restart components, and verify acknowledged jobs and terminal outcomes survive. Sanitized recordings preserve committed events and label controlled interventions. Phase 7 will measure identical workloads with 1, 3, and 5 workers; no benchmark numbers are claimed yet.
+PostgreSQL/TCP tests cover the failure matrix and check accounting after every test. Actual smoke scripts kill workers and PostgreSQL, pause recovery, restart components, and verify acknowledged jobs and terminal outcomes survive. Sanitized recordings preserve committed events and label controlled interventions. Identical workloads have been measured with 1, 3, and 5 workers; [the comparison](benchmarks/comparison.md) and [confirmation](benchmarks/confirmation.md) include raw timings, resource use, variation, and limitations.
+
+We also tried checking for finished child processes more often: every 5 ms instead
+of 50 ms. It helped some short-task cases but slowed timed work in the confirmation.
+The default remains 50 ms; 5 ms is an optional worker setting for workloads where
+local measurements justify it. Starting a separate process for every task still
+has a cost. These are local measurements, not a promise about other machines.
 
 After that evidence exists, the public frontend will replay actual captured test events, clearly labeled with their source and revision. A visitor can explore worker failure and recovery while the live engine is offline. The whole engine will also run locally through Compose. The build order and completion checks are in [implementation-plan.md](implementation-plan.md).

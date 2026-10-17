@@ -16,6 +16,7 @@ from importlib.metadata import version
 from pathlib import Path
 
 import httpx
+from local_power import keep_awake
 from prometheus_client.parser import text_string_to_metric_families
 from relevo.api.schemas import SubmitJob
 from relevo.client import ClientSettings, RelevoClient
@@ -164,6 +165,7 @@ def revision():
         ROOT / "backend/uv.lock",
         ROOT / "compose.yaml",
         Path(__file__),
+        ROOT / "scripts/local_power.py",
     ]
     for path in files:
         encoded = (
@@ -173,7 +175,7 @@ def revision():
             + b"\0"
         )
         digest.update(encoded)
-        if path != Path(__file__):
+        if path not in (Path(__file__), ROOT / "scripts/local_power.py"):
             runtime_digest.update(encoded)
     return {
         "git_commit": command(["git", "rev-parse", "HEAD"]),
@@ -226,6 +228,7 @@ def metadata(engine, args):
         "format_version": 1,
         "captured_at": datetime.now(UTC).isoformat(),
         "variant": args.variant,
+        "observer_idle_sleep_request": args.idle_sleep_request,
         "revision": revision(),
         "host": {
             "platform": platform.platform(),
@@ -619,4 +622,6 @@ if __name__ == "__main__":
         and set(args.workers) <= {1, 3, 5}
     )
     assert 0.001 <= args.monitor <= 1
-    asyncio.run(main(args))
+    with keep_awake() as active:
+        args.idle_sleep_request = active
+        asyncio.run(main(args))

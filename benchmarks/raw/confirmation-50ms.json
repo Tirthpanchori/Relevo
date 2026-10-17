@@ -1,0 +1,539 @@
+{
+  "format_version": 1,
+  "captured_at": "2026-10-17T20:12:19.535072+00:00",
+  "variant": "confirmation-50ms",
+  "revision": {
+    "git_commit": "b84be4e24b46458b22382ddb2c7be07392a1f293",
+    "source_sha256": "1869655ef577586ecdd79e48feb0987c966709e0a9f61a31eb12df579eb3a8fd",
+    "runtime_source_sha256": "15b4812709e2fdeef3d0476d32380ebcccfe35f34603d34b844f9a4083d4161c",
+    "dirty": false,
+    "lock_sha256": "e74ebb143b90a3fbf6951c616c2d5b39830f9e0ff32ddcb5e6fbc7b32177a791",
+    "image_id": "sha256:3300983d322a029a83a67b5d7e8f280195ba1764d92100046cc7fe268ba4ff72"
+  },
+  "host": {
+    "platform": "Windows-11-10.0.26340-SP0",
+    "processor": "Intel64 Family 6 Model 154 Stepping 3, GenuineIntel",
+    "docker": {
+      "cpus": 16,
+      "memory_bytes": 8128761856,
+      "os": "Docker Desktop",
+      "kernel": "6.6.87.2-microsoft-standard-WSL2",
+      "server": "29.6.2"
+    }
+  },
+  "dependencies": {
+    "relevo": "0.1.0",
+    "fastapi": "0.143.2",
+    "sqlalchemy": "2.0.54",
+    "psycopg": "3.3.6",
+    "httpx": "0.28.1",
+    "opentelemetry-sdk": "1.45.1",
+    "prometheus-client": "0.26.0"
+  },
+  "database": {
+    "version": "18.6 (Debian 18.6-1.pgdg12+2)",
+    "schema": "0003",
+    "durability": {
+      "fsync": "on",
+      "synchronous_commit": "on",
+      "full_page_writes": "on"
+    }
+  },
+  "configuration": {
+    "jobs_per_run": 30,
+    "repeats": 1,
+    "worker_counts": [
+      1,
+      3,
+      5
+    ],
+    "warmup_jobs": 10,
+    "submission_concurrency": 8,
+    "common_gate_seconds": 3,
+    "observer_poll_seconds": 0.05,
+    "monitor_seconds": 0.05,
+    "lease_seconds": 15,
+    "heartbeat_seconds": 5,
+    "recovery_scan_seconds": 2,
+    "task_timeout_seconds": 60,
+    "max_attempts": 3,
+    "trace_export": false,
+    "prometheus_scraping": false,
+    "workloads": {
+      "short_hash": [
+        "hash_payload",
+        {
+          "message": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        }
+      ],
+      "long_timed": [
+        "timed_work",
+        {
+          "duration_seconds": 0.25
+        }
+      ]
+    }
+  },
+  "runs": [],
+  "interrupted_case": {
+    "workload": "short_hash",
+    "workers": 1,
+    "repeat": 1,
+    "status": "excluded: performance case did not pass its single-attempt accounting guard",
+    "jobs": [
+      {
+        "id": "1001a02d-48ce-4604-9f1e-af2999ce2758",
+        "state": "succeeded",
+        "attempt_count": 1,
+        "event_sequence": 3,
+        "created_at": "2026-10-17 20:12:22.230147+00:00",
+        "finished_at": "2026-10-17 20:12:24.140422+00:00"
+      },
+      {
+        "id": "e9aa2a33-d27b-448d-bac1-293793ba2a02",
+        "state": "succeeded",
+        "attempt_count": 1,
+        "event_sequence": 3,
+        "created_at": "2026-10-17 20:12:22.257949+00:00",
+        "finished_at": "2026-10-17 20:12:24.472545+00:00"
+      },
+      {
+        "id": "f504f6d3-9dc6-497f-b2e9-24d230e96be1",
+        "state": "succeeded",
+        "attempt_count": 1,
+        "event_sequence": 3,
+        "created_at": "2026-10-17 20:12:22.264726+00:00",
+        "finished_at": "2026-10-17 20:12:24.751610+00:00"
+      },
+      {
+        "id": "385ca70b-a51f-43d6-b496-bf43926785f8",
+        "state": "succeeded",
+        "attempt_count": 1,
+        "event_sequence": 3,
+        "created_at": "2026-10-17 20:12:22.266239+00:00",
+        "finished_at": "2026-10-17 20:12:25.090645+00:00"
+      },
+      {
+        "id": "c93e755f-6eeb-4317-a85f-0aa37057290a",
+        "state": "succeeded",
+        "attempt_count": 1,
+        "event_sequence": 3,
+        "created_at": "2026-10-17 20:12:22.274241+00:00",
+        "finished_at": "2026-10-17 20:12:25.366365+00:00"
+      },
+      {
+        "id": "8a012368-3a51-4a88-bae2-eec4e9212f78",
+        "state": "succeeded",
+        "attempt_count": 1,
+        "event_sequence": 3,
+        "created_at": "2026-10-17 20:12:22.274634+00:00",
+        "finished_at": "2026-10-17 20:12:25.641840+00:00"
+      },
+      {
+        "id": "11248dcc-b7f8-4e94-b2ec-a4a60c3eb1e1",
+        "state": "succeeded",
+        "attempt_count": 1,
+        "event_sequence": 3,
+        "created_at": "2026-10-17 20:12:22.326873+00:00",
+        "finished_at": "2026-10-17 20:12:25.918354+00:00"
+      },
+      {
+        "id": "910ce76e-049d-4239-acc5-4ae4ef60807e",
+        "state": "succeeded",
+        "attempt_count": 1,
+        "event_sequence": 3,
+        "created_at": "2026-10-17 20:12:22.328380+00:00",
+        "finished_at": "2026-10-17 20:12:26.193501+00:00"
+      },
+      {
+        "id": "3e054eb7-92df-43cf-80fa-24eba58a77f0",
+        "state": "succeeded",
+        "attempt_count": 1,
+        "event_sequence": 3,
+        "created_at": "2026-10-17 20:12:22.347359+00:00",
+        "finished_at": "2026-10-17 20:12:26.472778+00:00"
+      },
+      {
+        "id": "afe2232a-88db-45b3-b0fe-e7126114260f",
+        "state": "succeeded",
+        "attempt_count": 1,
+        "event_sequence": 3,
+        "created_at": "2026-10-17 20:12:22.359802+00:00",
+        "finished_at": "2026-10-17 20:12:26.696764+00:00"
+      },
+      {
+        "id": "a4a09544-c536-4636-ac38-304d8e53ec7a",
+        "state": "succeeded",
+        "attempt_count": 1,
+        "event_sequence": 3,
+        "created_at": "2026-10-17 20:12:27.972905+00:00",
+        "finished_at": "2026-10-17 20:12:31.345518+00:00"
+      },
+      {
+        "id": "5757c4a8-2e0b-4a4b-aa9f-2c78e081e28b",
+        "state": "succeeded",
+        "attempt_count": 1,
+        "event_sequence": 3,
+        "created_at": "2026-10-17 20:12:27.973000+00:00",
+        "finished_at": "2026-10-17 20:12:31.573134+00:00"
+      },
+      {
+        "id": "f4080ddf-4683-44b8-884a-47c98a6f81b0",
+        "state": "running",
+        "attempt_count": 1,
+        "event_sequence": 2,
+        "created_at": "2026-10-17 20:12:27.973079+00:00",
+        "finished_at": null
+      },
+      {
+        "id": "8610f753-90fc-4629-bf79-2e52b415e0ea",
+        "state": "pending",
+        "attempt_count": 0,
+        "event_sequence": 1,
+        "created_at": "2026-10-17 20:12:27.973216+00:00",
+        "finished_at": null
+      },
+      {
+        "id": "fb5c7a65-babe-418e-9184-ea0a0fecba1f",
+        "state": "pending",
+        "attempt_count": 0,
+        "event_sequence": 1,
+        "created_at": "2026-10-17 20:12:27.979204+00:00",
+        "finished_at": null
+      },
+      {
+        "id": "19e9197f-5e15-4c15-9bed-3a801456ea48",
+        "state": "pending",
+        "attempt_count": 0,
+        "event_sequence": 1,
+        "created_at": "2026-10-17 20:12:27.994706+00:00",
+        "finished_at": null
+      },
+      {
+        "id": "9c4e5f28-86b3-444d-8ced-749a9260fa93",
+        "state": "pending",
+        "attempt_count": 0,
+        "event_sequence": 1,
+        "created_at": "2026-10-17 20:12:27.998786+00:00",
+        "finished_at": null
+      },
+      {
+        "id": "ccca169d-e476-4c1a-86b1-1d28636e3ef2",
+        "state": "pending",
+        "attempt_count": 0,
+        "event_sequence": 1,
+        "created_at": "2026-10-17 20:12:27.999809+00:00",
+        "finished_at": null
+      },
+      {
+        "id": "9fe5d9ca-9512-486d-a6e3-825691e9975c",
+        "state": "pending",
+        "attempt_count": 0,
+        "event_sequence": 1,
+        "created_at": "2026-10-17 20:12:28.021893+00:00",
+        "finished_at": null
+      },
+      {
+        "id": "ff81e9fa-3107-476c-b01d-a6f99ac125d9",
+        "state": "pending",
+        "attempt_count": 0,
+        "event_sequence": 1,
+        "created_at": "2026-10-17 20:12:28.022094+00:00",
+        "finished_at": null
+      },
+      {
+        "id": "1bf84f05-53a4-41c3-a75a-cb0726c3fe0e",
+        "state": "pending",
+        "attempt_count": 0,
+        "event_sequence": 1,
+        "created_at": "2026-10-17 20:12:28.022329+00:00",
+        "finished_at": null
+      },
+      {
+        "id": "b6f9d37e-a185-4816-920f-a14df81b1807",
+        "state": "pending",
+        "attempt_count": 0,
+        "event_sequence": 1,
+        "created_at": "2026-10-17 20:12:28.024848+00:00",
+        "finished_at": null
+      },
+      {
+        "id": "455ca470-7f4a-4f4d-8cc5-6e5af779401c",
+        "state": "pending",
+        "attempt_count": 0,
+        "event_sequence": 1,
+        "created_at": "2026-10-17 20:12:28.044885+00:00",
+        "finished_at": null
+      },
+      {
+        "id": "36cf8ce6-63ae-44d0-94b7-7650ee083c12",
+        "state": "pending",
+        "attempt_count": 0,
+        "event_sequence": 1,
+        "created_at": "2026-10-17 20:12:28.051451+00:00",
+        "finished_at": null
+      },
+      {
+        "id": "ace64827-15ef-43fb-b446-d428dba87a1f",
+        "state": "pending",
+        "attempt_count": 0,
+        "event_sequence": 1,
+        "created_at": "2026-10-17 20:12:28.056219+00:00",
+        "finished_at": null
+      },
+      {
+        "id": "a90a43d4-5421-4e55-aced-517c912cd0bf",
+        "state": "pending",
+        "attempt_count": 0,
+        "event_sequence": 1,
+        "created_at": "2026-10-17 20:12:28.058355+00:00",
+        "finished_at": null
+      },
+      {
+        "id": "360322d7-94da-4872-a755-c43139c513c4",
+        "state": "pending",
+        "attempt_count": 0,
+        "event_sequence": 1,
+        "created_at": "2026-10-17 20:12:28.075777+00:00",
+        "finished_at": null
+      },
+      {
+        "id": "3926758d-252f-495f-9790-80da81776399",
+        "state": "pending",
+        "attempt_count": 0,
+        "event_sequence": 1,
+        "created_at": "2026-10-17 20:12:28.075956+00:00",
+        "finished_at": null
+      },
+      {
+        "id": "6b995c33-7a5f-4489-b943-4ef882078ebc",
+        "state": "pending",
+        "attempt_count": 0,
+        "event_sequence": 1,
+        "created_at": "2026-10-17 20:12:28.078452+00:00",
+        "finished_at": null
+      },
+      {
+        "id": "b73828e2-58b5-4fef-a280-ed2acabc12ef",
+        "state": "pending",
+        "attempt_count": 0,
+        "event_sequence": 1,
+        "created_at": "2026-10-17 20:12:28.089994+00:00",
+        "finished_at": null
+      },
+      {
+        "id": "8d571672-9adb-4db1-9594-2e862d55942c",
+        "state": "pending",
+        "attempt_count": 0,
+        "event_sequence": 1,
+        "created_at": "2026-10-17 20:12:28.092269+00:00",
+        "finished_at": null
+      },
+      {
+        "id": "56825b9a-a923-424b-949a-5483f78d8456",
+        "state": "pending",
+        "attempt_count": 0,
+        "event_sequence": 1,
+        "created_at": "2026-10-17 20:12:28.112436+00:00",
+        "finished_at": null
+      },
+      {
+        "id": "9a2b048d-8763-4675-b0d7-d6cbf8731eaf",
+        "state": "pending",
+        "attempt_count": 0,
+        "event_sequence": 1,
+        "created_at": "2026-10-17 20:12:28.120383+00:00",
+        "finished_at": null
+      },
+      {
+        "id": "6db7a4c0-bced-4357-9afc-099592a629b2",
+        "state": "pending",
+        "attempt_count": 0,
+        "event_sequence": 1,
+        "created_at": "2026-10-17 20:12:28.135474+00:00",
+        "finished_at": null
+      },
+      {
+        "id": "254dbee2-58a0-4549-b53c-79ecb7a58132",
+        "state": "pending",
+        "attempt_count": 0,
+        "event_sequence": 1,
+        "created_at": "2026-10-17 20:12:28.141763+00:00",
+        "finished_at": null
+      },
+      {
+        "id": "f63e8f6c-9cf3-49dc-b697-ec7544b1fb03",
+        "state": "pending",
+        "attempt_count": 0,
+        "event_sequence": 1,
+        "created_at": "2026-10-17 20:12:28.146466+00:00",
+        "finished_at": null
+      },
+      {
+        "id": "4d91d8d6-dc52-44c2-9209-6611e7965f08",
+        "state": "pending",
+        "attempt_count": 0,
+        "event_sequence": 1,
+        "created_at": "2026-10-17 20:12:28.162541+00:00",
+        "finished_at": null
+      },
+      {
+        "id": "143f7e29-43d1-41e6-8d74-90daea0ef22b",
+        "state": "pending",
+        "attempt_count": 0,
+        "event_sequence": 1,
+        "created_at": "2026-10-17 20:12:28.172592+00:00",
+        "finished_at": null
+      },
+      {
+        "id": "b112737e-2712-4350-86fa-8047be0a16e0",
+        "state": "pending",
+        "attempt_count": 0,
+        "event_sequence": 1,
+        "created_at": "2026-10-17 20:12:28.178852+00:00",
+        "finished_at": null
+      },
+      {
+        "id": "18fac448-1013-4689-8545-1586cfdb450e",
+        "state": "pending",
+        "attempt_count": 0,
+        "event_sequence": 1,
+        "created_at": "2026-10-17 20:12:28.189286+00:00",
+        "finished_at": null
+      }
+    ],
+    "attempts": [
+      {
+        "job_id": "1001a02d-48ce-4604-9f1e-af2999ce2758",
+        "number": 1,
+        "state": "succeeded",
+        "fencing_token": 1,
+        "started_at": "2026-10-17 20:12:23.804770+00:00",
+        "lease_expires_at": "2026-10-17 20:12:38.804770+00:00",
+        "finished_at": "2026-10-17 20:12:24.140422+00:00",
+        "error_code": null
+      },
+      {
+        "job_id": "11248dcc-b7f8-4e94-b2ec-a4a60c3eb1e1",
+        "number": 1,
+        "state": "succeeded",
+        "fencing_token": 1,
+        "started_at": "2026-10-17 20:12:25.653029+00:00",
+        "lease_expires_at": "2026-10-17 20:12:40.653029+00:00",
+        "finished_at": "2026-10-17 20:12:25.918354+00:00",
+        "error_code": null
+      },
+      {
+        "job_id": "385ca70b-a51f-43d6-b496-bf43926785f8",
+        "number": 1,
+        "state": "succeeded",
+        "fencing_token": 1,
+        "started_at": "2026-10-17 20:12:24.767638+00:00",
+        "lease_expires_at": "2026-10-17 20:12:39.767638+00:00",
+        "finished_at": "2026-10-17 20:12:25.090645+00:00",
+        "error_code": null
+      },
+      {
+        "job_id": "3e054eb7-92df-43cf-80fa-24eba58a77f0",
+        "number": 1,
+        "state": "succeeded",
+        "fencing_token": 1,
+        "started_at": "2026-10-17 20:12:26.206963+00:00",
+        "lease_expires_at": "2026-10-17 20:12:41.206963+00:00",
+        "finished_at": "2026-10-17 20:12:26.472778+00:00",
+        "error_code": null
+      },
+      {
+        "job_id": "5757c4a8-2e0b-4a4b-aa9f-2c78e081e28b",
+        "number": 1,
+        "state": "succeeded",
+        "fencing_token": 1,
+        "started_at": "2026-10-17 20:12:31.355210+00:00",
+        "lease_expires_at": "2026-10-17 20:12:46.355210+00:00",
+        "finished_at": "2026-10-17 20:12:31.573134+00:00",
+        "error_code": null
+      },
+      {
+        "job_id": "8a012368-3a51-4a88-bae2-eec4e9212f78",
+        "number": 1,
+        "state": "succeeded",
+        "fencing_token": 1,
+        "started_at": "2026-10-17 20:12:25.377504+00:00",
+        "lease_expires_at": "2026-10-17 20:12:40.377504+00:00",
+        "finished_at": "2026-10-17 20:12:25.641840+00:00",
+        "error_code": null
+      },
+      {
+        "job_id": "910ce76e-049d-4239-acc5-4ae4ef60807e",
+        "number": 1,
+        "state": "succeeded",
+        "fencing_token": 1,
+        "started_at": "2026-10-17 20:12:25.928050+00:00",
+        "lease_expires_at": "2026-10-17 20:12:40.928050+00:00",
+        "finished_at": "2026-10-17 20:12:26.193501+00:00",
+        "error_code": null
+      },
+      {
+        "job_id": "a4a09544-c536-4636-ac38-304d8e53ec7a",
+        "number": 1,
+        "state": "succeeded",
+        "fencing_token": 1,
+        "started_at": "2026-10-17 20:12:31.081285+00:00",
+        "lease_expires_at": "2026-10-17 20:12:46.081285+00:00",
+        "finished_at": "2026-10-17 20:12:31.345518+00:00",
+        "error_code": null
+      },
+      {
+        "job_id": "afe2232a-88db-45b3-b0fe-e7126114260f",
+        "number": 1,
+        "state": "succeeded",
+        "fencing_token": 1,
+        "started_at": "2026-10-17 20:12:26.483039+00:00",
+        "lease_expires_at": "2026-10-17 20:12:41.483039+00:00",
+        "finished_at": "2026-10-17 20:12:26.696764+00:00",
+        "error_code": null
+      },
+      {
+        "job_id": "c93e755f-6eeb-4317-a85f-0aa37057290a",
+        "number": 1,
+        "state": "succeeded",
+        "fencing_token": 1,
+        "started_at": "2026-10-17 20:12:25.102192+00:00",
+        "lease_expires_at": "2026-10-17 20:12:40.102192+00:00",
+        "finished_at": "2026-10-17 20:12:25.366365+00:00",
+        "error_code": null
+      },
+      {
+        "job_id": "e9aa2a33-d27b-448d-bac1-293793ba2a02",
+        "number": 1,
+        "state": "succeeded",
+        "fencing_token": 1,
+        "started_at": "2026-10-17 20:12:24.154013+00:00",
+        "lease_expires_at": "2026-10-17 20:12:39.154013+00:00",
+        "finished_at": "2026-10-17 20:12:24.472545+00:00",
+        "error_code": null
+      },
+      {
+        "job_id": "f4080ddf-4683-44b8-884a-47c98a6f81b0",
+        "number": 1,
+        "state": "running",
+        "fencing_token": 1,
+        "started_at": "2026-10-17 20:12:31.585659+00:00",
+        "lease_expires_at": "2026-10-17 20:12:46.585659+00:00",
+        "finished_at": null,
+        "error_code": null
+      },
+      {
+        "job_id": "f504f6d3-9dc6-497f-b2e9-24d230e96be1",
+        "number": 1,
+        "state": "succeeded",
+        "fencing_token": 1,
+        "started_at": "2026-10-17 20:12:24.483813+00:00",
+        "lease_expires_at": "2026-10-17 20:12:39.483813+00:00",
+        "finished_at": "2026-10-17 20:12:24.751610+00:00",
+        "error_code": null
+      }
+    ]
+  },
+  "failure_type": "TimeoutError"
+}

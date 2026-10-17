@@ -2,11 +2,14 @@
 
 import json
 import os
+import re
 import subprocess
 import urllib.error
 import urllib.request
 from datetime import UTC, datetime
 from pathlib import Path
+
+from local_power import keep_awake
 
 ROOT = Path(__file__).resolve().parents[1]
 PROJECT = "relevo-clean-checkout"
@@ -137,6 +140,30 @@ def main():
                 )
         except urllib.error.HTTPError as exc:
             assert exc.code == 401, "Unexpected fresh-checkout authentication response"
+
+        def demo(key):
+            return json.loads(
+                run(
+                    compose
+                    + [
+                        "exec",
+                        "-T",
+                        "-e",
+                        "RELEVO_API_URL=http://api:8000",
+                        "api",
+                        "python",
+                        "-m",
+                        "relevo",
+                        "demo",
+                        "--key",
+                        key,
+                    ],
+                    destination,
+                    log=log,
+                )
+            )
+
+        demos = []
         for key in ("fresh-clone-first", "fresh-clone-after-restart"):
             if key.endswith("restart"):
                 run(
@@ -149,29 +176,28 @@ def main():
                     destination,
                     log=log,
                 )
-            run(
-                compose
-                + [
-                    "exec",
-                    "-T",
-                    "-e",
-                    "RELEVO_API_URL=http://api:8000",
-                    "api",
-                    "python",
-                    "-m",
-                    "relevo",
-                    "demo",
-                    "--key",
-                    key,
-                ],
-                destination,
-                log=log,
-            )
-        run(
+                replay = demo("fresh-clone-first")
+                assert replay["job"] == demos[0]["job"], (
+                    "Acknowledged terminal job changed across restart"
+                )
+                assert replay["history"] == demos[0]["history"], (
+                    "Restart changed attempt history"
+                )
+            result = demo(key)
+            assert result["job"]["state"] == "succeeded"
+            assert len(result["history"]["attempts"]) == 1
+            demos.append(result)
+        assert (
+            demos[0]["history"]["attempts"][0]["worker_id"]
+            != demos[1]["history"]["attempts"][0]["worker_id"]
+        )
+        suite_output = run(
             compose + ["--profile", "test", "run", "--build", "--rm", "tests"],
             destination,
             log=log,
         )
+        suite_summary = re.search(r"(\d+) passed in ([\d.]+)s", suite_output)
+        assert suite_summary, "Missing successful test summary"
         passed = True
     finally:
         run(compose + ["--profile", "test", "down"], destination, log=log)
@@ -206,6 +232,9 @@ def main():
                     "compose_startup": "passed",
                     "cli_demo": "passed before and after component restart",
                     "full_container_suite": "passed",
+                    "tests_passed": int(suite_summary.group(1)),
+                    "suite_seconds": float(suite_summary.group(2)),
+                    "terminal_replay_after_restart": "identical saved job and attempt history",
                     "development_volume": "preserved",
                     "cleanup": "verification containers/network/new database volume removed; development services restored",
                 },
@@ -220,4 +249,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    with keep_awake():
+        main()

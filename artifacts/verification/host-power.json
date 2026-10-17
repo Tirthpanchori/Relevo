@@ -1,0 +1,32 @@
+{
+    "events":  [
+                   {
+                       "event_id":  507,
+                       "utc":  "2026-10-17T20:16:27.2303820Z"
+                   },
+                   {
+                       "event_id":  506,
+                       "utc":  "2026-10-17T20:12:21.0779344Z"
+                   },
+                   {
+                       "event_id":  507,
+                       "utc":  "2026-10-17T19:57:30.6068376Z"
+                   },
+                   {
+                       "event_id":  506,
+                       "utc":  "2026-10-17T19:39:26.3451592Z"
+                   },
+                   {
+                       "event_id":  507,
+                       "utc":  "2026-10-17T19:39:26.3404347Z"
+                   },
+                   {
+                       "event_id":  506,
+                       "utc":  "2026-10-17T19:39:06.0231207Z"
+                   }
+               ],
+    "captured_at":  "2026-10-17T20:19:40.5201546Z",
+    "source":  "powercfg /query SCHEME_CURRENT SUB_SLEEP STANDBYIDLE and System Kernel-Power events",
+    "mitigation":  "Temporary ES_SYSTEM_REQUIRED per verification process; previous thread state restored on exit; power plan unchanged",
+    "configured_idle_sleep_seconds":  180
+}

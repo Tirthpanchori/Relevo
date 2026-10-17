@@ -33,7 +33,15 @@ Search budget: at most two single-hypothesis candidates, 30 minutes of measureme
 INR 0 spend, and writes only to the dedicated benchmark database. First retain a
 baseline, identify a measured bottleneck, then compare identical cases. Promote
 only a repeated improvement with full correctness tests and an obvious rollback.
-Confirm with another baseline/winner comparison. No default has been changed yet.
+Confirm with another baseline/candidate comparison. The measured decision is to
+retain 50 ms as the default and offer 5 ms as an optional short-task setting.
+
+Completed results: [repeated comparison](comparison.md), [confirmation](confirmation.md),
+and their per-job CSV files. Together they contain 1,440 retained measured jobs.
+The confirmation uses one updated runtime image after correctness checks, with
+the scoped stay-awake request active. The shorter interval helped short jobs
+with one/three workers but regressed timed work, so it was not promoted globally.
+See [D026](../decision.md#d026---bounded-measurement-and-worker-monitor-experiment).
 
 From the root, after a committed source checkpoint and locked dependency install:
 
@@ -63,7 +71,27 @@ contents and warmup; completed cases are preserved. Resume metadata records both
 harness revisions and the common runtime-source hash. Interrupted cases remain
 listed separately and contribute no throughput value.
 
+The first confirmation timed out during a recorded Windows Modern Standby
+interval; this PC's idle-sleep setting is 180 seconds. Its rejected recording is
+`raw/confirmation-50ms.json`, with [host power evidence](../artifacts/verification/host-power.json).
+On Windows, the benchmark and clean-checkout scripts now request
+`ES_SYSTEM_REQUIRED` only while their process runs, then restore the previous
+thread execution state. They do not edit the power plan or keep the display on.
+This uses the documented [Windows execution-state API](https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-setthreadexecutionstate).
+Other operating systems skip that request. Raw metadata records whether it was active.
+
 The script stops benchmark services on exit and preserves the named benchmark
 volume. Start the profile services again before another matrix. Exporters and
 monitoring scrapes are off in the benchmark profile; telemetry collection stays
-enabled. Results and any promoted change will be documented after measurement.
+enabled. Recompute the reports with:
+
+```powershell
+.tools/Scripts/uv.exe run --project backend --no-sync python scripts/report_benchmarks.py benchmarks/raw/baseline-complete.json benchmarks/raw/monitor-5ms.json --notes benchmarks/experiment-notes.md
+.tools/Scripts/uv.exe run --project backend --no-sync python scripts/report_benchmarks.py benchmarks/raw/confirmation-awake-50ms.json benchmarks/raw/confirmation-awake-5ms.json --output benchmarks/confirmation.md
+```
+
+For optional short-task tuning, set `RELEVO_WORKER_MONITOR_SECONDS=0.005` in your
+local environment or ignored `.env`, then recreate the worker with
+`docker compose up -d worker`. Restore `0.05` or unset the variable to return to
+the default. The confirmation is descriptive evidence from one local repeat per
+group, alongside the earlier three-repeat matrix; it is not a statistical bound.
