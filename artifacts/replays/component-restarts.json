@@ -1,0 +1,109 @@
+{
+  "format_version": 1,
+  "scenario": "component-restarts",
+  "captured_at": "2026-10-16T04:23:16.809548+00:00",
+  "source": {
+    "path": "scripts/smoke_restarts.py",
+    "sha256": "601331ee7809755a35dae3b5bbc2f1f95366f5a478861af19f4df19e81e2fd58"
+  },
+  "revision": {
+    "git_commit": null,
+    "backend_tree_sha256": "0106e9dea592c2ed4c64ba5de56895d8460ac1a87c2e447b780db9b3371966a1"
+  },
+  "environment": {
+    "python": "3.13.9",
+    "postgres": "18.6 (Debian 18.6-1.pgdg12+2)",
+    "schema_version": "0003"
+  },
+  "configuration": {
+    "lease_seconds": 15.0,
+    "heartbeat_seconds": 5.0,
+    "recovery_scan_seconds": 2.0,
+    "recovery_batch_size": 100,
+    "max_attempts": 3,
+    "retry_base_seconds": 1.0,
+    "retry_max_seconds": 30.0,
+    "task_timeout_seconds": 60.0
+  },
+  "observations": [
+    {
+      "checkpoint": "api_stopped_request_not_acknowledged"
+    },
+    {
+      "checkpoint": "api_restart_preserved_pending_and_terminal_jobs"
+    },
+    {
+      "checkpoint": "database_stopped_submission_unconfirmed",
+      "status_code": 503
+    },
+    {
+      "checkpoint": "database_restart_preserved_both_acknowledged_jobs"
+    },
+    {
+      "checkpoint": "database_sigkill_recovery_preserved_both_acknowledged_jobs"
+    }
+  ],
+  "job": {
+    "id": "cf26a302-68dc-43b2-a2af-254ffce5f524",
+    "task_type": "hash_payload",
+    "state": "succeeded",
+    "attempt_count": 1,
+    "max_attempts": 3,
+    "event_sequence": 3,
+    "current_attempt_id": null,
+    "created_at": "2026-10-16T04:22:47.715900+00:00",
+    "updated_at": "2026-10-16T04:23:14.816163+00:00",
+    "finished_at": "2026-10-16T04:23:14.816163+00:00",
+    "available_at": "2026-10-16T04:22:47.715900+00:00"
+  },
+  "attempts": [
+    {
+      "id": "86fef0d2-be96-4777-ac52-5e691f3d8102",
+      "number": 1,
+      "fencing_token": 1,
+      "worker_id": "worker-ea14dd3f-b3fe-4549-87f7-e9beafd5a290",
+      "state": "succeeded",
+      "started_at": "2026-10-16T04:23:14.478911+00:00",
+      "lease_expires_at": "2026-10-16T04:23:29.478911+00:00",
+      "finished_at": "2026-10-16T04:23:14.816163+00:00",
+      "error_code": null
+    }
+  ],
+  "events": [
+    {
+      "sequence": 1,
+      "attempt_id": null,
+      "kind": "submitted",
+      "occurred_at": "2026-10-16T04:22:47.715900+00:00",
+      "data": {
+        "state": "pending"
+      }
+    },
+    {
+      "sequence": 2,
+      "attempt_id": "86fef0d2-be96-4777-ac52-5e691f3d8102",
+      "kind": "claimed",
+      "occurred_at": "2026-10-16T04:23:14.478911+00:00",
+      "data": {
+        "state": "running",
+        "worker_id": "worker-ea14dd3f-b3fe-4549-87f7-e9beafd5a290",
+        "fencing_token": 1,
+        "attempt_number": 1
+      }
+    },
+    {
+      "sequence": 3,
+      "attempt_id": "86fef0d2-be96-4777-ac52-5e691f3d8102",
+      "kind": "succeeded",
+      "occurred_at": "2026-10-16T04:23:14.816163+00:00",
+      "data": {
+        "state": "succeeded",
+        "available_at": "2026-10-16T04:22:47.715900+00:00",
+        "fencing_token": 1,
+        "retry_scheduled": false
+      }
+    }
+  ],
+  "business_effects": [],
+  "also_verified_terminal_job_id": "75bd7042-9adc-42e2-b86e-53cf70d0fa11"
+}

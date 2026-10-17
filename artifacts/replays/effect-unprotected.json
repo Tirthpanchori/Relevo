@@ -1,0 +1,167 @@
+{
+  "format_version": 1,
+  "scenario": "effect-unprotected",
+  "captured_at": "2026-10-17T09:39:10.954020+00:00",
+  "source": {
+    "path": "backend/tests/integration/test_effects.py",
+    "sha256": "4d5ecfeb993cf5ef9151d090508c6a4a4acc726588fe3d1b0dd2849041676093"
+  },
+  "revision": {
+    "git_commit": null,
+    "backend_tree_sha256": "453335540ef5a70318462649b2ae141074f8ca7353392d1863471bd1b8c25f14"
+  },
+  "environment": {
+    "python": "3.13.9",
+    "postgres": "18.6 (Debian 18.6-1.pgdg12+2)",
+    "schema_version": "0003"
+  },
+  "configuration": {
+    "lease_seconds": 15.0,
+    "heartbeat_seconds": 5.0,
+    "recovery_scan_seconds": 2.0,
+    "recovery_batch_size": 100,
+    "max_attempts": 3,
+    "retry_base_seconds": 1.0,
+    "retry_max_seconds": 30.0,
+    "task_timeout_seconds": 60.0
+  },
+  "observations": [
+    {
+      "checkpoint": "business_commit_acknowledged",
+      "attempt_id": "813da8f0-c27b-482e-8bfe-6d2b958b17d7",
+      "effect_id": "932a3930-08ac-426b-8c54-92622865ad9a",
+      "effect_count": 1
+    },
+    {
+      "checkpoint": "all_three_completion_requests_dropped_before_coordinator"
+    },
+    {
+      "checkpoint": "lease_forced_expired_by_test_sql"
+    },
+    {
+      "checkpoint": "business_commit_acknowledged",
+      "attempt_id": "c5b38ce4-e529-43d5-b412-36f4019ebd27",
+      "effect_id": "5c4d5ec2-8acb-4d70-a1a2-74be7f222606",
+      "effect_count": 2
+    },
+    {
+      "checkpoint": "stale_completion_rejected",
+      "status_code": 409
+    }
+  ],
+  "job": {
+    "id": "402160b4-1145-4ae0-a31e-9c9702ddae7f",
+    "task_type": "hash_payload",
+    "state": "succeeded",
+    "attempt_count": 2,
+    "max_attempts": 3,
+    "event_sequence": 5,
+    "current_attempt_id": null,
+    "created_at": "2026-10-17T09:39:09.988616+00:00",
+    "updated_at": "2026-10-17T09:39:10.760511+00:00",
+    "finished_at": "2026-10-17T09:39:10.760511+00:00",
+    "available_at": "2026-10-17T09:39:09.716735+00:00"
+  },
+  "attempts": [
+    {
+      "id": "813da8f0-c27b-482e-8bfe-6d2b958b17d7",
+      "number": 1,
+      "fencing_token": 1,
+      "worker_id": "worker-a",
+      "state": "expired",
+      "started_at": "2026-10-17T09:39:10.020148+00:00",
+      "lease_expires_at": "2026-10-17T09:39:09.689291+00:00",
+      "finished_at": "2026-10-17T09:39:10.704474+00:00",
+      "error_code": "lease_expired"
+    },
+    {
+      "id": "c5b38ce4-e529-43d5-b412-36f4019ebd27",
+      "number": 2,
+      "fencing_token": 2,
+      "worker_id": "replacement",
+      "state": "succeeded",
+      "started_at": "2026-10-17T09:39:10.723883+00:00",
+      "lease_expires_at": "2026-10-17T09:39:25.723883+00:00",
+      "finished_at": "2026-10-17T09:39:10.760511+00:00",
+      "error_code": null
+    }
+  ],
+  "events": [
+    {
+      "sequence": 1,
+      "attempt_id": null,
+      "kind": "submitted",
+      "occurred_at": "2026-10-17T09:39:09.988616+00:00",
+      "data": {
+        "state": "pending"
+      }
+    },
+    {
+      "sequence": 2,
+      "attempt_id": "813da8f0-c27b-482e-8bfe-6d2b958b17d7",
+      "kind": "claimed",
+      "occurred_at": "2026-10-17T09:39:10.020148+00:00",
+      "data": {
+        "state": "running",
+        "worker_id": "worker-a",
+        "fencing_token": 1,
+        "attempt_number": 1
+      }
+    },
+    {
+      "sequence": 3,
+      "attempt_id": "813da8f0-c27b-482e-8bfe-6d2b958b17d7",
+      "kind": "expired",
+      "occurred_at": "2026-10-17T09:39:10.704474+00:00",
+      "data": {
+        "state": "pending",
+        "worker_id": "worker-a",
+        "available_at": "2026-10-17T09:39:11.605070+00:00",
+        "fencing_token": 1,
+        "retry_scheduled": true
+      }
+    },
+    {
+      "sequence": 4,
+      "attempt_id": "c5b38ce4-e529-43d5-b412-36f4019ebd27",
+      "kind": "claimed",
+      "occurred_at": "2026-10-17T09:39:10.723883+00:00",
+      "data": {
+        "state": "running",
+        "worker_id": "replacement",
+        "fencing_token": 2,
+        "attempt_number": 2
+      }
+    },
+    {
+      "sequence": 5,
+      "attempt_id": "c5b38ce4-e529-43d5-b412-36f4019ebd27",
+      "kind": "succeeded",
+      "occurred_at": "2026-10-17T09:39:10.760511+00:00",
+      "data": {
+        "state": "succeeded",
+        "available_at": "2026-10-17T09:39:09.716735+00:00",
+        "fencing_token": 2,
+        "retry_scheduled": false
+      }
+    }
+  ],
+  "business_effects": [
+    {
+      "id": "932a3930-08ac-426b-8c54-92622865ad9a",
+      "job_id": "402160b4-1145-4ae0-a31e-9c9702ddae7f",
+      "attempt_id": "813da8f0-c27b-482e-8bfe-6d2b958b17d7",
+      "units": 1,
+      "protected": false,
+      "created_at": "2026-10-17T09:39:10.037799+00:00"
+    },
+    {
+      "id": "5c4d5ec2-8acb-4d70-a1a2-74be7f222606",
+      "job_id": "402160b4-1145-4ae0-a31e-9c9702ddae7f",
+      "attempt_id": "c5b38ce4-e529-43d5-b412-36f4019ebd27",
+      "units": 1,
+      "protected": false,
+      "created_at": "2026-10-17T09:39:10.734964+00:00"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "uid": "relevo-engine", "title": "Relevo engine", "schemaVersion": 39,
+  "version": 1, "refresh": "5s", "time": {"from": "now-15m", "to": "now"},
+  "panels": [
+    {"id": 1, "type": "timeseries", "title": "Current durable jobs", "gridPos": {"x": 0,"y": 0,"w": 12,"h": 8}, "datasource": {"uid": "relevo-prometheus"}, "targets": [{"expr": "relevo_jobs", "legendFormat": "{{state}}"}]},
+    {"id": 2, "type": "timeseries", "title": "Recorded queue delay p95 (all retained timing observations)", "gridPos": {"x": 12,"y": 0,"w": 12,"h": 8}, "datasource": {"uid": "relevo-prometheus"}, "targets": [{"expr": "histogram_quantile(0.95, sum by(le) (relevo_durable_queue_delay_seconds_bucket))"}], "fieldConfig": {"defaults": {"unit": "s"}}},
+    {"id": 3, "type": "timeseries", "title": "HTTP latency p95 (live process)", "gridPos": {"x": 0,"y": 8,"w": 12,"h": 8}, "datasource": {"uid": "relevo-prometheus"}, "targets": [{"expr": "histogram_quantile(0.95, sum by(le, route) (rate(relevo_http_request_seconds_bucket[1m])))", "legendFormat": "{{route}}"}], "fieldConfig": {"defaults": {"unit": "s"}}},
+    {"id": 4, "type": "timeseries", "title": "Child body vs supervision duration p95", "gridPos": {"x": 12,"y": 8,"w": 12,"h": 8}, "datasource": {"uid": "relevo-prometheus"}, "targets": [{"expr": "histogram_quantile(0.95, sum by(le) (rate(relevo_worker_execution_seconds_bucket[1m])))", "legendFormat": "child body"}, {"expr": "histogram_quantile(0.95, sum by(le) (rate(relevo_worker_supervision_seconds_bucket[1m])))", "legendFormat": "spawn through cleanup"}], "fieldConfig": {"defaults": {"unit": "s"}}},
+    {"id": 5, "type": "timeseries", "title": "Committed transitions (durable totals)", "gridPos": {"x": 0,"y": 16,"w": 12,"h": 8}, "datasource": {"uid": "relevo-prometheus"}, "targets": [{"expr": "relevo_durable_transitions_total", "legendFormat": "{{kind}}"}]},
+    {"id": 6, "type": "timeseries", "title": "Process resident memory (excludes handler children)", "gridPos": {"x": 12,"y": 16,"w": 12,"h": 8}, "datasource": {"uid": "relevo-prometheus"}, "targets": [{"expr": "process_resident_memory_bytes", "legendFormat": "{{job}} {{instance}}"}], "fieldConfig": {"defaults": {"unit": "bytes"}}}
+  ]
+}

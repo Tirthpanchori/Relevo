@@ -1,0 +1,21 @@
+global:
+  scrape_interval: 5s
+scrape_configs:
+  - job_name: api
+    authorization:
+      credentials_file: /run/secrets/api_token
+    static_configs:
+      - targets: ["api:8000"]
+  - job_name: worker
+    authorization:
+      credentials_file: /run/secrets/api_token
+    dns_sd_configs:
+      - names: ["worker"]
+        type: A
+        port: 8001
+        refresh_interval: 5s
+  - job_name: scheduler
+    authorization:
+      credentials_file: /run/secrets/api_token
+    static_configs:
+      - targets: ["scheduler:8002"]

@@ -1,0 +1,4 @@
+[
+  {"name": "relevo_test_api", "listen": "0.0.0.0:15480", "upstream": "fault-api:8000", "enabled": true},
+  {"name": "relevo_test_database", "listen": "0.0.0.0:15433", "upstream": "postgres-test:5432", "enabled": true}
+]

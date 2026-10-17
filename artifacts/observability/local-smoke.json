@@ -1,0 +1,30 @@
+{
+  "captured_at": "2026-10-17T10:02:23.572096+00:00",
+  "source": "scripts/smoke_observability.py",
+  "job_id": "f290545e-155e-4174-8149-c65e800f5b1a",
+  "prometheus_targets": {
+    "api": "up",
+    "scheduler": "up",
+    "worker": "up"
+  },
+  "grafana_dashboard": "relevo-engine",
+  "distributed_traces": [
+    {
+      "trace_id": "f7f7a6b216a7666a410502da3740b7d7",
+      "services": [
+        "relevo-api",
+        "relevo-worker"
+      ],
+      "operations": [
+        "db.INSERT",
+        "db.SELECT",
+        "db.UPDATE",
+        "engine.claim",
+        "engine.report",
+        "http.request",
+        "worker.assignment"
+      ]
+    }
+  ],
+  "limits": "Local transient monitoring; PostgreSQL events remain durable history."
+}

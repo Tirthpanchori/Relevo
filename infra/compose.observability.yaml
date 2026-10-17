@@ -1,0 +1,41 @@
+services:
+  api:
+    environment:
+      RELEVO_OTLP_ENDPOINT: http://jaeger:4318/v1/traces
+  worker:
+    environment:
+      RELEVO_OTLP_ENDPOINT: http://jaeger:4318/v1/traces
+  scheduler:
+    environment:
+      RELEVO_OTLP_ENDPOINT: http://jaeger:4318/v1/traces
+  prometheus:
+    profiles: ["observability"]
+    image: prom/prometheus:v3.15.0@sha256:efd719c99d83b060d9daefdcf00360461adf279f45ef5391f8d111892118753e
+    command: ["--config.file=/etc/prometheus/prometheus.yaml", "--storage.tsdb.retention.time=1d"]
+    volumes:
+      - ./infra/observability/prometheus.yaml:/etc/prometheus/prometheus.yaml:ro
+    secrets: [api_token]
+    ports: ["127.0.0.1:9090:9090"]
+  grafana:
+    profiles: ["observability"]
+    image: grafana/grafana:13.2.4@sha256:dbbc38ea21103cefb50396340cd88afec779c7e070b0a7bf5a75b4ce46651d3f
+    environment:
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Viewer
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_SECURITY_ADMIN_PASSWORD__FILE: /run/secrets/grafana_password
+    secrets: [grafana_password]
+    volumes:
+      - ./infra/observability/datasource.yaml:/etc/grafana/provisioning/datasources/relevo.yaml:ro
+      - ./infra/observability/dashboards.yaml:/etc/grafana/provisioning/dashboards/relevo.yaml:ro
+      - ./infra/observability/engine.json:/var/lib/grafana/dashboards/engine.json:ro
+    ports: ["127.0.0.1:3000:3000"]
+  jaeger:
+    profiles: ["observability"]
+    image: jaegertracing/jaeger:2.22.0@sha256:836b967b5abcf1f7758066aa6b348619267a2f1459f72d472840570f9bd88a17
+    ports: ["127.0.0.1:16686:16686"]
+secrets:
+  api_token:
+    file: ./.cache/observability/api_token
+  grafana_password:
+    file: ./.cache/observability/grafana_password
