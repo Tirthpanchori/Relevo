@@ -11,3 +11,5 @@ in the repeated matrix, within overlapping run ranges. Use the separately record
 confirmation on one updated runtime image, after correctness checks have finished,
 to decide whether to promote the setting. The legacy repeated comparison remains
 useful evidence of actual measurements and their variation.
+
+The subsequent confirmation has its own [revision-specific notes](confirmation-notes.md).

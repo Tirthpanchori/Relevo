@@ -87,7 +87,7 @@ enabled. Recompute the reports with:
 
 ```powershell
 .tools/Scripts/uv.exe run --project backend --no-sync python scripts/report_benchmarks.py benchmarks/raw/baseline-complete.json benchmarks/raw/monitor-5ms.json --notes benchmarks/experiment-notes.md
-.tools/Scripts/uv.exe run --project backend --no-sync python scripts/report_benchmarks.py benchmarks/raw/confirmation-awake-50ms.json benchmarks/raw/confirmation-awake-5ms.json --output benchmarks/confirmation.md
+.tools/Scripts/uv.exe run --project backend --no-sync python scripts/report_benchmarks.py benchmarks/raw/confirmation-awake-50ms.json benchmarks/raw/confirmation-awake-5ms.json --output benchmarks/confirmation.md --notes benchmarks/confirmation-notes.md
 ```
 
 For optional short-task tuning, set `RELEVO_WORKER_MONITOR_SECONDS=0.005` in your

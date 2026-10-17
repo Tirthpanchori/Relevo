@@ -9,12 +9,18 @@ They support a later labeled replay, not a live engine feed.
 | [Component restarts](component-restarts.json) | [Restart script](../../scripts/smoke_restarts.py) | Acknowledged pending/terminal jobs survive API/database restart and PostgreSQL SIGKILL with storage retained. |
 | [Unprotected effect](effect-unprotected.json) | [Effect tests](../../backend/tests/integration/test_effects.py) | Repeated execution creates two unprotected effects. |
 | [Protected effect](effect-protected.json) | [Effect tests](../../backend/tests/integration/test_effects.py) | A stable business key protects one effect across attempts. |
+| [Additional-expiry diagnostic](additional-expiry-diagnostic.json) | [Smoke script](../../scripts/smoke_recovery.py) | A refresh succeeded on its third attempt; its strict two-attempt assertion rejected the run. Only one death was injected; the extra expiry's cause is unassigned. |
 
 Captures include UTC date, source-file/backend-tree hashes, available Git revision,
 configuration, schema/server/Python versions, real identifiers, and committed events.
 Missing Git commits are null, never invented. Payloads, results, tokens, DSNs,
 business keys, and free-form error messages are excluded. Snapshots use a read-only
 repeatable-read transaction.
+
+The effect captures were refreshed against verified commit `d3cc16b` on
+2026-10-18. The crash smoke now checks the actual bounded-recovery contract,
+including every expired owner's stale report and unchanged terminal state,
+instead of promising exactly two attempts; additional expiries are labeled.
 
 The effect harness runs hashing plus a separate business transaction under
 instrumented coordinator control. It drops completion before the coordinator

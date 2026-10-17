@@ -37,3 +37,14 @@ CPU figures sum the per-container sample means for each role; 100% is one core. 
 Raw baseline: [confirmation-awake-50ms.json](raw/confirmation-awake-50ms.json); candidate: [confirmation-awake-5ms.json](raw/confirmation-awake-5ms.json). [Method and commands](README.md). Results describe local fixed-backlog runs under Docker Desktop, not a service capacity or scaling guarantee. The timed workload waits rather than performs CPU-intensive computation.
 
 Promotion/confirmation status is recorded separately in the implementation plan and decision log.
+
+These paired runs used the same `b84be4e` runtime image. A later audit found that
+its server logging setup inadvertently re-enabled access logging despite the CLI
+flag; that behavior was corrected after these measurements. Both paired variants
+shared the issue. These remain measurements of the recorded revision, not a
+capacity claim for later revisions.
+
+The decision remains conservative: keep the 50 ms default. The 5 ms setting is an
+optional short-task tuning mode with validated correctness and explicit measured
+regressions for timed work. One confirmation case per group is descriptive;
+consult the earlier three-repeat matrix and raw measurements as well.

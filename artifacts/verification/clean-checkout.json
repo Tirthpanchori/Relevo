@@ -1,0 +1,14 @@
+{
+  "captured_at": "2026-10-17T20:28:10.981912+00:00",
+  "git_commit": "d3cc16b07a43373f0b5d141b83083bbe5fa60430",
+  "source": "scripts/verify_clean_checkout.py",
+  "fresh_credentials": true,
+  "compose_startup": "passed",
+  "cli_demo": "passed before and after component restart",
+  "full_container_suite": "passed",
+  "tests_passed": 196,
+  "suite_seconds": 27.72,
+  "terminal_replay_after_restart": "identical saved job and attempt history",
+  "development_volume": "preserved",
+  "cleanup": "verification containers/network/new database volume removed; development services restored"
+}

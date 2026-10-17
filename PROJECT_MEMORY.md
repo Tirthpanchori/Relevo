@@ -387,3 +387,14 @@ verification exist. Record later changes and completed milestones here.
   P7.5 is complete as measured optional tuning. Next: commit/push current evidence,
   clean-checkout startup/CLI/restart/full-suite verification, current hosted CI,
   and final P7.6 documentation/gate. No frontend work is authorized yet.
+
+- Clean checkout `d3cc16b` passed startup with fresh credentials, terminal job/history
+  replay after component restart, changed worker identity, and all 196 tests.
+  Hosted CI 39066729992 also passed that checkpoint. Development data was preserved.
+- Further audit fixed Uvicorn access logging being inadvertently re-enabled under
+  `--no-access-log`; full updated results are 197 Windows (39.23s) and Linux (29.25s).
+  Reverify the final source checkout/CI after this fix. Earlier benchmark revisions
+  and their logging behavior are explicitly documented rather than relabeled.
+- A crash-recording refresh succeeded on attempt three after an extra expiry.
+  Preserve its diagnostic; D027 updates the harness to assert bounded valid
+  expiry/history/fencing instead of an unsupported exact-two-attempt promise.

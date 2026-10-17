@@ -76,3 +76,24 @@ def test_uvicorn_exception_logging_cannot_bypass_redaction():
     assert "private-token-and-payload" not in result.stdout + result.stderr
     record = json.loads(result.stderr.strip())
     assert record["event"] == "library_message" and record["error_type"] == "RuntimeError"
+
+
+def test_logging_setup_preserves_uvicorn_no_access_log():
+    subprocess.run(
+        [
+            sys.executable,
+            "-c",
+            dedent("""
+            import logging
+            from uvicorn import Config
+            from relevo.observability import configure_logging
+            Config("unused:app", access_log=False)
+            configure_logging()
+            assert not logging.getLogger("uvicorn.access").hasHandlers()
+        """),
+        ],
+        capture_output=True,
+        text=True,
+        timeout=10,
+        check=True,
+    )

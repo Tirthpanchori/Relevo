@@ -96,21 +96,29 @@ def main() -> None:
                 time.sleep(0.1)
             else:
                 raise SystemExit("Restarted scheduler/worker did not complete the job")
-            assert [attempt["state"] for attempt in attempts] == [
-                "expired",
-                "succeeded",
-            ]
-            assert attempts[1]["fencing_token"] > first["fencing_token"]
-            assert attempts[1]["worker_id"] != first["worker_id"]
-            stale = client.post(
-                f"/internal/attempts/{first['id']}/complete",
-                json={
-                    "worker_id": first["worker_id"],
-                    "fencing_token": first["fencing_token"],
-                    "result": {"late": True},
-                },
+            # Recovery may consume another attempt if a later renewal is uncertain.
+            # Assert the promised bounded recovery contract, not exactly two tries.
+            assert 2 <= len(attempts) == job["attempt_count"] <= job["max_attempts"]
+            assert all(attempt["state"] == "expired" for attempt in attempts[:-1])
+            assert attempts[-1]["state"] == "succeeded"
+            assert [attempt["number"] for attempt in attempts] == list(
+                range(1, len(attempts) + 1)
             )
-            assert stale.status_code == 409
+            assert [attempt["fencing_token"] for attempt in attempts] == list(
+                range(1, len(attempts) + 1)
+            )
+            assert attempts[-1]["worker_id"] != first["worker_id"]
+            for old_attempt in attempts[:-1]:
+                stale = client.post(
+                    f"/internal/attempts/{old_attempt['id']}/complete",
+                    json={
+                        "worker_id": old_attempt["worker_id"],
+                        "fencing_token": old_attempt["fencing_token"],
+                        "result": {"late": True},
+                    },
+                )
+                assert stale.status_code == 409
+            assert inspect(job_id)[0] == job, "Stale reports changed the terminal job"
             if args.recording:
                 from relevo.config import Settings
                 from relevo.db.connection import build_engine
@@ -140,14 +148,27 @@ def main() -> None:
                             {
                                 "checkpoint": "stale_completion_rejected",
                                 "status_code": stale.status_code,
+                                "attempts_checked": len(attempts) - 1,
+                            },
+                            {
+                                "checkpoint": "only_first_worker_death_was_injected",
+                                "additional_expired_attempts_observed": len(attempts)
+                                - 2,
                             },
                         ],
                     )
+                    expected_history = ["submitted"]
+                    for attempt in attempts:
+                        expected_history.extend(["claimed", attempt["state"]])
+                    assert [
+                        event["kind"] for event in recording["events"]
+                    ] == expected_history
                     write_capture(args.recording, recording)
                 finally:
                     engine.dispose()
             print(
-                f"Crash/recovery checks passed: job={job_id}, attempts=expired,succeeded, stale=409"
+                f"Crash/recovery checks passed: job={job_id}, "
+                f"attempts={','.join(attempt['state'] for attempt in attempts)}, stale=409"
             )
         finally:
             compose("start", "worker", "scheduler")

@@ -95,7 +95,7 @@ Prometheus reads it from an ignored secret file. Monitoring data is temporary.
 
 The [verified smoke](scripts/smoke_observability.py) checks all three scrape targets,
 dashboard provisioning, and actual worker/API trace export. The full current
-suite passes 196 tests on Windows and Linux. Durable counts/timings come from
+suite passes 197 tests on Windows and Linux. Durable counts/timings come from
 PostgreSQL events; process counters can reset and traces can be lost. Retained
 event aggregation scans history and is intended for this bounded local workload.
 The [benchmark method and recordings](benchmarks/README.md) include the completed

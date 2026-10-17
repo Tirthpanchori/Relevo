@@ -1,14 +1,14 @@
 {
   "format_version": 1,
   "scenario": "effect-protected",
-  "captured_at": "2026-10-17T09:39:11.925226+00:00",
+  "captured_at": "2026-10-17T20:29:07.187369+00:00",
   "source": {
     "path": "backend/tests/integration/test_effects.py",
     "sha256": "4d5ecfeb993cf5ef9151d090508c6a4a4acc726588fe3d1b0dd2849041676093"
   },
   "revision": {
-    "git_commit": null,
-    "backend_tree_sha256": "453335540ef5a70318462649b2ae141074f8ca7353392d1863471bd1b8c25f14"
+    "git_commit": "d3cc16b07a43373f0b5d141b83083bbe5fa60430",
+    "backend_tree_sha256": "b018755ef7ff447eed4939a3ec4dd44b98417f2d30ca8fccaecb93e103af9ffc"
   },
   "environment": {
     "python": "3.13.9",
@@ -28,8 +28,8 @@
   "observations": [
     {
       "checkpoint": "business_commit_acknowledged",
-      "attempt_id": "1f8ff32d-0116-4b65-8640-48787a647bb0",
-      "effect_id": "81f57018-ade3-4866-b610-eaab222ad360",
+      "attempt_id": "3b6e24ad-8d03-4272-a196-905097bb6334",
+      "effect_id": "ced33ec2-f5b9-4aa5-b476-cc169859a8d0",
       "effect_count": 1
     },
     {
@@ -40,8 +40,8 @@
     },
     {
       "checkpoint": "business_commit_acknowledged",
-      "attempt_id": "cffd8809-b3d6-4539-9cbc-27604880ec10",
-      "effect_id": "81f57018-ade3-4866-b610-eaab222ad360",
+      "attempt_id": "d080eaa6-51a6-4b8f-b2c3-82f1c8eacc61",
+      "effect_id": "ced33ec2-f5b9-4aa5-b476-cc169859a8d0",
       "effect_count": 1
     },
     {
@@ -50,39 +50,39 @@
     }
   ],
   "job": {
-    "id": "860a1a13-91a8-4206-b1a5-4165858e918c",
+    "id": "c2e1913f-e21a-4efe-bf5f-4bf00338b4ee",
     "task_type": "hash_payload",
     "state": "succeeded",
     "attempt_count": 2,
     "max_attempts": 3,
     "event_sequence": 5,
     "current_attempt_id": null,
-    "created_at": "2026-10-17T09:39:10.988511+00:00",
-    "updated_at": "2026-10-17T09:39:11.733317+00:00",
-    "finished_at": "2026-10-17T09:39:11.733317+00:00",
-    "available_at": "2026-10-17T09:39:10.694024+00:00"
+    "created_at": "2026-10-17T20:29:06.403558+00:00",
+    "updated_at": "2026-10-17T20:29:07.100282+00:00",
+    "finished_at": "2026-10-17T20:29:07.100282+00:00",
+    "available_at": "2026-10-17T20:29:06.075437+00:00"
   },
   "attempts": [
     {
-      "id": "1f8ff32d-0116-4b65-8640-48787a647bb0",
+      "id": "3b6e24ad-8d03-4272-a196-905097bb6334",
       "number": 1,
       "fencing_token": 1,
       "worker_id": "worker-a",
       "state": "expired",
-      "started_at": "2026-10-17T09:39:11.005150+00:00",
-      "lease_expires_at": "2026-10-17T09:39:10.669886+00:00",
-      "finished_at": "2026-10-17T09:39:11.682934+00:00",
+      "started_at": "2026-10-17T20:29:06.416846+00:00",
+      "lease_expires_at": "2026-10-17T20:29:06.059500+00:00",
+      "finished_at": "2026-10-17T20:29:07.069075+00:00",
       "error_code": "lease_expired"
     },
     {
-      "id": "cffd8809-b3d6-4539-9cbc-27604880ec10",
+      "id": "d080eaa6-51a6-4b8f-b2c3-82f1c8eacc61",
       "number": 2,
       "fencing_token": 2,
       "worker_id": "replacement",
       "state": "succeeded",
-      "started_at": "2026-10-17T09:39:11.701464+00:00",
-      "lease_expires_at": "2026-10-17T09:39:26.701464+00:00",
-      "finished_at": "2026-10-17T09:39:11.733317+00:00",
+      "started_at": "2026-10-17T20:29:07.080197+00:00",
+      "lease_expires_at": "2026-10-17T20:29:22.080197+00:00",
+      "finished_at": "2026-10-17T20:29:07.100282+00:00",
       "error_code": null
     }
   ],
@@ -91,69 +91,73 @@
       "sequence": 1,
       "attempt_id": null,
       "kind": "submitted",
-      "occurred_at": "2026-10-17T09:39:10.988511+00:00",
+      "occurred_at": "2026-10-17T20:29:06.403558+00:00",
       "data": {
         "state": "pending"
       }
     },
     {
       "sequence": 2,
-      "attempt_id": "1f8ff32d-0116-4b65-8640-48787a647bb0",
+      "attempt_id": "3b6e24ad-8d03-4272-a196-905097bb6334",
       "kind": "claimed",
-      "occurred_at": "2026-10-17T09:39:11.005150+00:00",
+      "occurred_at": "2026-10-17T20:29:06.416846+00:00",
       "data": {
         "state": "running",
         "worker_id": "worker-a",
         "fencing_token": 1,
-        "attempt_number": 1
+        "attempt_number": 1,
+        "queue_delay_seconds": 0.013288
       }
     },
     {
       "sequence": 3,
-      "attempt_id": "1f8ff32d-0116-4b65-8640-48787a647bb0",
+      "attempt_id": "3b6e24ad-8d03-4272-a196-905097bb6334",
       "kind": "expired",
-      "occurred_at": "2026-10-17T09:39:11.682934+00:00",
+      "occurred_at": "2026-10-17T20:29:07.069075+00:00",
       "data": {
         "state": "pending",
         "worker_id": "worker-a",
-        "available_at": "2026-10-17T09:39:12.673609+00:00",
+        "available_at": "2026-10-17T20:29:07.829103+00:00",
         "fencing_token": 1,
-        "retry_scheduled": true
+        "retry_scheduled": true,
+        "attempt_duration_seconds": 0.652229
       }
     },
     {
       "sequence": 4,
-      "attempt_id": "cffd8809-b3d6-4539-9cbc-27604880ec10",
+      "attempt_id": "d080eaa6-51a6-4b8f-b2c3-82f1c8eacc61",
       "kind": "claimed",
-      "occurred_at": "2026-10-17T09:39:11.701464+00:00",
+      "occurred_at": "2026-10-17T20:29:07.080197+00:00",
       "data": {
         "state": "running",
         "worker_id": "replacement",
         "fencing_token": 2,
-        "attempt_number": 2
+        "attempt_number": 2,
+        "queue_delay_seconds": 1.00476
       }
     },
     {
       "sequence": 5,
-      "attempt_id": "cffd8809-b3d6-4539-9cbc-27604880ec10",
+      "attempt_id": "d080eaa6-51a6-4b8f-b2c3-82f1c8eacc61",
       "kind": "succeeded",
-      "occurred_at": "2026-10-17T09:39:11.733317+00:00",
+      "occurred_at": "2026-10-17T20:29:07.100282+00:00",
       "data": {
         "state": "succeeded",
-        "available_at": "2026-10-17T09:39:10.694024+00:00",
+        "available_at": "2026-10-17T20:29:06.075437+00:00",
         "fencing_token": 2,
-        "retry_scheduled": false
+        "retry_scheduled": false,
+        "attempt_duration_seconds": 0.020085
       }
     }
   ],
   "business_effects": [
     {
-      "id": "81f57018-ade3-4866-b610-eaab222ad360",
-      "job_id": "860a1a13-91a8-4206-b1a5-4165858e918c",
-      "attempt_id": "1f8ff32d-0116-4b65-8640-48787a647bb0",
+      "id": "ced33ec2-f5b9-4aa5-b476-cc169859a8d0",
+      "job_id": "c2e1913f-e21a-4efe-bf5f-4bf00338b4ee",
+      "attempt_id": "3b6e24ad-8d03-4272-a196-905097bb6334",
       "units": 1,
       "protected": true,
-      "created_at": "2026-10-17T09:39:11.021745+00:00"
+      "created_at": "2026-10-17T20:29:06.428367+00:00"
     }
   ]
 }

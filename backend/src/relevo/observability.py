@@ -74,10 +74,14 @@ def configure_logging() -> None:
     logging.basicConfig(level=logging.INFO, handlers=[handler], force=True)
     # Uvicorn configures its own non-propagating handlers before loading the app.
     # Route those through the same redaction boundary, including uncaught exceptions.
-    for name in ("uvicorn", "uvicorn.error", "uvicorn.access"):
+    for name in ("uvicorn", "uvicorn.error"):
         server_logger = logging.getLogger(name)
         server_logger.handlers.clear()
         server_logger.propagate = True
+    access_logger = logging.getLogger("uvicorn.access")
+    access_enabled = bool(access_logger.handlers)
+    access_logger.handlers.clear()
+    access_logger.propagate = access_enabled
     logging.getLogger("httpx").setLevel(logging.WARNING)
 
 

@@ -34,6 +34,7 @@ For a consequential new choice, append an entry with an ID, date, status, contex
 | [D024](#d024---isolated-tcp-faults-and-process-crash-proof) | Isolated TCP faults and process-crash proof | Accepted |
 | [D025](#d025---durable-history-separated-from-bounded-runtime-telemetry) | Durable history separated from bounded runtime telemetry | Accepted |
 | [D026](#d026---bounded-measurement-and-worker-monitor-experiment) | Bounded measurement and worker monitor experiment | Accepted: 50 ms default, opt-in 5 ms tuning |
+| [D027](#d027---fault-smokes-assert-bounded-recovery-not-a-fixed-attempt-count) | Fault smokes assert bounded recovery, not a fixed attempt count | Accepted |
 
 ## D001 - Backend correctness before frontend
 
@@ -490,6 +491,30 @@ pause; idle sleep was configured at 180 seconds. Scripts now use a scoped
 without editing the power plan. See [power evidence](artifacts/verification/host-power.json)
 and the [Windows API](https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-setthreadexecutionstate).
 Earlier unexplained interruptions remain labeled as such; no cause is invented.
+
+## D027 - Fault smokes assert bounded recovery, not a fixed attempt count
+
+**Date:** 2026-10-18. **Status:** Accepted. **Origin:** final fault-evidence audit.
+
+A refresh observed `expired,expired,succeeded` within the stored three-attempt
+budget. The old smoke expected exactly two attempts, which the engine does not
+promise when a subsequent renewal is uncertain. Preserve that rejected run as
+[an explicit diagnostic](artifacts/replays/additional-expiry-diagnostic.json),
+without assigning an unproven cause to its additional expiry.
+
+The smoke now requires all prior attempts to be expired, a successful final
+attempt, contiguous numbers/tokens, a changed worker after the injected death,
+and a count within the job's frozen budget. It rejects late reports from every
+expired owner, verifies the terminal job stays identical, and compares recorded
+event history with the attempt sequence. Captures label any additional expiry
+and state that only the first worker death was injected. This preserves the
+bounded-retry contract while exposing extra execution instead of concealing it.
+
+The audit also found that redirecting Uvicorn's access logger enabled it despite
+`--no-access-log`. Preserve that flag while redacting enabled server logs. Both
+logging regressions are covered, and the full suite passes **197 tests on Windows
+(39.23s) and Linux (29.25s)**. Version-specific benchmark notes identify the earlier
+logging behavior; its overhead is not silently attributed to later revisions.
 
 ## Decisions still open
 
