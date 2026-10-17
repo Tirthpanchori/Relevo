@@ -40,6 +40,11 @@ docker compose --profile benchmark up --build -d --wait --wait-timeout 90 postgr
 .tools/Scripts/uv.exe run --project backend --env-file .env --no-sync python scripts/benchmark.py --variant baseline --monitor 0.05 --output benchmarks/raw/baseline.json
 ```
 
+An initial harness run was discarded because Windows Docker's ANSI control
+sequences prevented parsing resource samples. Its partial timings are retained
+as `raw/discarded-sampling-pilot.json`, clearly excluded from comparisons. The
+parser now removes those control sequences and rejects cases without samples.
+
 The script stops benchmark services on exit and preserves the named benchmark
 volume. Start the profile services again before another matrix. Exporters and
 monitoring scrapes are off in the benchmark profile; telemetry collection stays

@@ -21,7 +21,7 @@ Indicative allocation: weeks 1-2 for Phases 1-3, weeks 3-4 for Phases 4-5, weeks
 | Phase | Deliverable | Status |
 |---|---|---|
 | 0 | Scope, decisions, working guide, and implementation checklist | Complete: documentation baseline |
-| 1 | Backend skeleton, API contract, migrations, and CI | Verified locally; hosted CI pending |
+| 1 | Backend skeleton, API contract, migrations, and CI | Complete: local and hosted CI |
 | 2 | Durable, idempotent submission and inspection | Complete |
 | 3 | Atomic claims, leases, and fenced outcomes | Complete |
 | 4 | Supervised worker runtime and registered handlers | Complete |
@@ -31,7 +31,7 @@ Indicative allocation: weeks 1-2 for Phases 1-3, weeks 3-4 for Phases 4-5, weeks
 | 8 | Explanatory React frontend using recorded evidence | Planned |
 | 9 | Reproducible packaging and free deployment | Planned |
 
-Phases 1-6 have runnable code and local verification: 185 tests passed on Windows and Linux, plus 81 integration checks repeated three further rounds. Actual component crashes/restarts and business-effect duplication/idempotency are demonstrated, and sanitized replay recordings exist. Phase 7 telemetry/benchmarks are in progress. Hosted CI awaits connection to the user-provided repository; frontend and cloud deployment have not begun.
+Phases 1-6 have runnable code and local verification. The current observability checkpoint passes 195 tests on Windows and Linux, plus Phase 6's 81 integration checks repeated three further rounds. Actual component crashes/restarts and business-effect duplication/idempotency are demonstrated, and sanitized replay recordings exist. Phase 7 telemetry is verified and benchmarks are in progress. [Hosted CI passed](https://github.com/Tirthpanchori/Relevo/actions/runs/39023521222) for source checkpoint `43ef7a8`; frontend and cloud deployment have not begun.
 
 ### V1 boundaries
 

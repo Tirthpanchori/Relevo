@@ -6,6 +6,7 @@ import hashlib
 import json
 import os
 import platform
+import re
 import statistics
 import subprocess
 import threading
@@ -138,7 +139,7 @@ class ContainerSamples:
     def read(self):
         for line in self.process.stdout:
             try:
-                row = json.loads(line)
+                row = json.loads(re.sub(r"\x1b\[[0-9;]*[A-Za-z]", "", line))
             except ValueError:
                 continue
             self.rows.append(
@@ -354,6 +355,7 @@ async def run_case(engine, client, token, args, workload, workers, repeat):
         waits = await await_terminal(engine, args.jobs + 10)
     finally:
         sampler.close()
+    assert sampler.rows, "No container resource samples; discard this run"
     with httpx.Client(
         trust_env=False, headers={"Authorization": f"Bearer {token}"}
     ) as http:
