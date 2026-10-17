@@ -8,11 +8,11 @@ Relevo is a backend systems portfolio project: an application submits background
 
 ## Current status
 
-**2026-10-17: Phases 1-6 verified locally; Phase 7 observability/benchmarks in progress.**
+**2026-10-18: Phases 1-6 verified; Phase 7 final measurement/checkout verification in progress.**
 
 All ten API endpoints, supervised workers, independent recovery, the Python client/CLI, and the failure scenarios are implemented. Separate business-effect tests demonstrate duplicate execution and transactional idempotency. Protected telemetry and optional local monitoring are verified; benchmarks are in progress. Frontend work will wait for a conversation with the user.
 
-Verification: **195 tests passed on Windows/Python 3.13.9 and Linux/Python 3.13.16 against PostgreSQL 18.6**; Phase 6's 81 integration checks passed three additional rounds. Real TCP faults, worker/SQL process crashes, component restarts, and business-effect proofs have [traceable evidence](artifacts/replays/README.md). Migration `0003` adds the separate demo schema. Source is pushed to [the repository](https://github.com/Tirthpanchori/Relevo), and [hosted CI passed](https://github.com/Tirthpanchori/Relevo/actions/runs/39023521222) for checkpoint `43ef7a8`.
+Verification: **196 tests passed on Windows/Python 3.13.9 and Linux/Python 3.13.16 against PostgreSQL 18.6**, including the latest server-log redaction fix and the 5 ms monitor configuration; Phase 6's 81 integration checks passed three additional rounds. Real TCP faults, worker/SQL process crashes, component restarts, and business-effect proofs have [traceable evidence](artifacts/replays/README.md). Migration `0003` adds the separate demo schema. Source is pushed to [the repository](https://github.com/Tirthpanchori/Relevo), and [hosted CI passed](https://github.com/Tirthpanchori/Relevo/actions/runs/39023521222) for the earlier `43ef7a8` checkpoint.
 
 ## Project documents
 

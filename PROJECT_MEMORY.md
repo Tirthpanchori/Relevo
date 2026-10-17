@@ -363,3 +363,11 @@ verification exist. Record later changes and completed milestones here.
 - Test the 5 ms child-monitor candidate against the 50 ms baseline before changing
   the default. P7.5/P7.6, clean-checkout verification, final log-redaction audit,
   and documentation closeout remain. Do not start the frontend.
+
+- Candidate matrix also completed all 18 cases (540 measured jobs). The repeated
+  comparison/CSV and explicit confounder notes are in `benchmarks/`. Do not claim
+  its largest observed deltas are caused only by the polling interval; timed work
+  with five workers showed a small regression and overlapping ranges.
+- Fixed a proven Uvicorn exception-log redaction bypass. Full updated suite with
+  5 ms configured passes 196 tests on Windows (36.72s) and Linux (28.83s).
+  The default remains 50 ms until the separate same-image confirmation passes.

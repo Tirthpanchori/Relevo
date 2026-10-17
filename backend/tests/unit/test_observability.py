@@ -1,5 +1,8 @@
 import json
 import logging
+import subprocess
+import sys
+from textwrap import dedent
 
 import httpx
 from fastapi.testclient import TestClient
@@ -46,3 +49,30 @@ def test_worker_metrics_listener_requires_a_token():
             assert "private-token" not in response.text
     finally:
         telemetry.close()
+
+
+def test_uvicorn_exception_logging_cannot_bypass_redaction():
+    result = subprocess.run(
+        [
+            sys.executable,
+            "-c",
+            dedent("""
+            import logging.config
+            from uvicorn.config import LOGGING_CONFIG
+            from relevo.observability import configure_logging
+            logging.config.dictConfig(LOGGING_CONFIG)
+            configure_logging()
+            try:
+                raise RuntimeError("private-token-and-payload")
+            except RuntimeError:
+                logging.getLogger("uvicorn.error").exception("private-token-and-payload")
+        """),
+        ],
+        capture_output=True,
+        text=True,
+        timeout=10,
+        check=True,
+    )
+    assert "private-token-and-payload" not in result.stdout + result.stderr
+    record = json.loads(result.stderr.strip())
+    assert record["event"] == "library_message" and record["error_type"] == "RuntimeError"

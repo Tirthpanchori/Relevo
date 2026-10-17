@@ -435,6 +435,13 @@ redaction/cardinality, trace parentage, authenticated scrape access, and malform
 timing metadata. The actual monitoring smoke verifies all three scrape targets,
 the provisioned dashboard, and an exported worker/API trace.
 
+**Audit follow-up (2026-10-18):** a subprocess regression using Uvicorn's actual
+default logging configuration demonstrated that its non-propagating handler
+could print an uncaught exception message outside the root JSON formatter. Route
+all Uvicorn loggers through that formatter and retain only the exception class.
+The new regression and all four targeted observability checks pass. The complete
+updated suite and installed image remain to be reverified before closing Phase 7.
+
 ## D026 - Bounded measurement and worker monitor experiment
 
 **Date:** 2026-10-18. **Status:** Proposed; no default change yet. **Origin:** Phase 7.

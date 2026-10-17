@@ -56,7 +56,7 @@ def resources(run, role):
     return cpu, memory
 
 
-def main(baseline_path, candidate_path, output):
+def main(baseline_path, candidate_path, output, notes=None):
     base, candidate = [
         json.loads(path.read_text(encoding="utf-8"))
         for path in (baseline_path, candidate_path)
@@ -81,7 +81,7 @@ def main(baseline_path, candidate_path, output):
         "",
         f"Host: {base['host']['processor']}; {base['host']['platform']}. Docker: {base['host']['docker']['cpus']} logical CPUs, {base['host']['docker']['memory_bytes'] / 2**30:.2f} GiB RAM, {base['host']['docker']['kernel']}.",
         "",
-        "All retained cases validated acknowledged IDs, exact results, single attempts/tokens, and complete ordered history. Durability stays on. Figures below are medians across repeated cases; ranges show throughput variation.",
+        f"All retained cases validated acknowledged IDs, exact results, single attempts/tokens, and complete ordered history. Durability stays on. Figures below are medians across {base['configuration']['repeats']} case(s) per group; ranges show throughput variation.",
         "",
         "| Workload | Workers | Baseline jobs/s (range) | Candidate jobs/s (range) | Change | Queue p95 ms baseline → candidate | Submit p95 ms baseline → candidate |",
         "|---|---:|---:|---:|---:|---:|---:|",
@@ -155,7 +155,9 @@ def main(baseline_path, candidate_path, output):
         "Promotion/confirmation status is recorded separately in the implementation plan and decision log.",
         "",
     ]
-    output.write_text("\n".join(lines), encoding="utf-8")
+    if notes:
+        lines += [notes.read_text(encoding="utf-8"), ""]
+    output.write_text("\n".join(lines).rstrip() + "\n", encoding="utf-8")
     with output.with_suffix(".csv").open("w", newline="", encoding="utf-8") as stream:
         writer = csv.DictWriter(
             stream,
@@ -195,5 +197,10 @@ if __name__ == "__main__":
     parser.add_argument("baseline", type=Path)
     parser.add_argument("candidate", type=Path)
     parser.add_argument("--output", type=Path, default=Path("benchmarks/comparison.md"))
+    parser.add_argument(
+        "--notes",
+        type=Path,
+        help="Include experiment-specific interpretation and limits",
+    )
     args = parser.parse_args()
-    main(args.baseline, args.candidate, args.output)
+    main(args.baseline, args.candidate, args.output, args.notes)

@@ -60,6 +60,8 @@ class JsonFormatter(logging.Formatter):
                 data[key] = (
                     value if isinstance(value, (int, float, bool)) or value is None else str(value)
                 )
+        if record.exc_info and record.exc_info[0]:
+            data["error_type"] = record.exc_info[0].__name__
         current = trace.get_current_span().get_span_context()
         if current.is_valid:
             data["trace_id"] = format(current.trace_id, "032x")
@@ -70,6 +72,12 @@ def configure_logging() -> None:
     handler = logging.StreamHandler()
     handler.setFormatter(JsonFormatter())
     logging.basicConfig(level=logging.INFO, handlers=[handler], force=True)
+    # Uvicorn configures its own non-propagating handlers before loading the app.
+    # Route those through the same redaction boundary, including uncaught exceptions.
+    for name in ("uvicorn", "uvicorn.error", "uvicorn.access"):
+        server_logger = logging.getLogger(name)
+        server_logger.handlers.clear()
+        server_logger.propagate = True
     logging.getLogger("httpx").setLevel(logging.WARNING)
 
 

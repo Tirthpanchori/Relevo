@@ -1,7 +1,10 @@
 """Verify a fresh local Git clone with new credentials and an isolated Compose project."""
 
 import json
+import os
 import subprocess
+import urllib.error
+import urllib.request
 from datetime import UTC, datetime
 from pathlib import Path
 
@@ -11,7 +14,17 @@ PROJECT = "relevo-clean-checkout"
 
 def run(args, cwd=ROOT, *, log=None):
     result = subprocess.run(
-        args, cwd=cwd, capture_output=True, text=True, timeout=600, check=False
+        args,
+        cwd=cwd,
+        capture_output=True,
+        text=True,
+        timeout=600,
+        check=False,
+        env={
+            key: value
+            for key, value in os.environ.items()
+            if key != "POSTGRES_PASSWORD" and not key.startswith("RELEVO_")
+        },
     )
     if log:
         with log.open("a", encoding="utf-8") as stream:
@@ -107,6 +120,23 @@ def main():
             destination,
             log=log,
         )
+        original_token = next(
+            line.partition("=")[2]
+            for line in (ROOT / ".env").read_text(encoding="utf-8").splitlines()
+            if line.startswith("RELEVO_API_TOKEN=")
+        )
+        request = urllib.request.Request(
+            "http://127.0.0.1:8000/metrics",
+            headers={"Authorization": f"Bearer {original_token}"},
+        )
+        try:
+            opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
+            with opener.open(request, timeout=3):
+                raise AssertionError(
+                    "Fresh checkout accepted original development credentials"
+                )
+        except urllib.error.HTTPError as exc:
+            assert exc.code == 401, "Unexpected fresh-checkout authentication response"
         for key in ("fresh-clone-first", "fresh-clone-after-restart"):
             if key.endswith("restart"):
                 run(
