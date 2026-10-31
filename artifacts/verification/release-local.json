@@ -7,6 +7,7 @@
   "browser_tests": 23,
   "axe_scans": 21,
   "artifact_tests": 4,
-  "independent_review": "pending: agent usage limit",
-  "cloud": "not provisioned"
+  "independent_review": "ship; 55 captures; remote quality-card comparison unavailable",
+  "cloud": "not provisioned",
+  "patched_clean_checkout": "9fef03449d311b377750394aeb661adf8d1b0bac"
 }

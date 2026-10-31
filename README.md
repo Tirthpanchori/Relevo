@@ -7,10 +7,10 @@ hosted task service or a promise of exactly-once execution.
 
 ## Release status
 
-Deployment-readiness work is in progress on `release/deployment-readiness`.
+Deployment preparation is complete on `release/deployment-readiness`; see [release PR #1](https://github.com/Tirthpanchori/Relevo/pull/1).
 The current website uses the approved forest/cream/lime design, sticky translucent
 navigation, active hero pixels, and six pages. The hero report card is removed.
-Responsive desktop/tablet/phone verification is now authorized. See the current
+Desktop/tablet/phone Chromium checks and the independent UI review passed. See the current
 audit and exact verification results in [RELEASE-READINESS.md](RELEASE-READINESS.md).
 Earlier tests and recordings remain dated evidence; they do not prove a cloud
 deployment. No resources have been provisioned and no release has been deployed.

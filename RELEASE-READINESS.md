@@ -1,35 +1,48 @@
-# Release readiness — work in progress
+# Release readiness — 1 November 2026
 
-Target: Vercel static site at origin root, private-token backend, user-operated
-deployment. Branch: `release/deployment-readiness`. No merge or cloud provisioning.
+Prepared release: [PR #1](https://github.com/Tirthpanchori/Relevo/pull/1).
+No merge, hosting resources or deployment performed.
 
-## Verified so far
+## Verdicts
 
-- Fresh Linux/PostgreSQL/TCP-fault backend suite:197 passed on the final locked dependencies in26.21s,84% coverage. Ruff lint and formatting passed for79files.
-- Actual worker completion, killed-worker recovery/stale update rejection, and
-  API/PostgreSQL restarts passed; current captures are in artifacts/verification
-  as release-worker-recovery.json and release-component-restarts.json.
-- Isolated pg_dump/pg_restore drill restored2synthetic tasks,1attempt,4events and
-  the schema marker exactly. No development database was restored or deleted.
-- Root-path production build and4evidence/artifact checks passed.
-- All23frontend browser cases passed (0failed/flaky);21axe scans found zero violations. Fixes include
-  focusable scrolling code blocks and static complete model explanations for
-  short landscape viewports. Current viewport targets:320/360/390/768/1024/1440/1920.
+| Area | Verdict | Evidence / boundary |
+|---|---|---|
+| Frontend | Prepared for Vercel deployment | Six responsive pages, root URLs, production build, functional and accessibility checks pass; independent UI review: **ship**. |
+| Backend | Prepared for a trusted private deployment | Locked tests, fault/restart smokes, migrations and isolated restore proof pass. Shared token is cluster access, not user tenancy. |
+| Hosting | Frontend configured; continuous free backend blocked | Vercel root configuration is prepared. Render Free does not supply always-running worker/scheduler compute. Supabase is PostgreSQL, not Python compute. No provider resources tested. |
 
-## Remaining release gates
+## Verification
 
-- Independent fresh design review: both required agents hit usage limits. Source-derived responsive design records updated; no independent signoff claimed.
-- Hosted CI for final patched commit pending. Draft PR#1 is pushed. Baseline committed clone5e7d456 passed startup/new credentials/restarts/197tests and frontend npm ci/build/4tests. Bounded scan passed233files/572history blobs; final rescan pending.
-- certifi upgraded to2026.10.23 after GHSA-6q48-6c7w-9gw2; all53locked Python registry packages now report zero active PyPI advisories. npm audit reports zero vulnerabilities. These are advisory checks, not an OS-image or penetration test.
-- Supabase-specific TLS, privileges and durability checks require the user's
-  actual project and are not certified by local PostgreSQL tests.
+- **197 backend tests**, including real PostgreSQL, ownership/concurrency and TCP faults; **84% coverage**. Ruff lint and formatting pass for 79 Python files.
+- Worker completion, killed-worker recovery/stale-owner rejection, and API/database component restart smoke checks pass. Current sanitized captures: `release-worker-recovery.json` and `release-component-restarts.json`.
+- Isolated dump/restore proof: schema marker and complete jobs/attempts/events rows match (2 synthetic jobs, 1 attempt, 4 events). Development storage untouched.
+- **23 Chromium browser tests**, zero failures/flaky tests; **21 axe scans**, zero violations. Covers six routes, root utilities and missing-page recovery, widths 320–1920px, short landscape, scroll stages/reversal, Flow/Replay/Results, errors, FAQ reversal, keyboard focus and reduced motion.
+- Production build and **4 evidence/artifact tests** pass. Separate clean-clone frontend locked install/build/artifact checks pass.
+- Patched committed checkout `9fef03449d311b377750394aeb661adf8d1b0bac` independently passes startup, fresh credentials, CLI before/after restarts, and all 197 tests. Verification-only resources removed; development volume preserved/services restored.
+- Current `certifi` is **2026.10.23**, fixing GHSA-6q48-6c7w-9gw2. Exact-version PyPI metadata reports zero active advisories across 53 locked registry packages; npm audit reports zero vulnerabilities.
+- Bounded local secret scan: no matching patterns/current credentials in 233 tracked files and 590 reachable history blobs at the patched checkpoint. CI repeats the history-pattern scan. Caches, credentials, dependencies, raw design research and historical source snapshots are excluded from release/build contexts.
+- Independent files/capture UI review returned **ship**, with 55 authoritative captures reviewed. Detector ran once with no findings. Source-derived design record refreshed. See `release-design-review.md`; separate remote quality-card comparison was unavailable.
 
-## Hosting verdict
+## Hosted CI
 
-Vercel root configuration and manual guide are prepared. Full cloud deployment
-is unverified. Continuous INR0 Render backend compute is not established; free
-web sleep and worker pricing are unresolved budget constraints, not application
-test failures. Supabase supplies PostgreSQL, not the Python worker/scheduler.
-See [DEPLOYMENT.md](DEPLOYMENT.md). The website remains independent of the engine.
+Patched application checkpoint `9fef03449d311b377750394aeb661adf8d1b0bac` passed:
 
-Do not treat this in-progress file or older197-test reports as final release signoff.
+- [Backend](https://github.com/Tirthpanchori/Relevo/actions/runs/41231103093)
+- [Frontend](https://github.com/Tirthpanchori/Relevo/actions/runs/41231103108)
+
+The final documentation/cleanup commit must also pass both checks before merge;
+use the exact current PR head, not these earlier run IDs, for that decision.
+
+## Remaining owner checks
+
+Follow [DEPLOYMENT.md](DEPLOYMENT.md). Configure the canonical HTTPS origin,
+credentials, verified database TLS, migration order and Supabase privileges.
+After deployment verify direct routes/custom 404/status/headers, private API access,
+job completion/recovery, provider persistence, backup/restore and rollback.
+
+No real iOS/Android device, Safari/Firefox, provider TLS/network/privilege,
+image/OS-vulnerability or cloud smoke certification is implied. Automated and
+pattern checks are bounded evidence, not proof against every security issue.
+No exactly-once execution, guaranteed uptime or always-free continuous backend
+is claimed. Under INR 0, deploy the website and keep the engine local unless
+adequate ongoing free compute is independently available.

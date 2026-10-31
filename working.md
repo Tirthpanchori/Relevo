@@ -2,8 +2,7 @@
 
 Last updated: 2026-11-01 (Asia/Calcutta).
 
-**Current release status:** responsive frontend and backend verification are in
-progress on the release branch. See [RELEASE-READINESS.md](RELEASE-READINESS.md)
+**Current release status:** responsive frontend and backend checks passed locally and at the patched CI checkpoint; the release remains unmerged. See [RELEASE-READINESS.md](RELEASE-READINESS.md)
 for evidence and [DEPLOYMENT.md](DEPLOYMENT.md) for user-operated setup.
 The site uses origin-root URLs; its hero has copy/pixels only and navigation
 stays visible while scrolling. No cloud resources are provisioned or merged.
