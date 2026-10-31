@@ -1,0 +1,197 @@
+{
+  "verified_at_utc": "2026-10-19T12:39:24.590Z",
+  "node_version": "v24.22.0",
+  "vite_version": "8.3.4",
+  "production_build": "passed",
+  "base_path": "/Relevo/",
+  "intended_canonical": "https://tirthpanchori.github.io/Relevo/",
+  "content_pages": 6,
+  "data_artifact_tests": {
+    "passed": 4,
+    "failed": 0
+  },
+  "browser_tests": {
+    "startTime": "2026-10-19T03:55:31.210Z",
+    "duration": 45823.693,
+    "expected": 15,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "browser_report": "artifacts/verification/frontend-browser-revision.json",
+  "route_viewports_checked": [
+    1440,
+    390,
+    320
+  ],
+  "additional_home_inspection": {
+    "width": 768,
+    "height": 1024
+  },
+  "screenshots": ".impeccable/review/capture-revision.json",
+  "review_report": ".impeccable/review/revision-finish-review.md",
+  "review_disposition": "ship",
+  "review_scope": "Fresh full review identified one selected-filter visibility issue; verdict scored that fix resolved. Ship at fix scope, not whole-surface certification.",
+  "detector": {
+    "runs": 1,
+    "findings": []
+  },
+  "taste_report": ".taste-skill/after/report.json",
+  "taste_limits": [
+    "Retained pinned palette/type and software/ASCII artwork instead of unrelated photos/customer proof or entrance-animation quotas.",
+    "Size-count warning remains (13 rendered sizes across narrative and interface).",
+    "Two alleged mobile eyebrow links were judged false positives by the fresh reviewer."
+  ],
+  "design_system": {
+    "document": "design.md",
+    "sidecar": ".impeccable/design.json",
+    "schema_version": 2
+  },
+  "backend_source_changed": false,
+  "public_deployment": "pending",
+  "shipping_rasters": 0,
+  "source_files": [
+    {
+      "path": ".github/workflows/frontend.yml",
+      "sha256": "956d702e619b8dd4b0656fc45552e51b74f987409a5f36cc320fbc0387f4acd5"
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "sha256": "faa37c93984650a5194f1b65f6c36ded638172939cfe815bf5b2a85e592162ab"
+    },
+    {
+      "path": "frontend/package.json",
+      "sha256": "7c32a8f3bee6591352ee04644cca96654555a11b4b1e5aa1e6fcbf4d004a3e04"
+    },
+    {
+      "path": "frontend/playwright.config.js",
+      "sha256": "beab27b1a687056c8f434fa6283ef4e4ba6182f0b577e9b2320b835a24f14c87"
+    },
+    {
+      "path": "frontend/scripts/prepare.mjs",
+      "sha256": "96f4d36e1ae8584448643af1c5d7bf53aacfe4118d3ff32881c2acbb6a8fb70d"
+    },
+    {
+      "path": "frontend/site.mjs",
+      "sha256": "1e574d4eb5ead2c5613a82c530bda602146a1e83b60f4584c9d1019fb04f48ac"
+    },
+    {
+      "path": "frontend/src/App.jsx",
+      "sha256": "e8a028151172b8edc708ccc30a28deaee52f236dae2d152125dc7a69678a8d16"
+    },
+    {
+      "path": "frontend/src/components/Accordion.jsx",
+      "sha256": "dd6c9b6784378fa8f9169fcfe1e1b0ec0cf9f333fa6fc15ac38e46ed5fe86b23"
+    },
+    {
+      "path": "frontend/src/components/AsciiBand.jsx",
+      "sha256": "ffb39455bef5db16f0efc629a2bf031e37b5d66c3539b91750a360c6ec80207f"
+    },
+    {
+      "path": "frontend/src/components/Common.jsx",
+      "sha256": "f343ec69a0ea8f9fe91ba76703961cf20ec9381892fc5d4e14b20892beb12ceb"
+    },
+    {
+      "path": "frontend/src/components/ExecutionViews.jsx",
+      "sha256": "e8783d4f84b5669c463b844b7fbeb2ec0a6d238321488aaef28cf8c971b677cc"
+    },
+    {
+      "path": "frontend/src/components/Footer.jsx",
+      "sha256": "8ac6ed03f87ac5ff6750c330a14a35b47924c2938ef86aed6de7b889778de829"
+    },
+    {
+      "path": "frontend/src/components/HandoffIllustration.jsx",
+      "sha256": "573090699a0c80ddf48ab4ff2985fd1f8d0b06f99819a485eaf984e300c6e2b9"
+    },
+    {
+      "path": "frontend/src/components/Header.jsx",
+      "sha256": "a14f51d871f675b4066d438f17e6e3be85d37694f26ee7c81216d53bb4c81543"
+    },
+    {
+      "path": "frontend/src/components/Icon.jsx",
+      "sha256": "c472df78d15a3aae25204f84d4f98e4be474571661e11e7dc8d10757fde76601"
+    },
+    {
+      "path": "frontend/src/components/SystemScene.jsx",
+      "sha256": "18cd80768b7b89ba555c41ef037d3260f4307de2d1f6fa35edcf42601f4a888d"
+    },
+    {
+      "path": "frontend/src/hooks/useMotion.jsx",
+      "sha256": "86cdbb53d7cb9a0330383c8316b1d79445ea2f34a50c083ebe65d704d91700d0"
+    },
+    {
+      "path": "frontend/src/hooks/useResource.js",
+      "sha256": "424eb14c9985fa5ef024022ba853730e44bcfb92ac42db41ffcd536b7eecb1a2"
+    },
+    {
+      "path": "frontend/src/lib/evidence.mjs",
+      "sha256": "5d6b851f3e35a60d9264a31cfa2c7eee18bb19d4b8ee80a2dbcc3246a6de8961"
+    },
+    {
+      "path": "frontend/src/lib/links.js",
+      "sha256": "815ccd4c0a5a7f23852611e7f20a2d2e1f3fd339be43b9324ff9d33990ce0629"
+    },
+    {
+      "path": "frontend/src/main.jsx",
+      "sha256": "c573ddaf942aa077d1186725964610dfb5d6bf3483b47ec64fb40c66f6a20ef9"
+    },
+    {
+      "path": "frontend/src/pages/About.jsx",
+      "sha256": "77634f69ee7529122a7d492de991f4c536fadf5a119163b947dc5c6064344f1e"
+    },
+    {
+      "path": "frontend/src/pages/Docs.jsx",
+      "sha256": "a6bc0f2c35700f27d18762b095e955ae48fab5cff47dbeb55ca4a584c73716b5"
+    },
+    {
+      "path": "frontend/src/pages/Engine.jsx",
+      "sha256": "25ec992d3808eb050b0b9295d684906dfec45302988111127b33285d74e77985"
+    },
+    {
+      "path": "frontend/src/pages/Home.jsx",
+      "sha256": "25e4955c833e66de3fe8e703c95185b71a4ddc53cc03be618108e32bdf584b9a"
+    },
+    {
+      "path": "frontend/src/pages/Privacy.jsx",
+      "sha256": "c8965485f0c5965508a7ccc965da2f698ab9d0e3bab04e82d097b2e34d76bd45"
+    },
+    {
+      "path": "frontend/src/pages/Results.jsx",
+      "sha256": "be3aa82dfa143d6f9482c6ae8db3d27216fc97a77110db8d1b42f4657759278a"
+    },
+    {
+      "path": "frontend/src/refresh.css",
+      "sha256": "5f980c1c38790616aa6f33a2b16f59379739d64cabd7e0096cf449c7cc34cce9"
+    },
+    {
+      "path": "frontend/src/styles.css",
+      "sha256": "a87f7bac4dd27bff6d3e70e4fa76ccc39fa2235a9abbc7d8e775b592a7eaae66"
+    },
+    {
+      "path": "frontend/tests/browser/site.spec.js",
+      "sha256": "5ce4df42f91cc76ded1db363c3273c2d4e3b9802222f772a3986fa01d0475d52"
+    },
+    {
+      "path": "frontend/tests/evidence.test.mjs",
+      "sha256": "080ad7c405e1cc23c820d013bcd3bcc99e93f74b563ac2b4284f90f8efb847a3"
+    },
+    {
+      "path": "frontend/vite.config.js",
+      "sha256": "fb5600d011ff21bea7449e85229cdc2fdcfa14b48658c6663fd56c3683f9ebde"
+    },
+    {
+      "path": "scripts/frontend.ps1",
+      "sha256": "e00dfad4028b1cac8c9299d88a7b2a52c685edfbcb8cf10a145c594491474c77"
+    }
+  ],
+  "design_files": [
+    {
+      "path": "design.md",
+      "sha256": "ab70b6d4bfd359fde077b69f862da560199370341ddb5e3344034f5fe4d441c7"
+    },
+    {
+      "path": ".impeccable/design.json",
+      "sha256": "984e9e292bf3d5843d89d3713b058a67ab7197b6abe21d5205fee717af4289bc"
+    }
+  ]
+}

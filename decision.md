@@ -35,6 +35,7 @@ For a consequential new choice, append an entry with an ID, date, status, contex
 | [D025](#d025---durable-history-separated-from-bounded-runtime-telemetry) | Durable history separated from bounded runtime telemetry | Accepted |
 | [D026](#d026---bounded-measurement-and-worker-monitor-experiment) | Bounded measurement and worker monitor experiment | Accepted: 50 ms default, opt-in 5 ms tuning |
 | [D027](#d027---fault-smokes-assert-bounded-recovery-not-a-fixed-attempt-count) | Fault smokes assert bounded recovery, not a fixed attempt count | Accepted |
+| [D028](#d028---one-engine-page-with-flow-and-replay-tabs) | One Engine page with Flow and Replay tabs | Accepted; UI implementation pending |
 
 ## D001 - Backend correctness before frontend
 
@@ -521,10 +522,319 @@ The updated smoke passed against `9af3ab8` with actual worker SIGKILL, an
 `expired,succeeded` sequence, and all stale/immutability/history checks. The earlier
 three-attempt diagnostic remains published. Both records describe actual runs.
 
+## D028 - One Engine page with Flow and Replay tabs
+
+**Date:** 2026-10-18. **Status:** Accepted; UI implementation pending.
+**Origin:** the user accepted the clarified Engine/Replay merge during the
+frontend discussion.
+
+**Context:** separate architecture and replay pages repeat system context. Simply
+stacking their full content would create an unnecessarily long Engine page. The
+homepage already provides a brief exploded-view introduction.
+
+**Decision:** combine Engine and Replay in one Engine page with Flow and Replay
+tabs and a shared diagram workspace. Show only the active panel and one selected
+replay scenario. Flow explains normal execution; Replay steps through actual
+recorded failure evidence. Keep a concise guarantees/limits summary accessible
+below the workspace and expose deeper notes on demand. This refines D013 without
+changing its evidence or security requirements. See [design.md](design.md).
+
+**Alternatives:** separate pages (repeated context and another navigation
+destination); one long stacked page (excessive reading/scrolling); dropping the
+failure evidence (loses the engine's most useful demonstration).
+
+**Consequences:** the revised sitemap has six proposed content pages and a
+simple Engine/Results/Docs header plus GitHub. Replay becomes a tab destination,
+including direct links from Home and the footer. Implement accessible tabs,
+pause hidden playback, preserve useful deep links, and let mobile layouts grow
+naturally. A shared visual must still distinguish conceptual explanation from
+recorded observations and identify test interventions/limits.
+
+**Verification:** implemented under D029. Phase 8's passing browser checks cover
+tab/deep-link behavior, keyboard/focus operation, hidden-playback pause,
+one-scenario presentation, narrow layouts, reduced-motion/static controls,
+recording provenance, and backend-independent navigation. Data/artifact checks
+verify source-event fidelity and the private token's absence from the public build.
+
+## D029 - Static evidence site with original reusable system art
+
+**Date:** 2026-10-18. **Status:** implemented locally; deployment pending.
+
+**Context:** the user completed the required design discussion and explicitly
+authorized implementation after reviewing the palette, typography, original
+exploded-view approach, and React/JavaScript stack. The public explanation must
+remain useful without free live compute and must not expose the cluster token.
+
+**Decision:** use React/JavaScript, Vite, CSS, and six static HTML entries, with
+one original SVG system scene shared by Home and Engine. The build copies only
+an explicit list of sanitized evidence and source documents. Benchmark summaries
+are derived from raw retained runs; Replay preserves source events and separates
+untimed observations. No frontend requests call a privileged coordinator route.
+Self-host OFL fonts and original Canvas glyph art; pause decorative drawing
+offscreen/hidden and provide reduced-motion/manual modes. This implements D028.
+
+**Alternatives:** a privileged public live console (requires credential/exposure
+controls and available compute); a server-rendered framework (unnecessary runtime
+for static evidence); opaque video-only playback (loses event/source inspection);
+a history-only single-page router (extra deep-link fallback requirements on Pages).
+
+**Consequences:** `/Relevo/` production paths and six real entries support direct
+navigation on the proposed GitHub Pages host. Generated source copies, sitemap,
+and HTML entries are rebuilt rather than maintained by hand. The site shows
+dated evidence, not live system health. Original vectors need no supplied 3D
+assets or additional PC design applications. Node 24 and locked dependencies are
+project tooling; the Windows launcher prepares a checksum-checked portable runtime.
+
+**Verification:** production build, four data/artifact checks, and ten browser
+checks pass locally. Browser interaction, accessibility, responsive, and scoped
+finish-review evidence is recorded under Phase 8, with source hashes in
+`artifacts/verification/frontend-local.json`. The shipped design system is in
+`design.md` and `.impeccable/design.json`. Hosted frontend CI and public hosting are pending.
+No backend execution, durability, or recovery semantics changed.
+
+## D030 - One visual per question and a continuous recovery story
+
+**Date:** 2026-10-19. **Status:** implemented and verified locally.
+
+The user rejected the earlier frontend structure and the crowded lifecycle
+section. Supersede D029's repeated system artwork and homepage composition;
+retain its static build, JavaScript stack, source provenance, and credential
+boundary. Use one exploded architecture view on Home. A separate manual hero
+illustrates the handoff; Flow uses a flat path; Replay uses actual assignment
+history. Merge Home's separate lifecycle and failure summaries into one actual
+continuous history. Keep one primary Engine action and one contextual replay
+link, with Docs as the ending. Remove the footer artwork's extra Engine CTA.
+
+This makes each visual answer a different question, with fewer navigation
+decisions and larger reading text. Preserve the grouped schematic footer, original
+ASCII motif, palette/font assets, test interventions, and actual evidence. FAQs
+use native buttons/regions and a reversible grid-height transition; the small
+layout animation is purposeful and disabled for reduced motion. It is preferred
+to motion-library overhead or a delayed close that cannot reverse immediately.
+
+Verification is tracked by P8.R1-R7, including regressions for diagram count,
+CTA count, one-owner illustration, pixel visibility, and FAQ motion/semantics.
+The final production build and four data/artifact checks pass. Fifteen browser
+checks pass; a fresh full design review's one selected-filter visibility finding
+was corrected and scored resolved. See `.impeccable/review/revision-finish-review.md`
+and `artifacts/verification/frontend-browser-revision.json`. That verdict covers
+the scored fix; it is not a universal accessibility or whole-surface certification.
+
+## D031 - Choose mockups before a desktop-only frontend rebuild
+
+**Date:** 2026-10-21. **Status:** accepted workflow; visual selection pending.
+
+The user rejected D030's technical density and composition. Supersede its visual
+authority, fixed palette/type, interactive hero, click-selected exploded view,
+and global motion control. Preserve backend semantics, evidence fidelity, static
+deployment, and the React/JavaScript stack. The new audience is a curious newcomer
+first, with developer detail available on demand.
+
+Prepare three original Home/Engine visual directions through the actual
+Impeccable decision page. The user selected mockups before implementation, with
+choose, feedback, and re-roll on the same page. Use a comp-led session for this
+round without changing other projects' defaults. Build only the chosen desktop
+direction, review/show it, and stop before tablet/phone work or responsive tests.
+
+Use one Anatomy-built scroll-driven model below Home's simple hero. Engine Flow
+and Replay use distinct explanatory views. Technical identifiers/provenance move
+behind optional details, while actual recordings and essential retry/effect
+limitations remain truthful. Add Home to the four-link header; retain grouped
+footer utilities and one quiet source link. Motion may be a project dependency;
+no machine-wide application or paid hosting is required by this design round.
+
+**Tradeoff:** approval before implementation prevents spending on three complete
+websites the user may reject. Deferring responsiveness speeds the desktop design
+conversation but leaves the new frontend gate explicitly incomplete. Mockups do
+not verify animations or system behavior. D030's passing tests remain historical
+checks, not evidence that this replacement design is approved or built.
+
+**Verification:** tracked under P8.D1-D6; no new implementation claims yet.
+
+## D032 - Regional hybrid and isolated whole-site desktop demo
+
+**Date:** 2026-10-21. **Status:** selected and authorized; implementation/checks in progress.
+
+Supersedes D031's pending visual choice and Home/Engine-only first-build sequence.
+The user chose Museum colours, Exhibition typography/Home hero, Assembly model
+composition and content in Museum colours, and Museum Engine layout with
+Exhibition type. Approval is regional; none of the source PNGs is wholesale
+approved. See `artifacts/design/desktop-demo-direction.md`.
+
+Build a separate Vite root in `frontend/prototype`, sharing installed dependencies
+and sanitized public evidence but importing none of the rejected page styling.
+Preserve existing main pages, backend contracts, and recordings. Pin Motion as a
+project dependency. The original Anatomy model is functional SVG geometry driven
+by native scroll; do not flatten it into a static screenshot.
+
+The complete six-page clickable demo is the next reviewable deliverable. Use real
+copy, actual replay/measurements, on-demand technical facts and working navigation,
+FAQ, Flow, Replay, filters and error recovery. Stop for feedback before final
+integration or responsive work. This trades temporary parallel UI files for an
+honest whole-site review without overwriting the comparison baseline. Reuse the
+approved demo components in the final build instead of rebuilding from scratch.
+
+Prototype checks cannot certify the final website or tablet/phone behaviour.
+`design.md` remains the last shipped main-site record until final integration.
+No deployment, new PC application or backend change is part of this milestone.
+
+**Verification:** tracked separately in P8.D3a-c; actual evidence pending.
+
+## D033 - Approved structure with four explanatory depths
+
+**Date:** 2026-10-21. **Status:** implemented and verified locally at desktop scope; responsive work deferred.
+
+The user accepted D032's demo structure and explicitly approved production
+integration of all six pages with smaller type, lime recover, live pixels and
+coordinated hover/press/focus feedback. This supersedes the demo-only hold;
+tablet/phone work and hosting stay deferred. The previous main source is archived
+in artifacts/design/baseline-2026-10-21-pre-integration; the demo is retained.
+
+Use four original Anatomy assemblies: Coordinator, Workers, Recovery, Saved
+record. Native scroll changes exposed depth, indicator, emphasis and explanation
+together. The saved cartridge stays connected to storage. A U-shaped recovery
+frame leaves it physical clearance; inactive assemblies stay opaque. Reduced
+motion exposes a still with all four explanations.
+
+Use existing Motion14.4.0 and CSS rather than additional UI frameworks. Cierto
+and the MIT-licensed 21st.dev/Magic UI button pattern inform the fill sweep.
+Pixel rendering is time-based, capped at30fps/DPR1.5, and suspended offscreen or
+hidden. Keep selected states distinct from hover. Native base-aware anchors
+preserve navigation and downloads under /Relevo/.
+
+Tradeoff: the model section earns its length through four responsibilities;
+smaller type increases density without shrinking essential reading text. The
+separate desktop suite replaces the default run while responsive work is deferred;
+historical tablet/phone tests remain separately callable, not newly verified.
+No backend APIs, recorded data or evidence formats change. Build first failed
+under local memory pressure and passed with RAYON_NUM_THREADS=2; this is an
+environment mitigation, not a performance claim.
+
+Verification: production build, four data/artifact checks and eleven desktop
+browser checks pass. Seven axe scans report zero violations. Fresh full review
+requested a 40px Home closing heading and current design records; the final
+verdict scores both resolved, ship at fix scope. See P8.D3d-D5,
+artifacts/verification/production-desktop.json and
+.impeccable/review/production-desktop-finish-review.md.
+The full frontend gate stays open for P8.D6; no new tablet/phone checks or hosted
+frontend CI/deployment are claimed. Local pagefile exhaustion during concurrent
+browser jobs was recovered by closing only task Chrome and rerunning serially.
+
+## D034 - Desktop reading hierarchy and explanatory motion
+
+**Date:** 2026-10-21. **Status:** implemented and verified locally at desktop scope; responsive work deferred.
+
+Refines D033 without replacing the selected palette, type family or recorded
+evidence. Share a canonical Relevo wordmark in header, footer and About; use
+brand-first browser titles and a forest/cream/lime favicon. Keep 76px Home and
+68px page headings, 40px chapter headings, 24px supporting headings, 18px reading
+text and 16px controls; the Engine explanation uses a 32px intermediate role.
+
+The larger empty hero was rejected in the subsequent feedback. The user then
+explicitly authorized a right-side functional animation, superseding the earlier
+no-hero-widget rule. Use a flat, clearly illustrative handoff rather than another
+exploded model. It plays a single sequence in under five seconds, permits manual
+replay, stops offscreen/hidden, and shows the outcome for reduced motion.
+
+Keep the pixel field, but remove displacement, wave-shaped threshold changes and
+pointer forces. Only opacity shimmers on a fixed grid. Rendering still stops
+offscreen/hidden and honors reduced motion.
+
+The Anatomy model retains four meaningful levels and the storage-mounted task.
+Cache assembly bounds once; compute camera framing from their translated bounds
+while scrolling. This keeps the drawing large without cropping an exposed layer.
+Use a 210vh track, more continuous separation, bounded spring smoothing and
+mount-aligned guides. Recovery is not a liquid or freely floating effect.
+
+Flow starts with explicit Application submission; Recovery lights during the
+interrupted path and is labeled standing by during normal work. Replay facts and
+playback behavior remain unchanged. Docs derives one active navigation link from
+the reading position via a throttled scroll handler, including upward scrolling
+and fragment navigation, without rewriting browser history on every scroll.
+
+Report/ticket hover uses one reversible transform transition, removing the
+conflicting scroll animation that caused abrupt return. No new dependencies,
+backend APIs, privileged calls, measurement formats or paid services are added.
+Tablet/phone adaptation and responsive checks stay deferred under P8.D6.
+
+Verification: production build, four data/artifact checks and 14 desktop browser
+checks pass (one worker, no retries; 1440/1920px). After correcting cold Docs
+fragment alignment, the enhanced Docs test passed again with entry/reload and
+both scroll directions. Seven automated desktop axe scans report zero violations.
+The fresh full review found no material UI defect and requested current design
+records; the reviewer scored that refresh resolved, ship at fix scope. See P8.D7,
+artifacts/verification/desktop-refinement.json and
+.impeccable/review/desktop-refinement-finish-review.md. The previous D033 evidence
+remains a historical checkpoint. No new tablet/phone checks or publication occurred.
+
+## D035 - Active pixel fields and scroll-triggered Home content
+
+**Date:** 2026-10-21, refined 2026-10-22. **Status:** implemented and verified locally at desktop scope.
+
+Supersedes D034's hero worker-node diagram and opacity-only pixel treatment.
+The user supplied Cierto's left-copy/right-example hero and requested a minimal
+functional illustration on the right with moving pixel texture behind it.
+Use an explicitly illustrative report example with saved/preparing/retry/result
+states rather than another system diagram. Preserve factual claims and one
+primary Engine action. The engine does not actually generate reports today.
+
+The 22 October steering removes the bottom strip. Use one Canvas field across
+the hero background, denser behind the right example and quieter behind copy. Regenerate fixed-grid random occupancy and brightness visibly,
+without moving cell coordinates, liquid waves or pointer forces. Cap rendering
+and suspend it offscreen/hidden; reduced motion gets a readable still.
+
+Reveal Home content groups when they enter the viewport, rather than playing
+all arrivals on initial load. Keep section backgrounds and geometry in normal
+flow, the model's native-scroll mechanism unchanged, and content available to
+keyboard navigation and reduced motion. No added dependency or backend change.
+Verification: all 15 distinct desktop checks are verified across the main run
+(12 passes) and three-check confirmation; seven settled-state axe scans report
+zero violations. Build and four data/artifact checks pass. Fresh review and
+source-derived design records are complete. The reviewer scored the sole product
+context refresh resolved, ship at fix scope. Evidence: P8.D8 and
+artifacts/verification/desktop-home-motion.json. Tablet/phone and hosting remain
+deferred. A loading-time footer reveal was fixed by mounting it with the page
+inside Suspense; the model's geometry and actual recordings were preserved.
+
+## D036 - Persistent navigation and a pixel-only hero
+
+**Date:** 2026-10-22. **Status:** accepted; implementation verification pending.
+
+The user requests a navbar that stays visible while scrolling and becomes slightly
+transparent, and removes the hero's monthly report animation. Use sticky positioning
+to retain the header's space without a layout jump. After 12px of scroll its forest
+background becomes 90% opaque, with a bounded 10px backdrop blur and subtle rule.
+Keep text/controls fully opaque and revert to solid at the top. Reduced motion
+removes the surface transition. Adjust model pinning, Docs index and fragment
+offsets for the 86px header. Keep the hero's active pixels and left copy; remove
+the report component and orphan styles. Backend contracts and evidence are unchanged.
+This supersedes D035's report-card hero, while preserving its other motion choices.
+Verification is tracked in P8.D9; responsive work and publication stay deferred.
+
 ## Decisions still open
 
 - Contracts, byte conventions, dependency pins, retry policy, and recovery are resolved in D015-D021; Phase 6 supplies the network/crash/business-effect proof.
-- Frontend visual direction: establish in Phase 8 from the verified engine story.
+- D029/D030, the D032 demo, D033 and D034 are historical checkpoints. D035 is
+  the current locally verified desktop refinement, with current design records. Tablet/phone
+  adaptation and responsive verification remain the next separate frontend stage.
 - The repository is https://github.com/Tirthpanchori/Relevo. Free hosting availability/configuration remains for Phase 9; no deployment is claimed.
 
 Broader changes to durability, ownership, effect semantics, or budget require a new linked decision entry.
+
+## D037 - User-operated Vercel release and private backend
+
+Date: 2026-10-31. Status: accepted, implementation/verification in progress.
+Serve the static site at origin root on Vercel, with production canonical origin
+derived from RELEVO_SITE_URL or VERCEL_PROJECT_PRODUCTION_URL. No secret enters
+the client. Preserve multi-page directory entries and real missing-page fallback.
+Prepare Render/Supabase instructions without provisioning; use a direct or
+session PostgreSQL connection, never a transaction pooler for session settings.
+Separate API/worker/scheduler deployment retains independent recovery semantics.
+Free Render web sleep and paid workers mean always-running INR0 hosting is not
+assumed available. Preserve recorded public demos and bearer-protected engine.
+Responsive work is now authorized; earlier desktop-only stop is superseded.
+
+
+## D038 — Responsive release safeguards and evidence boundaries (1 November2026)
+
+Use the approved design across phone/tablet with CSS breakpoints1099/699px; short viewports (<=650px tall) receive the separated model and all explanations so pinned art cannot obscure content. Make code scrolling keyboard-focusable. Preserve httpx2: current Starlette TestClient requires it even without project imports. Keep lockfiles reproducible. A bounded history scan complements staged checks; neither certifies absence of all possible secrets. Local197backend/23browser passes do not certify cloud behavior. Independent release review remains pending after review-agent usage failures. D037 remains the deployment/budget authority.

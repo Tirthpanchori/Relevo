@@ -1,0 +1,174 @@
+{
+  "verifiedAt": "2026-10-21T16:05:00.336Z",
+  "scope": "D034 / P8.D7 desktop refinement, not responsive frontend completion or deployment",
+  "preview": "http://127.0.0.1:4173/Relevo/",
+  "pages": [
+    "Home",
+    "Engine",
+    "Results",
+    "Docs",
+    "About",
+    "Privacy"
+  ],
+  "changes": [
+    "Canonical shared wordmark, lime sweep, brand-first titles and favicon",
+    "76/68/40/32/24px headline roles,18px body,16px controls",
+    "Right-side illustrative recovery, bounded single sequence with replay and reduced-motion still",
+    "Pixel field retained: fixed grid opacity shimmer, no liquid/pointer deformation",
+    "210vh four-level scroll with bounds-fitted camera and mount guides",
+    "Reversible report/ticket hover",
+    "Application submission and interrupted Recovery highlighted in Flow; Replay preserved",
+    "Docs scrollspy with cold-fragment and reload alignment"
+  ],
+  "checks": {
+    "build": {
+      "status": "passed",
+      "log": "artifacts/verification/desktop-refinement-build.txt"
+    },
+    "dataArtifacts": {
+      "passed": 4,
+      "log": "artifacts/verification/desktop-refinement-data.txt"
+    },
+    "desktop": {
+      "report": "artifacts/verification/desktop-refinement-browser.json",
+      "stats": {
+        "startTime": "2026-10-21T15:46:32.894Z",
+        "duration": 92682.601,
+        "expected": 14,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "widths": [
+        1440,
+        1920
+      ],
+      "workers": 1,
+      "retries": 0
+    },
+    "finalDocsCorrection": {
+      "report": "artifacts/verification/desktop-refinement-docs-confirmation.json",
+      "stats": {
+        "startTime": "2026-10-21T15:53:11.363Z",
+        "duration": 9200.817,
+        "expected": 1,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "note": "After the14-check run, initial fragment alignment was corrected; the enhanced Docs test with cold entry/reload and both scroll directions passed again. No other UI changed."
+    },
+    "accessibility": {
+      "report": "artifacts/verification/desktop-refinement-accessibility.json",
+      "scans": 7,
+      "violations": 0,
+      "scope": "Automated axe WCAG2A/AA and WCAG2.1AA at desktop only"
+    },
+    "layout": "artifacts/verification/desktop-refinement-layout.json"
+  },
+  "review": {
+    "report": ".impeccable/review/desktop-refinement-finish-review.md",
+    "initialDisposition": "fix: refresh stale design records; no material UI defect found",
+    "finalDisposition": "ship at fix scope: design record refresh scored resolved",
+    "scope": "Fresh full desktop review followed by scoring of the single persistence fix; no whole-surface approval inferred from the fix verdict",
+    "detector": ".impeccable/review/desktop-refinement-detector.json",
+    "detectorRuns": 1,
+    "detectorScope": "Shared/Reading/Engine/Pixel/Relay/desktopCSS before final Hero addition; fresh reviewer manually reviews final Hero as well",
+    "shippingRasters": 0
+  },
+  "provenance": {
+    "anatomy": "frontend/src/anatomy/NOTICE.md",
+    "model": "Original geometry, existing four assemblies, native scroll and installed Motion14.4.0",
+    "hero": "Original flat SVG illustration, explicitly not live engine execution",
+    "mapping": "Trail/Graft graph refreshed across backend and frontend source; ignored local cache"
+  },
+  "preservation": {
+    "backendApisChanged": false,
+    "recordedFormatsChanged": false,
+    "replayBehaviorChanged": false,
+    "priorProductionEvidence": "artifacts/verification/production-desktop.json"
+  },
+  "limits": [
+    "Desktop only:1440/1920",
+    "No tablet/phone implementation or responsive tests",
+    "No hosted frontend CI or publication",
+    "No browser performance/FPS certification",
+    "User visual review remains separate"
+  ],
+  "environment": "Earlier intermediate route run hit Chrome ERR_NETWORK_IO_SUSPENDED; serial route confirmation and final14check run passed. Browser jobs ran serially; no PC application or paid service added.",
+  "sourceHashes": {
+    ".github/workflows/frontend.yml": "118d65e893014ef476a351bae02615d0bbf68c111efb0304a1fd9de54ac77fb1",
+    ".impeccable/design.json": "c51e235d39881c4eb08a7513b95f72b78ccf106573a89cc384557e1321deca87",
+    "PROJECT_MEMORY.md": "c17d5072e31257ba6a26f6a359eca687d5bb73068cbc6a6ec6b007201d0a61b4",
+    "README.md": "51e034001f0f29db1a813360ed4db069499faa3df05904a3a1e09f73c0fb233b",
+    "artifacts/design/desktop-production-direction.md": "f9c08fb6a7b5c17715aad57e0433e3af8056435588f8a23f313be91d996ee750",
+    "decision.md": "9dd509ff7f70eacbf36b2eee37dc6bf60fd04b95adf3fc6c8ae88969769e28f9",
+    "design.md": "5d499d696e3a22af3e1b1733496c59edc99a655f63ca55027a51c93d1dd14c10",
+    "frontend/package-lock.json": "bd6759d6c82cb7f35214e8c4d4ec8f68985349b468ca2bd20427cc27ab86315e",
+    "frontend/package.json": "f2d97d44b550afd431ed81223a95aeb57f003c9de4c8379fbd3749362cc531a6",
+    "frontend/playwright.desktop.config.js": "a12bed405f299a395cadc3ca0a2ae5355faff443939ed2003cc76e1b8b6cd68d",
+    "frontend/playwright.refinement-confirm.config.js": "371846e9a98996937207e65318e7a33bab7a1d20a7ad81d34127ef503ff4ba03",
+    "frontend/public/favicon.svg": "7f98658d958bdc43f250b129c9242f03ecd9de003566c22589bfe586fa2a3293",
+    "frontend/scripts/prepare.mjs": "408879233ef88b3aa5f5d6a37613873b861cd7220d2a9c68e951922e3c465cd5",
+    "frontend/site.mjs": "fb0b32a6b410050778ce2d01322535db72c95e85e021a9e9c8a07eaaa83905c6",
+    "frontend/src/App.jsx": "e26c7cec2698c6f16e4b8b7a889ba885bdb2e12acd268e14dbad6eead93dc36a",
+    "frontend/src/anatomy/NOTICE.md": "7be9b53b84d8b2b94bf4e14bba1175146cbabfb60373e283606fe3d3adcc443b",
+    "frontend/src/anatomy/iso-kit.mjs": "6d3ecc725d30c3b0346da309cf61dfa5a65017c23620bbd4093009d4fb104018",
+    "frontend/src/components/Accordion.jsx": "dd6c9b6784378fa8f9169fcfe1e1b0ec0cf9f333fa6fc15ac38e46ed5fe86b23",
+    "frontend/src/components/AsciiBand.jsx": "ffb39455bef5db16f0efc629a2bf031e37b5d66c3539b91750a360c6ec80207f",
+    "frontend/src/components/Common.jsx": "f343ec69a0ea8f9fe91ba76703961cf20ec9381892fc5d4e14b20892beb12ceb",
+    "frontend/src/components/ExecutionViews.jsx": "e8783d4f84b5669c463b844b7fbeb2ec0a6d238321488aaef28cf8c971b677cc",
+    "frontend/src/components/Footer.jsx": "8ac6ed03f87ac5ff6750c330a14a35b47924c2938ef86aed6de7b889778de829",
+    "frontend/src/components/HandoffIllustration.jsx": "573090699a0c80ddf48ab4ff2985fd1f8d0b06f99819a485eaf984e300c6e2b9",
+    "frontend/src/components/Header.jsx": "a14f51d871f675b4066d438f17e6e3be85d37694f26ee7c81216d53bb4c81543",
+    "frontend/src/components/HeroHandoff.jsx": "0f027647738a6277338fc8afdae2f08181ea376e8b4cb46458e0a8b3c2af7ea5",
+    "frontend/src/components/Icon.jsx": "c472df78d15a3aae25204f84d4f98e4be474571661e11e7dc8d10757fde76601",
+    "frontend/src/components/PixelBand.jsx": "02c12fe493fccac197bf16e62198965792a95b3243922e625c909008aeb2ff2e",
+    "frontend/src/components/RelayModel.jsx": "5a71f06d70fd1a120495de4ac024ba11fdb376f3e42e51ce4fed5681ef60d137",
+    "frontend/src/components/Surface.jsx": "952b912d7330081e6586087d986edeabda2fe02a49cecea44ba804f1fe82171c",
+    "frontend/src/components/SystemScene.jsx": "18cd80768b7b89ba555c41ef037d3260f4307de2d1f6fa35edcf42601f4a888d",
+    "frontend/src/desktop.css": "26ba25664148e68e401d4bc50145e2b1a4a0552252ceed864dba9cf004e36c25",
+    "frontend/src/hooks/useMotion.jsx": "86cdbb53d7cb9a0330383c8316b1d79445ea2f34a50c083ebe65d704d91700d0",
+    "frontend/src/hooks/useResource.js": "424eb14c9985fa5ef024022ba853730e44bcfb92ac42db41ffcd536b7eecb1a2",
+    "frontend/src/lib/evidence.mjs": "5d6b851f3e35a60d9264a31cfa2c7eee18bb19d4b8ee80a2dbcc3246a6de8961",
+    "frontend/src/lib/links.js": "815ccd4c0a5a7f23852611e7f20a2d2e1f3fd339be43b9324ff9d33990ce0629",
+    "frontend/src/main.jsx": "61991d060903c85ed4798ad7a12a2890df1074240b13235d66bcb356abc91087",
+    "frontend/src/pages/About.jsx": "7d236c36f3cbe5626f69afe7e3223a3bbed0667d9171b068c5aed6a0120f72ba",
+    "frontend/src/pages/Docs.jsx": "09ff0c3749333691c1c45d797efa05c52faca593e7ac1bde2dcf7d65f7883c0f",
+    "frontend/src/pages/Engine.jsx": "18bf27513f59527034e8443fc038410237a37ece2513fd2fbd703abafddaf51e",
+    "frontend/src/pages/Home.jsx": "b58679a861f51c5b2fdce1edb9ef4765ecc640e128e3af1d7ed6ce66e50a75ac",
+    "frontend/src/pages/Privacy.jsx": "5e8c1d280b502495d6cdde132f4631e97537f87780b23366dcc4494eed5587c6",
+    "frontend/src/pages/Reading.jsx": "cf6bf87d1751cc60ac954f12258780fae9bcd2501ce80f02c35052cfcf9c0eba",
+    "frontend/src/pages/Results.jsx": "297d4b9f501d4cc5b1f770dd0340c6599fdfb8a8404d43b28a583c4267aa513c",
+    "frontend/src/refresh.css": "5f980c1c38790616aa6f33a2b16f59379739d64cabd7e0096cf449c7cc34cce9",
+    "frontend/src/styles.css": "e575cdb0ba03c31767a8479375803c9ec4d1dad7ba5f1f7a6133ac380caf48b1",
+    "frontend/tests/desktop/site.spec.js": "5ab5bd2e0cee242a0a75135a64fef79602cdc2149593b315a3d285502098c082",
+    "implementation-plan.md": "c9ec111930f2bc1e5d55f73a29a0cbe9e4d259d58fab66949e68cc2f11936b64",
+    "working.md": "616fd3dd81b7526c7380556ecdf816b7e9e825b1d3e70c94d5c6fea0cfb6d1fb"
+  },
+  "captureHashes": {
+    ".impeccable/review/desktop-refinement/about-desktop.png": "5c6413e0b3ffc9e5aa7a17308f9a5503502ea177aa751c03dc980ddbc92f46af",
+    ".impeccable/review/desktop-refinement/docs-active-api-desktop.png": "36ac46adc2235ba8b780fd12d692cad2379699e29344945d13370d5948996bc6",
+    ".impeccable/review/desktop-refinement/docs-desktop.png": "7f551d67496868a596f4635ec4e91fba0ce10e556d6410ec004bf559164fedfb",
+    ".impeccable/review/desktop-refinement/docs-scrollspy-desktop.png": "ba1cde9e8e41c882fc59b22c354da65510303834d18bf70adf3aceed5a3dedae",
+    ".impeccable/review/desktop-refinement/engine-desktop.png": "a77d9a43fafe6ebba70f4481959adb93c2509531be3de8a6e705c56382cb12c3",
+    ".impeccable/review/desktop-refinement/faq-open-desktop.png": "39427b21c2f3246b62a113921d00775e207b66baac171025b8d573a95ad431cb",
+    ".impeccable/review/desktop-refinement/flow-recovery-desktop.png": "4a9c22555bf585f0b9405128927c41f7b569539e9405268d009b2705f5201d46",
+    ".impeccable/review/desktop-refinement/hero-1440.png": "138e77e9b62b415c8c5fa0f644a99440b49539717d91bb309c10fbe6979a08d8",
+    ".impeccable/review/desktop-refinement/hero-1920.png": "be44bb0d69e7df20fc1655afc7931954675958ae7fdc6888df2bfce36f3534f6",
+    ".impeccable/review/desktop-refinement/hero-assignment-expired-desktop.png": "818474b6af9af2ad221240ea71daa08f66ebbd5bf6d303891971476b7cd85de4",
+    ".impeccable/review/desktop-refinement/hero-brand-hover-desktop.png": "571f827eeb7b471935b728e2e1984f65a2a8ba35440ff25790aebf55e6ad895d",
+    ".impeccable/review/desktop-refinement/hero-complete-desktop.png": "fc502886b3aa07fd3765e29751c2cd7cebb640c20092c92f7bca1bb2c5d2cf9a",
+    ".impeccable/review/desktop-refinement/home-desktop.png": "6986e1e213ab9f97cf85cbaefd7317e5dbb3e28768d186b13d7d0ed14fa1104d",
+    ".impeccable/review/desktop-refinement/model-level-1-desktop.png": "c9a09b806155324fca51fc72fcb91076e9efb18f2693e6bd3829168e139d955e",
+    ".impeccable/review/desktop-refinement/model-level-2-desktop.png": "ba557c31fcf70096ac341d36cdbcf39b5d4b355a4df1ffcc851a6bbe66f55314",
+    ".impeccable/review/desktop-refinement/model-level-3-desktop.png": "68ad0002b544279c7d41ecaa8327dc3f0c3eebc1367e22c62f4479a1b5eff515",
+    ".impeccable/review/desktop-refinement/model-level-4-desktop.png": "4feb5ad9cc582136c627dc904248e6bf735a238e40643889eb11578f493cb451",
+    ".impeccable/review/desktop-refinement/privacy-desktop.png": "3a17476f43f6e1b116588b0712e993a6de4afb6c2fe6da702764d496e2577221",
+    ".impeccable/review/desktop-refinement/replay-recovery-desktop.png": "41073e57b3851bc2e56769d520b8d4059692c276622ff1e2282dc42c340e622e",
+    ".impeccable/review/desktop-refinement/report-hover-desktop.png": "26fa4d3d1583a54cfb5953ff487369dfa96ab50e035d1628aec790abe501722f",
+    ".impeccable/review/desktop-refinement/report-rest-desktop.png": "3bbbdfef05e1724aaff1cbaba2c9eef728814e612cdcb629813b70e2ecebaf45",
+    ".impeccable/review/desktop-refinement/results-desktop.png": "1a43d72f43ec0a5ee41df9cb912a7aeefb1c85a86305f9bc1664c15ed1d2c11e",
+    ".impeccable/review/desktop-refinement/results-filtered-desktop.png": "a1e519ed8b744d9338c237b93cb6e23460d0d1bf64565c9d8a004b5e4a09e348"
+  }
+}

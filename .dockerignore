@@ -1,9 +1,8 @@
-.git
-.env
-.env.*
-.tools
-.cache
-**/.venv
-**/__pycache__
-**/.pytest_cache
-**/.ruff_cache
+*
+!backend/
+!backend/**
+backend/.venv
+backend/**/__pycache__
+backend/.pytest_cache
+backend/.ruff_cache
+backend/.coverage*

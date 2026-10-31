@@ -1,0 +1,30 @@
+[
+  {
+    "path": "/",
+    "violations": []
+  },
+  {
+    "path": "/engine/#flow",
+    "violations": []
+  },
+  {
+    "path": "/engine/#replay",
+    "violations": []
+  },
+  {
+    "path": "/results/",
+    "violations": []
+  },
+  {
+    "path": "/docs/",
+    "violations": []
+  },
+  {
+    "path": "/about/",
+    "violations": []
+  },
+  {
+    "path": "/privacy/",
+    "violations": []
+  }
+]

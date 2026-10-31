@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-01",
+  "backend_tests": 197,
+  "backend_seconds": 26.21,
+  "coverage_percent": 84,
+  "ruff_files": 79,
+  "browser_tests": 23,
+  "axe_scans": 21,
+  "artifact_tests": 4,
+  "independent_review": "pending: agent usage limit",
+  "cloud": "not provisioned"
+}
