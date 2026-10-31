@@ -19,7 +19,8 @@ deployment. Branch: `release/deployment-readiness`. No merge or cloud provisioni
 ## Remaining release gates
 
 - Independent fresh design review: both required agents hit usage limits. Source-derived responsive design records updated; no independent signoff claimed.
-- Secret/history scan, clean committed checkout, pushed PR and hosted CI.
+- Hosted CI for final patched commit pending. Draft PR#1 is pushed. Baseline committed clone5e7d456 passed startup/new credentials/restarts/197tests and frontend npm ci/build/4tests. Bounded scan passed233files/572history blobs; final rescan pending.
+- certifi upgraded to2026.10.23 after GHSA-6q48-6c7w-9gw2; all53locked Python registry packages now report zero active PyPI advisories. npm audit reports zero vulnerabilities. These are advisory checks, not an OS-image or penetration test.
 - Supabase-specific TLS, privileges and durability checks require the user's
   actual project and are not certified by local PostgreSQL tests.
 

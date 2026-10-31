@@ -1,6 +1,6 @@
 # How Relevo works
 
-Last updated: 2026-10-22 (Asia/Calcutta).
+Last updated: 2026-11-01 (Asia/Calcutta).
 
 **Current release status:** responsive frontend and backend verification are in
 progress on the release branch. See [RELEASE-READINESS.md](RELEASE-READINESS.md)

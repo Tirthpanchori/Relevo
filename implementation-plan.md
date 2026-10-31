@@ -384,7 +384,7 @@ then the selected desktop build, then desktop review before responsive work.
 - [x] P8.D5 After the desktop review, apply the chosen direction to the remaining
   pages and update the shipped design record from the actual implementation.
   Latest explicit approval includes all six desktop pages in this production pass.
-- [ ] P8.D6 In the later responsive stage, adapt and verify tablet/phone layouts;
+- [x] P8.D6 In the later responsive stage, adapt and verify tablet/phone layouts;
   complete the full frontend gate only with actual evidence.
 - [x] P8.D7 Apply the subsequent desktop feedback: consistent branding/type,
   larger hero with the subsequently authorized illustrative handoff, compact
@@ -396,7 +396,7 @@ then the selected desktop build, then desktop review before responsive work.
   remove the bottom strip and reveal Home content on viewport entry. Verify desktop behavior,
   reduced motion and fresh design review; retain the approved system/model.
 
-- [ ] P8.D9 Keep navigation visible with slight scroll transparency; remove the
+- [x] P8.D9 Keep navigation visible with slight scroll transparency; remove the
   Home hero report animation while retaining its pixels. Verify desktop anchor
   access, Docs index and the model below navigation; refresh the current records.
 
@@ -493,24 +493,17 @@ feedback; P8.D6 responsiveness and Phase 9 publication remain open.
 
 ## Next session
 
-**Current priority (2026-10-22):** review the completed six-page desktop website
-with the user at http://127.0.0.1:4173/Relevo/ . D035 / P8.D8 Home motion refinement,
-checks, fresh review and design records are complete locally. Stop
-here before tablet/phone adaptation or responsive verification (P8.D6).
-
-Backend Phases 1-7 remain complete at their recorded checkpoint. Earlier Phase 8
-completion claims refer to historical designs; the current full frontend gate
-is open until the separate responsive stage is verified. Hosted frontend CI,
-clean-clone/operational verification and free-only deployment remain Phase 9 work.
-No public release, paid service or additional PC application is claimed.
+Current priority (1 November2026): finish P9.R6 hosted CI against the patched lockfile, and P9.R7 independent final design review. Draft PR#1 is open. Earlier desktop-only stops are historical and superseded by the user's responsive release authorization. No merge/deploy.
 
 ## Deployment readiness release — user authorization 31 October 2026
 
 Supersedes desktop-only scope and earlier GitHub Pages/Oracle assumptions.
-- [ ] P9.R1 Preserve release branch, inventory/clean sources, archives and secrets.
-- [ ] P9.R2 Root-path Vercel build, canonical/sitemap/LLM utilities and headers.
-- [ ] P9.R3 Complete six-page responsive layout and functional/a11y verification.
-- [ ] P9.R4 Fresh backend lint/unit/PostgreSQL/network/crash verification.
-- [ ] P9.R5 Isolated database backup/restore proof and deployment runbook.
+- [x] P9.R1 Preserve release branch, inventory/clean sources, archives and secrets.
+- [x] P9.R2 Root-path Vercel build, canonical/sitemap/LLM utilities and headers.
+- [x] P9.R3 Complete six-page responsive layout and functional/a11y verification.
+- [x] P9.R4 Fresh backend lint/unit/PostgreSQL/network/crash verification.
+- [x] P9.R5 Isolated database backup/restore proof and deployment runbook.
 - [ ] P9.R6 Exact committed checkout, hosted CI and release PR; no merge/deploy.
 - [ ] P9.R7 Final evidence-based verdict; cloud-only checks explicitly deferred.
+
+**Release evidence (1 November2026):** root-path build and4artifact tests passed; all23Chromium tests passed with21zero-violation axe scans. Tests cover widths320/360/390/768/1024/1440/1920, short landscape, four model stages/reversal, reduced motion, Flow/Replay/Results/FAQ/Docs/keyboard and error recovery. Locked backend197tests passed with84% coverage; Ruff79files passed. Worker, recovery and component-restart smokes passed; isolated dump/restore compares complete rows/schema. See release-local.json, release-browser.json, release-*-accessibility.json, backup-restore.json and release-*-recovery/restarts captures in artifacts/verification. Fresh committed clone5e7d456 passed startup, new credentials, CLI before/after restarts,197tests, frontend npm ci/build and4artifact tests. Current certifi2026.10.23 patch has zero active PyPI advisories across53locked registry packages; rerun exact patched commit in CI before final verdict. Bound secret scan found no patterns/current credentials in233files and572reachable blobs at its checkpoint. No certification of arbitrary secrets, image OS vulnerabilities, real-device browsers or cloud resources. Independent reviewer/documenter agents failed with usage limits; source-derived design refresh is recorded but no fresh independent signoff.

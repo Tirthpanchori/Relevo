@@ -801,3 +801,6 @@ verification exist. Record later changes and completed milestones here.
   are retained as dated comparisons. Backend APIs/recordings are unchanged.
 - Stop for user desktop review. P8.D6 responsive work, hosted CI and Phase 9
   deployment/operational work remain unverified. No paid service or new PC app.
+
+
+Release checkpoint1November2026: draft https://github.com/Tirthpanchori/Relevo/pull/1 pushed. Baseline clean clone5e7d456 passed197tests, startup/credentials/restarts and frontend locked install/build/4tests. certifi advisory GHSA-6q48-6c7w-9gw2 fixed by lock upgrade2026.10.23;53registry packages now zero PyPI advisories. CI needs final patched SHA. Local UI23tests/21axe scans pass; independent design agents hit usage limits, so review gate remains open. No deploy/merge.

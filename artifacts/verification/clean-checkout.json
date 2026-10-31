@@ -1,13 +1,13 @@
 {
-  "captured_at": "2026-10-17T20:37:18.272833+00:00",
-  "git_commit": "9af3ab8c680d1dad901266d8d3e53bc15930c415",
+  "captured_at": "2026-10-31T18:46:37.535639+00:00",
+  "git_commit": "5e7d4567811d72fb6d4c5759afbded97732aa29b",
   "source": "scripts/verify_clean_checkout.py",
   "fresh_credentials": true,
   "compose_startup": "passed",
   "cli_demo": "passed before and after component restart",
   "full_container_suite": "passed",
   "tests_passed": 197,
-  "suite_seconds": 27.8,
+  "suite_seconds": 23.4,
   "terminal_replay_after_restart": "identical saved job and attempt history",
   "development_volume": "preserved",
   "cleanup": "verification containers/network/new database volume removed; development services restored"

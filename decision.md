@@ -838,3 +838,6 @@ Responsive work is now authorized; earlier desktop-only stop is superseded.
 ## D038 — Responsive release safeguards and evidence boundaries (1 November2026)
 
 Use the approved design across phone/tablet with CSS breakpoints1099/699px; short viewports (<=650px tall) receive the separated model and all explanations so pinned art cannot obscure content. Make code scrolling keyboard-focusable. Preserve httpx2: current Starlette TestClient requires it even without project imports. Keep lockfiles reproducible. A bounded history scan complements staged checks; neither certifies absence of all possible secrets. Local197backend/23browser passes do not certify cloud behavior. Independent release review remains pending after review-agent usage failures. D037 remains the deployment/budget authority.
+
+
+D038 addendum: exact-version PyPI metadata identified certifi GHSA-6q48-6c7w-9gw2 (duplicate PYSEC ID). Upgrade only certifi from2026.7.22 to2026.10.23; no API/schema changes. Lockfile hashes updated and all53registry packages rechecked with zero active advisories. Rebuild image and rerun exact-commit CI.

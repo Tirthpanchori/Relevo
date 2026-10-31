@@ -41,6 +41,8 @@ Thumbs.db
 .impeccable/review/
 .impeccable/mocks/
 .impeccable/decisions/
+.impeccable/questions/
+.impeccable/surfaces/frontend-prototype-*.md
 artifacts/design/baseline-*/
 artifacts/design/legacy-source/
 artifacts/design/research/

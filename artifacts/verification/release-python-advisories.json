@@ -1,0 +1,272 @@
+{
+  "date": "2026-11-01",
+  "source": "PyPI exact-version vulnerability metadata",
+  "scope": "All locked registry packages, including dev; not an image/OS scan",
+  "packages": [
+    {
+      "name": "alembic",
+      "version": "1.20.0",
+      "advisories": []
+    },
+    {
+      "name": "annotated-doc",
+      "version": "0.0.5",
+      "advisories": []
+    },
+    {
+      "name": "annotated-types",
+      "version": "0.8.0",
+      "advisories": []
+    },
+    {
+      "name": "anyio",
+      "version": "4.15.1",
+      "advisories": []
+    },
+    {
+      "name": "certifi",
+      "version": "2026.10.23",
+      "advisories": []
+    },
+    {
+      "name": "charset-normalizer",
+      "version": "3.5.2",
+      "advisories": []
+    },
+    {
+      "name": "click",
+      "version": "8.5.0",
+      "advisories": []
+    },
+    {
+      "name": "colorama",
+      "version": "0.4.6",
+      "advisories": []
+    },
+    {
+      "name": "coverage",
+      "version": "7.16.2",
+      "advisories": []
+    },
+    {
+      "name": "fastapi",
+      "version": "0.143.2",
+      "advisories": []
+    },
+    {
+      "name": "googleapis-common-protos",
+      "version": "1.75.5",
+      "advisories": []
+    },
+    {
+      "name": "greenlet",
+      "version": "3.5.6",
+      "advisories": []
+    },
+    {
+      "name": "h11",
+      "version": "0.16.0",
+      "advisories": []
+    },
+    {
+      "name": "httpcore",
+      "version": "1.0.9",
+      "advisories": []
+    },
+    {
+      "name": "httpcore2",
+      "version": "2.13.1",
+      "advisories": []
+    },
+    {
+      "name": "httpx",
+      "version": "0.28.1",
+      "advisories": []
+    },
+    {
+      "name": "httpx2",
+      "version": "2.13.1",
+      "advisories": []
+    },
+    {
+      "name": "httpx2-jsfetch",
+      "version": "1.0",
+      "advisories": []
+    },
+    {
+      "name": "idna",
+      "version": "3.20",
+      "advisories": []
+    },
+    {
+      "name": "iniconfig",
+      "version": "2.3.1",
+      "advisories": []
+    },
+    {
+      "name": "mako",
+      "version": "1.4.3",
+      "advisories": []
+    },
+    {
+      "name": "markupsafe",
+      "version": "3.0.4",
+      "advisories": []
+    },
+    {
+      "name": "opentelemetry-api",
+      "version": "1.45.1",
+      "advisories": []
+    },
+    {
+      "name": "opentelemetry-exporter-http-transport",
+      "version": "0.66b1",
+      "advisories": []
+    },
+    {
+      "name": "opentelemetry-exporter-otlp-common",
+      "version": "0.66b1",
+      "advisories": []
+    },
+    {
+      "name": "opentelemetry-exporter-otlp-proto-common",
+      "version": "1.45.1",
+      "advisories": []
+    },
+    {
+      "name": "opentelemetry-exporter-otlp-proto-http",
+      "version": "1.45.1",
+      "advisories": []
+    },
+    {
+      "name": "opentelemetry-proto",
+      "version": "1.45.1",
+      "advisories": []
+    },
+    {
+      "name": "opentelemetry-sdk",
+      "version": "1.45.1",
+      "advisories": []
+    },
+    {
+      "name": "opentelemetry-semantic-conventions",
+      "version": "0.66b1",
+      "advisories": []
+    },
+    {
+      "name": "packaging",
+      "version": "26.3",
+      "advisories": []
+    },
+    {
+      "name": "pluggy",
+      "version": "1.7.0",
+      "advisories": []
+    },
+    {
+      "name": "prometheus-client",
+      "version": "0.26.0",
+      "advisories": []
+    },
+    {
+      "name": "protobuf",
+      "version": "7.36.2",
+      "advisories": []
+    },
+    {
+      "name": "psycopg",
+      "version": "3.3.6",
+      "advisories": []
+    },
+    {
+      "name": "psycopg-binary",
+      "version": "3.3.6",
+      "advisories": []
+    },
+    {
+      "name": "pydantic",
+      "version": "2.14.1",
+      "advisories": []
+    },
+    {
+      "name": "pydantic-core",
+      "version": "2.50.1",
+      "advisories": []
+    },
+    {
+      "name": "pydantic-settings",
+      "version": "2.16.0",
+      "advisories": []
+    },
+    {
+      "name": "pygments",
+      "version": "2.21.0",
+      "advisories": []
+    },
+    {
+      "name": "pytest",
+      "version": "9.1.1",
+      "advisories": []
+    },
+    {
+      "name": "pytest-cov",
+      "version": "7.1.0",
+      "advisories": []
+    },
+    {
+      "name": "python-dotenv",
+      "version": "1.2.4",
+      "advisories": []
+    },
+    {
+      "name": "requests",
+      "version": "2.34.2",
+      "advisories": []
+    },
+    {
+      "name": "ruff",
+      "version": "0.17.1",
+      "advisories": []
+    },
+    {
+      "name": "sqlalchemy",
+      "version": "2.0.54",
+      "advisories": []
+    },
+    {
+      "name": "starlette",
+      "version": "1.8.0",
+      "advisories": []
+    },
+    {
+      "name": "truststore",
+      "version": "0.10.5",
+      "advisories": []
+    },
+    {
+      "name": "typing-extensions",
+      "version": "4.16.0",
+      "advisories": []
+    },
+    {
+      "name": "typing-inspection",
+      "version": "0.4.4",
+      "advisories": []
+    },
+    {
+      "name": "tzdata",
+      "version": "2026.5",
+      "advisories": []
+    },
+    {
+      "name": "urllib3",
+      "version": "2.8.0",
+      "advisories": []
+    },
+    {
+      "name": "uvicorn",
+      "version": "0.54.0",
+      "advisories": []
+    }
+  ]
+}
