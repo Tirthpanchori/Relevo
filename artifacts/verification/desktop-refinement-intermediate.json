@@ -1,0 +1,598 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Users\\panch\\vscode codes\\Relevo\\.tools\\node-v24.22.0-win-x64\\node.exe",
+      "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--config",
+      "playwright.desktop.config.js"
+    ],
+    "configFile": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\playwright.desktop.config.js",
+    "rootDir": "C:/Users/panch/vscode codes/Relevo/frontend/tests/desktop",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/panch/vscode codes/Relevo/frontend/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/panch/vscode codes/Relevo/frontend/tests/desktop",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\tests\\desktop",
+        "snapshotDir": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\tests\\desktop",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 60000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4173/Relevo/",
+          "channel": "chrome",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "trace": "retain-on-failure"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../artifacts/verification/desktop-refinement-browser.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run preview",
+      "url": "http://127.0.0.1:4173/Relevo/",
+      "reuseExistingServer": true
+    }
+  },
+  "suites": [
+    {
+      "title": "site.spec.js",
+      "file": "site.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "six desktop pages, direct entries, assets and utility destinations",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 10543,
+                  "error": {
+                    "message": "Error: page.goto: net::ERR_NETWORK_IO_SUSPENDED at http://127.0.0.1:4173/Relevo/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4173/Relevo/\", waiting until \"load\"\u001b[22m\n",
+                    "stack": "Error: page.goto: net::ERR_NETWORK_IO_SUSPENDED at http://127.0.0.1:4173/Relevo/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4173/Relevo/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\tests\\desktop\\site.spec.js:26:15",
+                    "location": {
+                      "file": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\tests\\desktop\\site.spec.js",
+                      "column": 15,
+                      "line": 26
+                    },
+                    "snippet": "  24 |   await page.setViewportSize({width,height:1000});\n  25 |   for(const route of routes){\n> 26 |    await page.goto(route || './');await page.evaluate(()=>document.fonts.ready);\n     |               ^\n  27 |    await expect(page.locator('main h1')).toBeVisible();\n  28 |    await expect(page.locator('header nav a')).toHaveText(['Home','Engine','Results','Docs']);\n  29 |    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\tests\\desktop\\site.spec.js",
+                        "column": 15,
+                        "line": 26
+                      },
+                      "message": "Error: page.goto: net::ERR_NETWORK_IO_SUSPENDED at http://127.0.0.1:4173/Relevo/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4173/Relevo/\", waiting until \"load\"\u001b[22m\n\n\n  24 |   await page.setViewportSize({width,height:1000});\n  25 |   for(const route of routes){\n> 26 |    await page.goto(route || './');await page.evaluate(()=>document.fonts.ready);\n     |               ^\n  27 |    await expect(page.locator('main h1')).toBeVisible();\n  28 |    await expect(page.locator('header nav a')).toHaveText(['Home','Engine','Results','Docs']);\n  29 |    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);\n    at C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\tests\\desktop\\site.spec.js:26:15"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T11:13:20.534Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\test-results\\site-six-desktop-pages-dir-ca967-ts-and-utility-destinations\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\test-results\\site-six-desktop-pages-dir-ca967-ts-and-utility-destinations\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\tests\\desktop\\site.spec.js",
+                    "column": 15,
+                    "line": 26
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-1ad10e42b382f4a238a0",
+          "file": "site.spec.js",
+          "line": 17,
+          "column": 1
+        },
+        {
+          "title": "four explanatory depths, reverse/fast scrolling, type and highlighted recover",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8953,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T11:21:59.644Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-e46507a8890d40b4cde9",
+          "file": "site.spec.js",
+          "line": 41,
+          "column": 1
+        },
+        {
+          "title": "pixel field is live edge-to-edge and suspends offscreen/hidden",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2059,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T11:22:09.848Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-d3c6f61c5fff4738d131",
+          "file": "site.spec.js",
+          "line": 60,
+          "column": 1
+        },
+        {
+          "title": "visible fill sweep, press/focus feedback and persistent selected states",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2803,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T11:22:11.938Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-218f9f936a68a6c0febd",
+          "file": "site.spec.js",
+          "line": 69,
+          "column": 1
+        },
+        {
+          "title": "Flow normal/interrupted paths and Recovery highlight; accessible tabs/history",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2484,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T11:22:14.784Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-905583ab60ad9f210013",
+          "file": "site.spec.js",
+          "line": 74,
+          "column": 1
+        },
+        {
+          "title": "Replay shows actual steps with aliases, optional exact facts and untimed interventions",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2182,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T11:22:17.289Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-63eab6cbc588bafbcb33",
+          "file": "site.spec.js",
+          "line": 89,
+          "column": 1
+        },
+        {
+          "title": "Results comparisons reproduce retained measurements and preserve all filters",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1674,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T11:22:19.495Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-22a81b708e2160db83af",
+          "file": "site.spec.js",
+          "line": 102,
+          "column": 1
+        },
+        {
+          "title": "FAQ reverses immediately, closes accessibly and opens one answer at a time",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3377,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T11:22:21.189Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-c8de2848bbb9d3b69d57",
+          "file": "site.spec.js",
+          "line": 114,
+          "column": 1
+        },
+        {
+          "title": "reduced motion has a readable static model, immediate FAQ and manual Replay",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2031,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T11:22:24.587Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-59239f512a502af9c001",
+          "file": "site.spec.js",
+          "line": 127,
+          "column": 1
+        },
+        {
+          "title": "recording/measurement fetch errors and invalid provenance can recover",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1734,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T11:22:26.640Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-85aa9d8d2eed0111c295",
+          "file": "site.spec.js",
+          "line": 134,
+          "column": 1
+        },
+        {
+          "title": "desktop accessibility scan of all six pages and both Engine views",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10357,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T11:22:28.394Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-a9b0e80428c98752654f",
+          "file": "site.spec.js",
+          "line": 139,
+          "column": 1
+        },
+        {
+          "title": "Docs follows reading position in both directions and direct fragment loads",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3265,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T11:22:38.773Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-b3799e3da5b5504f581d",
+          "file": "site.spec.js",
+          "line": 152,
+          "column": 1
+        },
+        {
+          "title": "consistent brand, spacious hero, fixed pixel grid and reversible report hover",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5139,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T11:22:42.057Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-05f09ea5889d04fbe909",
+          "file": "site.spec.js",
+          "line": 165,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-21T11:13:17.138Z",
+    "duration": 588392.052,
+    "expected": 12,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

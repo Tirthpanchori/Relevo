@@ -1,8 +1,11 @@
 # How Relevo works
 
-Last updated: 2026-10-17 (Asia/Calcutta).
+Last updated: 2026-11-01 (Asia/Calcutta).
 
-**Current status:** Phases 1-6 are verified locally: 185 tests pass on Windows and Linux, plus three further rounds of 81 integration checks. The client/CLI, TCP failures, actual component crashes/restarts, and business-effect comparison are implemented. Phase 7 observability and benchmarks are underway. Frontend work waits for a conversation after the backend gate. See [implementation-plan.md](implementation-plan.md) for evidence and [decision.md](decision.md) for rationale.
+**Current release status:** responsive frontend and backend checks passed locally and at the patched CI checkpoint; the release remains unmerged. See [RELEASE-READINESS.md](RELEASE-READINESS.md)
+for evidence and [DEPLOYMENT.md](DEPLOYMENT.md) for user-operated setup.
+The site uses origin-root URLs; its hero has copy/pixels only and navigation
+stays visible while scrolling. No cloud resources are provisioned or merged.
 
 ## The idea in simple terms
 
@@ -140,9 +143,83 @@ The default remains 50 ms; 5 ms is an optional worker setting for workloads wher
 local measurements justify it. Starting a separate process for every task still
 has a cost. These are local measurements, not a promise about other machines.
 
-The backend gate has passed, including a fresh-checkout run and hosted CI. After
-the required frontend conversation, the public explanation can replay these
-actual captured events, clearly labeled with their source and revision. A visitor
-will be able to explore failure/recovery while the live engine is offline. The
-complete engine already runs locally through Compose. The build order and
-evidence are in [implementation-plan.md](implementation-plan.md).
+The backend gate has passed, including a fresh-checkout run and hosted CI. The
+required frontend conversation happened and the six-page frontend now builds
+locally. The complete engine runs through Compose. The build order and evidence
+are in [implementation-plan.md](implementation-plan.md).
+
+## How the website works
+
+The website is an explanation that runs independently of the engine. Vite builds
+an HTML entry for each of six pages. React displays the page, and its fonts,
+drawings, documentation, and sanitized evidence come from static files on the
+same host. There is no account, API-token input, or request to run a live job.
+
+The navigation stays visible at the top while scrolling. Its forest background
+becomes slightly transparent after scrolling; link text stays fully opaque. The
+model and Docs positions leave room beneath it. Home starts with a short
+explanation and one Engine action, over its active pixel background. The hero's
+monthly report animation is removed; the lower illustrative example remains.
+
+One random pixel field sits inside the hero background. Its stationary cells
+change occupancy and brightness visibly, with lower density behind the text.
+There is no pixel strip below the hero, liquid movement or pointer displacement.
+The Canvas stops rendering offscreen/hidden and shows a still for reduced motion.
+Home's content groups enter when reached by scrolling, stay visible on return,
+and reveal immediately for keyboard focus. Reduced motion shows all the content.
+
+Home's single Anatomy
+model has four functional assemblies. As ordinary scrolling separates the rack,
+the stage marker and explanation change together: Coordinator accepts and checks
+updates; Workers run handlers; Recovery schedules eligible attempts after expiry;
+Saved record keeps the task, attempts and outcome together. The task cartridge
+stays attached to storage. A shorter scroll sequence exposes the layers
+continuously; the camera fits their translated bounds, and alignment guides show
+where the raised assembly seats. Scrolling upward reverses the same geometry. The
+model is an illustration of responsibilities, not a literal machine or a live
+status display. Reduced motion shows a separated still and all four explanations.
+
+A report example explains a possible integration; report generation is not a
+built-in handler. A short recovery story describes a retained worker-crash test.
+Engine uses different visuals: Flow starts with the application's request,
+explains normal and interrupted paths and highlights Recovery during recovery.
+Recovery is standing by during normal completion. Replay steps through actual
+committed events with friendly worker names. Exact identities, times and source
+metadata remain available in optional technical details. Playback shortens waits
+to 1.8 seconds per step, without changing the recording. Switching views
+resets playback; a hidden browser tab pauses it. Reduced motion keeps
+manual stepping available.
+
+The harness may kill a worker, stop a scheduler, or force expiry during a test.
+Those interventions are described beside the recording. Harness observations
+without timestamps appear separately; they are never invented as timed events.
+Capture metadata and original JSON remain inspectable. The two effect recordings
+show two unprotected effects versus one stable-key-protected effect in their
+explicitly instrumented scenario.
+
+Results reads a summary generated from the retained raw benchmark files at build
+time. It lets visitors change experiment, workload, and measurement. Repeated
+figures are medians of three per-run measurements, not pooled percentiles.
+Confirmation has one run per setting. Reports, raw JSON, CSV, and limitations
+are linked alongside the figures.
+
+The FAQ opens one answer at a time with a reversible height/opacity transition;
+closed answers cannot receive keyboard focus. Reduced motion makes it immediate.
+Primary actions use a fill sweep, coordinated label/arrow movement and press
+feedback. Selected Flow/Replay and Results controls retain their selected fill
+when another control is hovered. Informational drawings keep a normal cursor.
+
+Docs explains local setup; About explains the project and credits; Privacy
+describes the browser behavior. The decorative edge-to-edge pixel Canvas shimmers
+through opacity changes on a fixed grid. It has no liquid movement or pointer
+displacement. Rendering is capped at 30 frames per
+second and a 1.5 device-pixel ratio, stops offscreen or in a hidden tab, and shows
+a still for reduced motion. It has no sentences, pause control, saved browser
+preference, execution status or required meaning. The site uses CSS for simple
+states and the installed Motion package for coordinated React transitions.
+Docs highlights the section currently being read, including when scrolling up
+or following a fragment link. It does not add history entries during ordinary
+scrolling. The same Relevo wordmark appears in the header, footer and About;
+browser titles and the favicon share its branding.
+The footer links to the factual Markdown `llms.txt` and six-page `sitemap.xml`.
+These files are generated into the local build; public hosting is still pending.

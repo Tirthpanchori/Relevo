@@ -1,0 +1,720 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Users\\panch\\vscode codes\\Relevo\\.tools\\node-v24.22.0-win-x64\\node.exe",
+      "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--config",
+      "playwright.desktop.config.js"
+    ],
+    "configFile": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\playwright.desktop.config.js",
+    "rootDir": "C:/Users/panch/vscode codes/Relevo/frontend/tests/desktop",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/panch/vscode codes/Relevo/frontend/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/panch/vscode codes/Relevo/frontend/tests/desktop",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\tests\\desktop",
+        "snapshotDir": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\tests\\desktop",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 60000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4173/Relevo/",
+          "channel": "chrome",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "trace": "retain-on-failure"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../artifacts/verification/desktop-home-motion-browser.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run preview",
+      "url": "http://127.0.0.1:4173/Relevo/",
+      "reuseExistingServer": true
+    }
+  },
+  "suites": [
+    {
+      "title": "site.spec.js",
+      "file": "site.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "six desktop pages, direct entries, assets and utility destinations",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 2,
+                  "error": {
+                    "message": "Error: browserType.launch: Target page, context or browser has been closed\nBrowser logs:\n\n<launching> C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,AvoidCorsURLLoaderRestartOnRedirect,Translate,AutoDeElevate,OptimizationHints,NetworkTimeServiceQuerying,AimEnabled,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=C:\\Users\\panch\\AppData\\Local\\Temp\\playwright_chromiumdev_profile-spJZIB --remote-debugging-pipe --no-startup-window\n<launched> pid=33928\nCall log:\n\u001b[2m  - <launching> C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,AvoidCorsURLLoaderRestartOnRedirect,Translate,AutoDeElevate,OptimizationHints,NetworkTimeServiceQuerying,AimEnabled,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=C:\\Users\\panch\\AppData\\Local\\Temp\\playwright_chromiumdev_profile-spJZIB --remote-debugging-pipe --no-startup-window\u001b[22m\n\u001b[2m  - <launched> pid=33928\u001b[22m\n\u001b[2m  - [pid=33928] <gracefully close start>\u001b[22m\n\u001b[2m  - [pid=33928] <kill>\u001b[22m\n\u001b[2m  - [pid=33928] <will force kill>\u001b[22m\n\u001b[2m  - [pid=33928] <process did exit: exitCode=0, signal=null>\u001b[22m\n\u001b[2m  - [pid=33928] starting temporary directories cleanup\u001b[22m\n\u001b[2m  - [pid=33928] finished temporary directories cleanup\u001b[22m\n\u001b[2m  - [pid=33928] <gracefully close end>\u001b[22m\n",
+                    "stack": "Error: browserType.launch: Target page, context or browser has been closed\nBrowser logs:\n\n<launching> C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,AvoidCorsURLLoaderRestartOnRedirect,Translate,AutoDeElevate,OptimizationHints,NetworkTimeServiceQuerying,AimEnabled,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=C:\\Users\\panch\\AppData\\Local\\Temp\\playwright_chromiumdev_profile-spJZIB --remote-debugging-pipe --no-startup-window\n<launched> pid=33928\nCall log:\n\u001b[2m  - <launching> C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,AvoidCorsURLLoaderRestartOnRedirect,Translate,AutoDeElevate,OptimizationHints,NetworkTimeServiceQuerying,AimEnabled,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=C:\\Users\\panch\\AppData\\Local\\Temp\\playwright_chromiumdev_profile-spJZIB --remote-debugging-pipe --no-startup-window\u001b[22m\n\u001b[2m  - <launched> pid=33928\u001b[22m\n\u001b[2m  - [pid=33928] <gracefully close start>\u001b[22m\n\u001b[2m  - [pid=33928] <kill>\u001b[22m\n\u001b[2m  - [pid=33928] <will force kill>\u001b[22m\n\u001b[2m  - [pid=33928] <process did exit: exitCode=0, signal=null>\u001b[22m\n\u001b[2m  - [pid=33928] starting temporary directories cleanup\u001b[22m\n\u001b[2m  - [pid=33928] finished temporary directories cleanup\u001b[22m\n\u001b[2m  - [pid=33928] <gracefully close end>\u001b[22m\n"
+                  },
+                  "errors": [
+                    {
+                      "message": "Error: browserType.launch: Target page, context or browser has been closed\nBrowser logs:\n\n<launching> C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,AvoidCorsURLLoaderRestartOnRedirect,Translate,AutoDeElevate,OptimizationHints,NetworkTimeServiceQuerying,AimEnabled,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=C:\\Users\\panch\\AppData\\Local\\Temp\\playwright_chromiumdev_profile-spJZIB --remote-debugging-pipe --no-startup-window\n<launched> pid=33928\nCall log:\n\u001b[2m  - <launching> C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,AvoidCorsURLLoaderRestartOnRedirect,Translate,AutoDeElevate,OptimizationHints,NetworkTimeServiceQuerying,AimEnabled,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=C:\\Users\\panch\\AppData\\Local\\Temp\\playwright_chromiumdev_profile-spJZIB --remote-debugging-pipe --no-startup-window\u001b[22m\n\u001b[2m  - <launched> pid=33928\u001b[22m\n\u001b[2m  - [pid=33928] <gracefully close start>\u001b[22m\n\u001b[2m  - [pid=33928] <kill>\u001b[22m\n\u001b[2m  - [pid=33928] <will force kill>\u001b[22m\n\u001b[2m  - [pid=33928] <process did exit: exitCode=0, signal=null>\u001b[22m\n\u001b[2m  - [pid=33928] starting temporary directories cleanup\u001b[22m\n\u001b[2m  - [pid=33928] finished temporary directories cleanup\u001b[22m\n\u001b[2m  - [pid=33928] <gracefully close end>\u001b[22m\n"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T03:10:52.816Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\test-results\\site-six-desktop-pages-dir-ca967-ts-and-utility-destinations\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\test-results\\site-six-desktop-pages-dir-ca967-ts-and-utility-destinations\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-1ad10e42b382f4a238a0",
+          "file": "site.spec.js",
+          "line": 18,
+          "column": 1
+        },
+        {
+          "title": "four explanatory depths, reverse/fast scrolling, type and highlighted recover",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9405,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T03:10:58.311Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-e46507a8890d40b4cde9",
+          "file": "site.spec.js",
+          "line": 42,
+          "column": 1
+        },
+        {
+          "title": "hero-only pixel pattern regenerates edge-to-edge and suspends offscreen/hidden",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 2888,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m20\u001b[39m\nReceived:   \u001b[31m4\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m20\u001b[39m\nReceived:   \u001b[31m4\u001b[39m\n    at C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\tests\\desktop\\site.spec.js:65:59",
+                    "location": {
+                      "file": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\tests\\desktop\\site.spec.js",
+                      "column": 59,
+                      "line": 65
+                    },
+                    "snippet": "  63 |  const before=Number(await canvas.getAttribute('data-frames'));await expect.poll(async()=>Number(await canvas.getAttribute('data-frames'))).toBeGreaterThan(before+2);\n  64 |  const data=await canvas.evaluate(c=>{const d=c.getContext('2d').getImageData(0,0,c.width,c.height).data;let left=0,right=0;for(let y=0;y<c.height;y++)for(let x=0;x<12;x++){left+=d[(y*c.width+x)*4+3]>0;right+=d[(y*c.width+c.width-x-1)*4+3]>0;}return {width:c.clientWidth,viewport:innerWidth,left,right};});\n> 65 |  expect(data.width).toBe(data.viewport);expect(data.left).toBeGreaterThan(20);expect(data.right).toBeGreaterThan(20);\n     |                                                           ^\n  66 |  await page.locator('.faq-section').scrollIntoViewIfNeeded();await expect(canvas).toHaveAttribute('data-running','false');let count=await canvas.getAttribute('data-frames');await page.waitForTimeout(180);expect(await canvas.getAttribute('data-frames')).toBe(count);\n  67 |  await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));await expect(canvas).toHaveAttribute('data-running','true');await page.evaluate(()=>{Object.defineProperty(document,'hidden',{configurable:true,value:true});document.dispatchEvent(new Event('visibilitychange'));});await expect(canvas).toHaveAttribute('data-running','false');\n  68 | });"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\tests\\desktop\\site.spec.js",
+                        "column": 59,
+                        "line": 65
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m20\u001b[39m\nReceived:   \u001b[31m4\u001b[39m\n\n  63 |  const before=Number(await canvas.getAttribute('data-frames'));await expect.poll(async()=>Number(await canvas.getAttribute('data-frames'))).toBeGreaterThan(before+2);\n  64 |  const data=await canvas.evaluate(c=>{const d=c.getContext('2d').getImageData(0,0,c.width,c.height).data;let left=0,right=0;for(let y=0;y<c.height;y++)for(let x=0;x<12;x++){left+=d[(y*c.width+x)*4+3]>0;right+=d[(y*c.width+c.width-x-1)*4+3]>0;}return {width:c.clientWidth,viewport:innerWidth,left,right};});\n> 65 |  expect(data.width).toBe(data.viewport);expect(data.left).toBeGreaterThan(20);expect(data.right).toBeGreaterThan(20);\n     |                                                           ^\n  66 |  await page.locator('.faq-section').scrollIntoViewIfNeeded();await expect(canvas).toHaveAttribute('data-running','false');let count=await canvas.getAttribute('data-frames');await page.waitForTimeout(180);expect(await canvas.getAttribute('data-frames')).toBe(count);\n  67 |  await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));await expect(canvas).toHaveAttribute('data-running','true');await page.evaluate(()=>{Object.defineProperty(document,'hidden',{configurable:true,value:true});document.dispatchEvent(new Event('visibilitychange'));});await expect(canvas).toHaveAttribute('data-running','false');\n  68 | });\n    at C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\tests\\desktop\\site.spec.js:65:59"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T03:11:08.322Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\test-results\\site-hero-only-pixel-patte-5c65b-d-suspends-offscreen-hidden\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\test-results\\site-hero-only-pixel-patte-5c65b-d-suspends-offscreen-hidden\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\tests\\desktop\\site.spec.js",
+                    "column": 59,
+                    "line": 65
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-707075dda87a19c43fdb",
+          "file": "site.spec.js",
+          "line": 61,
+          "column": 1
+        },
+        {
+          "title": "visible fill sweep, press/focus feedback and persistent selected states",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4551,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T03:11:15.832Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-218f9f936a68a6c0febd",
+          "file": "site.spec.js",
+          "line": 70,
+          "column": 1
+        },
+        {
+          "title": "Flow normal/interrupted paths and Recovery highlight; accessible tabs/history",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2899,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T03:11:23.116Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-905583ab60ad9f210013",
+          "file": "site.spec.js",
+          "line": 75,
+          "column": 1
+        },
+        {
+          "title": "Replay shows actual steps with aliases, optional exact facts and untimed interventions",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2632,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T03:11:26.050Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-63eab6cbc588bafbcb33",
+          "file": "site.spec.js",
+          "line": 90,
+          "column": 1
+        },
+        {
+          "title": "Results comparisons reproduce retained measurements and preserve all filters",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1827,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T03:11:28.732Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-22a81b708e2160db83af",
+          "file": "site.spec.js",
+          "line": 103,
+          "column": 1
+        },
+        {
+          "title": "FAQ reverses immediately, closes accessibly and opens one answer at a time",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5038,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T03:11:30.583Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-c8de2848bbb9d3b69d57",
+          "file": "site.spec.js",
+          "line": 115,
+          "column": 1
+        },
+        {
+          "title": "reduced motion has a readable static model, immediate FAQ and manual Replay",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2561,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T03:11:35.644Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-59239f512a502af9c001",
+          "file": "site.spec.js",
+          "line": 128,
+          "column": 1
+        },
+        {
+          "title": "recording/measurement fetch errors and invalid provenance can recover",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2013,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T03:11:38.246Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-85aa9d8d2eed0111c295",
+          "file": "site.spec.js",
+          "line": 135,
+          "column": 1
+        },
+        {
+          "title": "desktop accessibility scan of all six pages and both Engine views",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7770,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('[data-reveal-state=\"pending\"]')\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m10\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" locator('[data-reveal-state=\"pending\"]') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-reveal-state=\"pending\"]')\u001b[22m\n\u001b[2m    13 × locator resolved to 10 elements\u001b[22m\n\u001b[2m       - unexpected value \"10\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('[data-reveal-state=\"pending\"]')\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m10\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" locator('[data-reveal-state=\"pending\"]') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-reveal-state=\"pending\"]')\u001b[22m\n\u001b[2m    13 × locator resolved to 10 elements\u001b[22m\n\u001b[2m       - unexpected value \"10\"\u001b[22m\n\n    at C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\tests\\desktop\\site.spec.js:146:121",
+                    "location": {
+                      "file": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\tests\\desktop\\site.spec.js",
+                      "column": 121,
+                      "line": 146
+                    },
+                    "snippet": "  144 |   if(path.includes('replay'))await expect(page.getByRole('heading',{name:'The task is safely recorded.'})).toBeVisible();\n  145 |   if(path==='/results/')await expect(page.locator('tbody tr')).toHaveCount(3);\n> 146 |   if(path==='/'){await fullCapture(page,'home-desktop.png');await expect(page.locator('[data-reveal-state=\"pending\"]')).toHaveCount(0);await page.waitForTimeout(800);}\n      |                                                                                                                         ^\n  147 |   const result=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();report.push({path,violations:result.violations});\n  148 |  }\n  149 |  await writeFile('../artifacts/verification/desktop-home-motion-accessibility.json',JSON.stringify(report,null,2));"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\tests\\desktop\\site.spec.js",
+                        "column": 121,
+                        "line": 146
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('[data-reveal-state=\"pending\"]')\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m10\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" locator('[data-reveal-state=\"pending\"]') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-reveal-state=\"pending\"]')\u001b[22m\n\u001b[2m    13 × locator resolved to 10 elements\u001b[22m\n\u001b[2m       - unexpected value \"10\"\u001b[22m\n\n\n  144 |   if(path.includes('replay'))await expect(page.getByRole('heading',{name:'The task is safely recorded.'})).toBeVisible();\n  145 |   if(path==='/results/')await expect(page.locator('tbody tr')).toHaveCount(3);\n> 146 |   if(path==='/'){await fullCapture(page,'home-desktop.png');await expect(page.locator('[data-reveal-state=\"pending\"]')).toHaveCount(0);await page.waitForTimeout(800);}\n      |                                                                                                                         ^\n  147 |   const result=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();report.push({path,violations:result.violations});\n  148 |  }\n  149 |  await writeFile('../artifacts/verification/desktop-home-motion-accessibility.json',JSON.stringify(report,null,2));\n    at C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\tests\\desktop\\site.spec.js:146:121"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T03:11:40.299Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\test-results\\site-desktop-accessibility-b0b13-pages-and-both-Engine-views\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\test-results\\site-desktop-accessibility-b0b13-pages-and-both-Engine-views\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\tests\\desktop\\site.spec.js",
+                    "column": 121,
+                    "line": 146
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-a9b0e80428c98752654f",
+          "file": "site.spec.js",
+          "line": 140,
+          "column": 1
+        },
+        {
+          "title": "Docs follows reading position in both directions and direct fragment loads",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7428,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T03:11:52.286Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-b3799e3da5b5504f581d",
+          "file": "site.spec.js",
+          "line": 154,
+          "column": 1
+        },
+        {
+          "title": "consistent brand, spacious hero, regenerating pixel grid and reversible report hover",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6349,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T03:12:03.228Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-f41e4ab85d3f186aaa84",
+          "file": "site.spec.js",
+          "line": 168,
+          "column": 1
+        },
+        {
+          "title": "hero report example replaces the node diagram and can restart, suspend and reduce motion",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 15153,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T03:12:09.618Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-009db3fd28f9fedbbc6c",
+          "file": "site.spec.js",
+          "line": 189,
+          "column": 1
+        },
+        {
+          "title": "Home sections enter on scroll, persist on return and reveal immediately for keyboard/reduced motion",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6478,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T03:12:24.806Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-b3fab2f20008f2d7d538",
+          "file": "site.spec.js",
+          "line": 205,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-22T03:10:51.106Z",
+    "duration": 164480.969,
+    "expected": 12,
+    "skipped": 0,
+    "unexpected": 3,
+    "flaky": 0
+  }
+}

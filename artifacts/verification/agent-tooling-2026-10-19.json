@@ -1,0 +1,49 @@
+{
+  "verified_at_utc": "2026-10-19T12:31:24.7638901Z",
+  "node_version": "v24.22.0",
+  "trail": {
+    "source": "https://github.com/trailhq/Trail-Code",
+    "package": "@trailhq/trail-code",
+    "version": "0.23.0",
+    "integrity": "sha512-DTaL4//2w0oZdNwLaDgbrqtLjDPATY2rg3qN0NZvhPe8qTwTblPFcsQN0u/jv9bDkW14eqXi+nE34kQdELFAcQ==",
+    "location": ".tools/trail-code",
+    "launcher": "scripts/trail.ps1",
+    "install_scripts": false,
+    "usage_telemetry": false,
+    "verification": [
+      "--version: 0.23.0",
+      "deterministic structural build: exit 0",
+      "map: exit 0"
+    ],
+    "scope": [
+      "backend/src",
+      "backend/tests",
+      "frontend/src",
+      "scripts"
+    ],
+    "indexed_files": 98,
+    "nodes": 579,
+    "edges": 1831,
+    "cache": "graft/",
+    "llm_enrichment": false,
+    "global_hooks_or_mcp_configured": false,
+    "launcher_sha256": "51c90c07fc74eb7894863b31b1ada5359af39e9ca1228c7252b3f5edb7e7e0d7"
+  },
+  "anatomy": {
+    "source": "https://github.com/wheresryan22/anatomy",
+    "revision": "1482e8469b0a9e0d8cc18ea2740a01423d29ae80",
+    "location": "C:/Users/panch/.codex/skills/anatomy",
+    "installer": "Codex system skill-installer",
+    "skill_entry_sha256": "3423ada45a05033bb6e320dfc3b3ac832569969a5afb059bbfc9096c5cf0c71b",
+    "verification_command": "node --test scripts/audit-projection.test.mjs",
+    "tests_passed": 6,
+    "tests_failed": 0,
+    "site_art_changed_by_install": false
+  },
+  "separate_pc_application_required": false,
+  "limitations": [
+    "Anatomy smoke check covers geometry projection, not every example or browser workflow.",
+    "Trail structural mapping covers supported source languages in the four explicitly selected directories.",
+    "Trail estimated token savings were not measured or adopted as Relevo benchmarks."
+  ]
+}

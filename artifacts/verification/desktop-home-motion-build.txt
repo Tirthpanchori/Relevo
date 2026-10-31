@@ -1,0 +1,38 @@
+
+> relevo-web@0.1.0 build
+> node scripts/prepare.mjs && vite build
+
+Prepared six page entries, the 404, source evidence, font licenses, llms.txt, and sitemap.xml.
+vite v8.3.4 building client environment for production...
+transforming...
+✓ 456 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/404.html                                                  0.95 kB │ gzip:  0.52 kB
+dist/about/index.html                                          1.05 kB │ gzip:  0.54 kB
+dist/docs/index.html                                           1.08 kB │ gzip:  0.55 kB
+dist/privacy/index.html                                        1.10 kB │ gzip:  0.56 kB
+dist/engine/index.html                                         1.10 kB │ gzip:  0.55 kB
+dist/results/index.html                                        1.11 kB │ gzip:  0.56 kB
+dist/index.html                                                1.14 kB │ gzip:  0.58 kB
+dist/assets/ibm-plex-mono-latin-400-normal-CvHOgSBP.woff      13.14 kB
+dist/assets/ibm-plex-mono-latin-400-normal-DMJ8VG8y.woff2     14.70 kB
+dist/assets/instrument-sans-latin-400-normal-DRC__1Mx.woff2   16.86 kB
+dist/assets/instrument-sans-latin-700-normal-CYfAanHo.woff2   17.01 kB
+dist/assets/instrument-sans-latin-500-normal-Dk9ku72i.woff2   17.23 kB
+dist/assets/instrument-sans-latin-600-normal-B7fBEWYG.woff2   17.40 kB
+dist/assets/instrument-sans-latin-400-normal-D1W7dsQl.woff    21.24 kB
+dist/assets/instrument-sans-latin-700-normal-DfAjL1vF.woff    21.28 kB
+dist/assets/instrument-sans-latin-500-normal-Z6ESRlEs.woff    21.65 kB
+dist/assets/instrument-sans-latin-600-normal-B9e8oLYv.woff    21.67 kB
+dist/assets/main-cSHrybW7.css                                 38.47 kB │ gzip:  8.89 kB
+dist/assets/About-BNoxy_Jd.js                                  0.04 kB │ gzip:  0.06 kB
+dist/assets/Docs-9wxLnEd3.js                                   0.04 kB │ gzip:  0.06 kB
+dist/assets/Privacy-CHxoqfHV.js                                0.04 kB │ gzip:  0.06 kB
+dist/assets/Results-CUgTKkVx.js                                6.25 kB │ gzip:  2.37 kB
+dist/assets/Engine-DNr7VC79.js                                12.65 kB │ gzip:  4.58 kB
+dist/assets/Home-BZ1TjVeA.js                                  34.53 kB │ gzip: 13.42 kB
+dist/assets/Surface-BgRkmNgm.js                              148.81 kB │ gzip: 49.39 kB
+dist/assets/main-CgO7orQZ.js                                 229.12 kB │ gzip: 72.20 kB
+
+✓ built in 2.44s

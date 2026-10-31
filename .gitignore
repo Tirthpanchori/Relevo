@@ -3,6 +3,7 @@
 !.env.example
 .tools/
 .cache/
+graft/
 .venv/
 __pycache__/
 *.py[cod]
@@ -14,5 +15,38 @@ htmlcov/
 dist/
 build/
 node_modules/
+frontend/test-results/
+frontend/playwright-report/
+frontend/dist-prototype/
+.playwright-cli/
+# Rebuilt from site.mjs and the allowlisted repository evidence by prepare.mjs.
+frontend/index.html
+frontend/404.html
+frontend/about/
+frontend/docs/
+frontend/engine/
+frontend/privacy/
+frontend/results/
+frontend/public/docs/
+frontend/public/evidence/
+frontend/public/font-licenses.txt
+frontend/public/llms.txt
+frontend/public/sitemap.xml
+frontend/public/.nojekyll
 .DS_Store
 Thumbs.db
+
+# Local design exploration is retained on disk, not shipped in the release.
+.taste-skill/
+.impeccable/review/
+.impeccable/mocks/
+.impeccable/decisions/
+.impeccable/questions/
+.impeccable/surfaces/frontend-prototype-*.md
+artifacts/design/baseline-*/
+artifacts/design/legacy-source/
+artifacts/design/research/
+frontend/prototype/
+frontend/.cache/
+backups/
+*.dump

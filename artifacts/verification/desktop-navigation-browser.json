@@ -1,0 +1,428 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Users\\panch\\vscode codes\\Relevo\\.tools\\node-v24.22.0-win-x64\\node.exe",
+      "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--config",
+      "playwright.navigation.config.js"
+    ],
+    "configFile": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\playwright.navigation.config.js",
+    "rootDir": "C:/Users/panch/vscode codes/Relevo/frontend/tests/desktop",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/panch/vscode codes/Relevo/frontend/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/panch/vscode codes/Relevo/frontend/tests/desktop",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\tests\\desktop",
+        "snapshotDir": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\tests\\desktop",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 60000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4173/Relevo/",
+          "channel": "chrome",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "trace": "retain-on-failure"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../artifacts/verification/desktop-navigation-browser.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run preview",
+      "url": "http://127.0.0.1:4173/Relevo/",
+      "reuseExistingServer": true
+    }
+  },
+  "suites": [
+    {
+      "title": "site.spec.js",
+      "file": "site.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "six desktop pages, direct entries, assets and utility destinations",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 17847,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T03:33:35.815Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-1ad10e42b382f4a238a0",
+          "file": "site.spec.js",
+          "line": 18,
+          "column": 1
+        },
+        {
+          "title": "four explanatory depths, reverse/fast scrolling, type and highlighted recover",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8606,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T03:33:54.766Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-e46507a8890d40b4cde9",
+          "file": "site.spec.js",
+          "line": 42,
+          "column": 1
+        },
+        {
+          "title": "hero-only pixel pattern regenerates edge-to-edge and suspends offscreen/hidden",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2728,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T03:34:03.408Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-707075dda87a19c43fdb",
+          "file": "site.spec.js",
+          "line": 61,
+          "column": 1
+        },
+        {
+          "title": "desktop accessibility scan of all six pages and both Engine views",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 48343,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T03:34:06.165Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-a9b0e80428c98752654f",
+          "file": "site.spec.js",
+          "line": 140,
+          "column": 1
+        },
+        {
+          "title": "Docs follows reading position in both directions and direct fragment loads",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5919,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T03:34:54.775Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-b3799e3da5b5504f581d",
+          "file": "site.spec.js",
+          "line": 154,
+          "column": 1
+        },
+        {
+          "title": "hero contains only copy and active pixels, with no report animation",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 9669,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.hero-pixels canvas')\nExpected: \u001b[32m\"\u001b[7mfals\u001b[27me\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mtru\u001b[27me\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('.hero-pixels canvas') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.hero-pixels canvas')\u001b[22m\n\u001b[2m    13 × locator resolved to <canvas width=\"1920\" height=\"814\" data-epoch=\"2\" data-frames=\"32\" data-running=\"true\"></canvas>\u001b[22m\n\u001b[2m       - unexpected value \"true\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.hero-pixels canvas')\nExpected: \u001b[32m\"\u001b[7mfals\u001b[27me\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mtru\u001b[27me\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('.hero-pixels canvas') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.hero-pixels canvas')\u001b[22m\n\u001b[2m    13 × locator resolved to <canvas width=\"1920\" height=\"814\" data-epoch=\"2\" data-frames=\"32\" data-running=\"true\"></canvas>\u001b[22m\n\u001b[2m       - unexpected value \"true\"\u001b[22m\n\n    at C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\tests\\desktop\\site.spec.js:192:102",
+                    "location": {
+                      "file": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\tests\\desktop\\site.spec.js",
+                      "column": 102,
+                      "line": 192
+                    },
+                    "snippet": "  190 |  await page.goto('./');await expect(page.locator('h1')).toBeVisible();await expect(page.locator('.home-hero figure,.hero-example,.hero-stage')).toHaveCount(0);await expect(page.locator('.home-hero button')).toHaveCount(0);await expect(page.locator('.hero-pixels canvas')).toHaveAttribute('data-running','true');await expect(page.locator('.home-hero .action')).toHaveCount(1);\n  191 |  await page.screenshot({path:resolve(shots,'hero-1440.png')});await page.setViewportSize({width:1920,height:1000});await page.screenshot({path:resolve(shots,'hero-1920.png')});\n> 192 |  await page.emulateMedia({reducedMotion:'reduce'});await expect(page.locator('.hero-pixels canvas')).toHaveAttribute('data-running','false');await expect(page.locator('.home-hero h1')).toBeVisible();\n      |                                                                                                      ^\n  193 | });\n  194 |\n  195 | test('Home sections enter on scroll, persist on return and reveal immediately for keyboard/reduced motion',async({page})=>{"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\tests\\desktop\\site.spec.js",
+                        "column": 102,
+                        "line": 192
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.hero-pixels canvas')\nExpected: \u001b[32m\"\u001b[7mfals\u001b[27me\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mtru\u001b[27me\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('.hero-pixels canvas') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.hero-pixels canvas')\u001b[22m\n\u001b[2m    13 × locator resolved to <canvas width=\"1920\" height=\"814\" data-epoch=\"2\" data-frames=\"32\" data-running=\"true\"></canvas>\u001b[22m\n\u001b[2m       - unexpected value \"true\"\u001b[22m\n\n\n  190 |  await page.goto('./');await expect(page.locator('h1')).toBeVisible();await expect(page.locator('.home-hero figure,.hero-example,.hero-stage')).toHaveCount(0);await expect(page.locator('.home-hero button')).toHaveCount(0);await expect(page.locator('.hero-pixels canvas')).toHaveAttribute('data-running','true');await expect(page.locator('.home-hero .action')).toHaveCount(1);\n  191 |  await page.screenshot({path:resolve(shots,'hero-1440.png')});await page.setViewportSize({width:1920,height:1000});await page.screenshot({path:resolve(shots,'hero-1920.png')});\n> 192 |  await page.emulateMedia({reducedMotion:'reduce'});await expect(page.locator('.hero-pixels canvas')).toHaveAttribute('data-running','false');await expect(page.locator('.home-hero h1')).toBeVisible();\n      |                                                                                                      ^\n  193 | });\n  194 |\n  195 | test('Home sections enter on scroll, persist on return and reveal immediately for keyboard/reduced motion',async({page})=>{\n    at C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\tests\\desktop\\site.spec.js:192:102"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T03:35:00.881Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\test-results\\site-hero-contains-only-co-495e0-ls-with-no-report-animation\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\test-results\\site-hero-contains-only-co-495e0-ls-with-no-report-animation\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\panch\\vscode codes\\Relevo\\frontend\\tests\\desktop\\site.spec.js",
+                    "column": 102,
+                    "line": 192
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-ac2777a5466f554995ee",
+          "file": "site.spec.js",
+          "line": 189,
+          "column": 1
+        },
+        {
+          "title": "Home sections enter on scroll, persist on return and reveal immediately for keyboard/reduced motion",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6659,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T03:35:26.201Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-b3fab2f20008f2d7d538",
+          "file": "site.spec.js",
+          "line": 195,
+          "column": 1
+        },
+        {
+          "title": "navigation stays visible, becomes translucent on scroll and restores at the top",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10790,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T03:35:35.975Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ac7a53c57781e60bbd6-f9dce86abde589517cb8",
+          "file": "site.spec.js",
+          "line": 204,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-22T03:33:34.641Z",
+    "duration": 137394.71,
+    "expected": 7,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,16 @@
+
+> relevo-web@0.1.0 test
+> node --test tests/*.test.mjs
+
+✔ all replay frames preserve actual committed events and attempts (18.92ms)
+✔ replay rejects absent provenance and invalid history (5.0749ms)
+✔ chart summaries reproduce retained raw measurements without pooling percentiles (47.4659ms)
+✔ built site has six canonical entries, safe local links, and no backend secret (486.0108ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 720.3576

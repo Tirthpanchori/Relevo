@@ -1,0 +1,19 @@
+{
+  "verified_at": "2026-10-31T18:30:37.187015+00:00",
+  "archive_sha256": "df07c48a91dc8a660828d1bdee2d653c5b9af3e1d1a40f7aa324f1e74e83a068",
+  "tables_equal": [
+    "jobs",
+    "attempts",
+    "job_events",
+    "alembic_version"
+  ],
+  "schema_restored": true,
+  "fixture": "synthetic pending/completed jobs, attempt and four events",
+  "rows": {
+    "jobs": 2,
+    "attempts": 1,
+    "job_events": 4,
+    "alembic_version": 1
+  },
+  "development_touched": false
+}

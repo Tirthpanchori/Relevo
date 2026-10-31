@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-01",
+  "backend_tests": 197,
+  "backend_seconds": 26.21,
+  "coverage_percent": 84,
+  "ruff_files": 79,
+  "browser_tests": 23,
+  "axe_scans": 21,
+  "artifact_tests": 4,
+  "independent_review": "ship; 55 captures; remote quality-card comparison unavailable",
+  "cloud": "not provisioned",
+  "patched_clean_checkout": "9fef03449d311b377750394aeb661adf8d1b0bac"
+}

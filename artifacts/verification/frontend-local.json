@@ -1,0 +1,152 @@
+﻿{
+    "verified_at_utc":  "2026-10-18T08:19:10.8757262Z",
+    "node_version":  "v24.22.0",
+    "vite_version":  "8.3.4",
+    "production_build":  "passed",
+    "base_path":  "/Relevo/",
+    "intended_canonical":  "https://tirthpanchori.github.io/Relevo/",
+    "content_pages":  6,
+    "utility_files":  [
+                          "404.html",
+                          "llms.txt",
+                          "sitemap.xml",
+                          "font-licenses.txt"
+                      ],
+    "data_artifact_tests":  4,
+    "browser_tests":  {
+                          "startTime":  "2026-10-18T08:17:08.369Z",
+                          "duration":  31864.212,
+                          "expected":  10,
+                          "skipped":  0,
+                          "unexpected":  0,
+                          "flaky":  0
+                      },
+    "browser_report":  "artifacts/verification/frontend-browser.json",
+    "viewports_checked":  [
+                              1440,
+                              390,
+                              320
+                          ],
+    "screenshots":  ".impeccable/review/capture.json",
+    "detector_findings":  0,
+    "detector_runs":  1,
+    "review_disposition":  "ship",
+    "review_scope":  "Both requested material fixes resolved; not whole-surface certification.",
+    "review_report":  ".impeccable/review/finish-review.md",
+    "workflow_evidence_limits":  [
+                                     "No separate QUALITY BAR cards.",
+                                     "No persisted standalone seed-roll output; parent corroborated seed c2b6aab7."
+                                 ],
+    "backend_tracked_source_changed":  false,
+    "public_deployment":  "pending",
+    "source_files":  [
+                         {
+                             "path":  "frontend/src/App.jsx",
+                             "sha256":  "e8a028151172b8edc708ccc30a28deaee52f236dae2d152125dc7a69678a8d16"
+                         },
+                         {
+                             "path":  "frontend/src/main.jsx",
+                             "sha256":  "5ea343872729291de2dd0f31fbd64d4e63e10ab1ec4bdfd3f89f7787fa6a6264"
+                         },
+                         {
+                             "path":  "frontend/src/styles.css",
+                             "sha256":  "cf0b3f68acd6cf855327e43d061d293786447ad6ca5b981d9feeffaa71c8404f"
+                         },
+                         {
+                             "path":  "frontend/src/components/AsciiBand.jsx",
+                             "sha256":  "5b69069eebd9ac0893d74cf0afe67e637bd12aefe732ae9c4340e4f23fb8d84a"
+                         },
+                         {
+                             "path":  "frontend/src/components/Common.jsx",
+                             "sha256":  "f343ec69a0ea8f9fe91ba76703961cf20ec9381892fc5d4e14b20892beb12ceb"
+                         },
+                         {
+                             "path":  "frontend/src/components/Footer.jsx",
+                             "sha256":  "960c44e803cba220e25e9ab008dc5c15da066be2b8465b6862dc91a0857b827b"
+                         },
+                         {
+                             "path":  "frontend/src/components/Header.jsx",
+                             "sha256":  "a14f51d871f675b4066d438f17e6e3be85d37694f26ee7c81216d53bb4c81543"
+                         },
+                         {
+                             "path":  "frontend/src/components/Icon.jsx",
+                             "sha256":  "c472df78d15a3aae25204f84d4f98e4be474571661e11e7dc8d10757fde76601"
+                         },
+                         {
+                             "path":  "frontend/src/components/SystemScene.jsx",
+                             "sha256":  "a50bd4e5026fbcff4c45d21827e495e66cbdecdf21934a69a6588e9039a069cf"
+                         },
+                         {
+                             "path":  "frontend/src/hooks/useMotion.jsx",
+                             "sha256":  "86cdbb53d7cb9a0330383c8316b1d79445ea2f34a50c083ebe65d704d91700d0"
+                         },
+                         {
+                             "path":  "frontend/src/hooks/useResource.js",
+                             "sha256":  "424eb14c9985fa5ef024022ba853730e44bcfb92ac42db41ffcd536b7eecb1a2"
+                         },
+                         {
+                             "path":  "frontend/src/lib/evidence.mjs",
+                             "sha256":  "5d6b851f3e35a60d9264a31cfa2c7eee18bb19d4b8ee80a2dbcc3246a6de8961"
+                         },
+                         {
+                             "path":  "frontend/src/lib/links.js",
+                             "sha256":  "815ccd4c0a5a7f23852611e7f20a2d2e1f3fd339be43b9324ff9d33990ce0629"
+                         },
+                         {
+                             "path":  "frontend/src/pages/About.jsx",
+                             "sha256":  "77634f69ee7529122a7d492de991f4c536fadf5a119163b947dc5c6064344f1e"
+                         },
+                         {
+                             "path":  "frontend/src/pages/Docs.jsx",
+                             "sha256":  "a6bc0f2c35700f27d18762b095e955ae48fab5cff47dbeb55ca4a584c73716b5"
+                         },
+                         {
+                             "path":  "frontend/src/pages/Engine.jsx",
+                             "sha256":  "e6fdc1d4c0ba738d264407b4999f3ef6775278987574592bba5a96365ed2fdfc"
+                         },
+                         {
+                             "path":  "frontend/src/pages/Home.jsx",
+                             "sha256":  "7ce63eb6b7a1a63f1171e0dd80b9d584f25c9183bc5b9abd2512d11bc96d087c"
+                         },
+                         {
+                             "path":  "frontend/src/pages/Privacy.jsx",
+                             "sha256":  "c8965485f0c5965508a7ccc965da2f698ab9d0e3bab04e82d097b2e34d76bd45"
+                         },
+                         {
+                             "path":  "frontend/src/pages/Results.jsx",
+                             "sha256":  "be3aa82dfa143d6f9482c6ae8db3d27216fc97a77110db8d1b42f4657759278a"
+                         },
+                         {
+                             "path":  "frontend/package.json",
+                             "sha256":  "13ef738a0d465322865683f0e0fb4353d863af06cb4939e99a3e8cecb5557215"
+                         },
+                         {
+                             "path":  "frontend/package-lock.json",
+                             "sha256":  "d026a417d577b95fb5c1034aa41b5a5924b2936728f230ca81f8cb49bc891993"
+                         },
+                         {
+                             "path":  "frontend/site.mjs",
+                             "sha256":  "1e574d4eb5ead2c5613a82c530bda602146a1e83b60f4584c9d1019fb04f48ac"
+                         },
+                         {
+                             "path":  "frontend/vite.config.js",
+                             "sha256":  "fb5600d011ff21bea7449e85229cdc2fdcfa14b48658c6663fd56c3683f9ebde"
+                         },
+                         {
+                             "path":  "frontend/scripts/prepare.mjs",
+                             "sha256":  "96f4d36e1ae8584448643af1c5d7bf53aacfe4118d3ff32881c2acbb6a8fb70d"
+                         },
+                         {
+                             "path":  "frontend/playwright.config.js",
+                             "sha256":  "479f80fcea8ec3d95ec0401adc42f236253365cafdb5a3f4b20d0075f2bdd7d7"
+                         },
+                         {
+                             "path":  "frontend/tests/evidence.test.mjs",
+                             "sha256":  "080ad7c405e1cc23c820d013bcd3bcc99e93f74b563ac2b4284f90f8efb847a3"
+                         },
+                         {
+                             "path":  "frontend/tests/browser/site.spec.js",
+                             "sha256":  "28b3fe48ee401d1d54b7d49db0f446ea16adce83055f5f27d797329ebecb015e"
+                         }
+                     ]
+}

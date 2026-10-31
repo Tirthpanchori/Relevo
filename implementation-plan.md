@@ -4,7 +4,7 @@ Created: 2026-10-16 (Asia/Calcutta). Build order: **backend, then frontend**.
 
 ## How to use this plan
 
-This is the execution checklist for the whole build. Read [PROJECT_MEMORY.md](PROJECT_MEMORY.md) and the relevant entries in [decision.md](decision.md) before changing the design. Use [working.md](working.md) for the plain-language explanation and [README.md](README.md) for the project entry point.
+This is the execution checklist for the whole build. Read [PROJECT_MEMORY.md](PROJECT_MEMORY.md) and the relevant entries in [decision.md](decision.md) before changing the design. Follow [design.md](design.md) alongside this plan for frontend structure and the visual direction, distinguishing its proposals from accepted decisions. Use [working.md](working.md) for the plain-language explanation and [README.md](README.md) for the project entry point.
 
 - Work through the phases in order. Tests for a guarantee belong in the phase that introduces it.
 - Keep task IDs stable. Mark a task complete only when its deliverable exists and its completion checks pass.
@@ -28,7 +28,7 @@ Indicative allocation: weeks 1-2 for Phases 1-3, weeks 3-4 for Phases 4-5, weeks
 | 5 | Delayed execution, retries, and independent recovery | Complete |
 | 6 | Fault tests, business-effect demonstration, Python client/CLI | Complete: local and hosted CI |
 | 7 | Telemetry, benchmarks, and backend readiness gate | Complete: backend gate passed |
-| 8 | Explanatory React frontend using recorded evidence | Planned |
+| 8 | Explanatory React frontend using recorded evidence | Design discussion: draft information architecture; UI not started |
 | 9 | Reproducible packaging and free deployment | Planned |
 
 **Phases 1-7 are complete; the backend readiness gate passed on 2026-10-18.** The final code checkpoint passes 197 tests on Windows/Linux, a fresh-checkout 197-test run, and [hosted CI](https://github.com/Tirthpanchori/Relevo/actions/runs/39067364211). Phase 6's 81 integration checks also passed three additional rounds. Real crash/restart/effect evidence, protected monitoring/traces, 1,440 retained benchmark jobs, and an explicitly limited tuning option are recorded below. Frontend and cloud deployment have not begun. Have the required frontend conversation before Phase 8.
@@ -216,17 +216,268 @@ Refreshed actual captures against `9af3ab8` prove worker SIGKILL/replacement/sta
 
 Depends on the complete Phase 7 gate. Use React, JavaScript (`.jsx`/`.js`), Vite, and CSS.
 The user explicitly requested a conversation before frontend work (2026-10-17).
-Stop after Phase 7 for that discussion; do not start Phase 8 automatically.
+That discussion happened on 2026-10-18: page structure, merged Engine/Replay,
+references, palette, fonts, original animation approach, and stack were reviewed.
+The user then explicitly authorized implementation. Phase 8 is now in progress.
 
-- [ ] P8.1 Establish the visual direction, information hierarchy, responsive layout, and accessible interaction model before UI implementation. Keep the product an explanation of the engine and its evidence.
-- [ ] P8.2 Build the introduction, developer use cases, architecture explorer, lifecycle explanation, guarantees/limitations, quickstart, and repository links.
-- [ ] P8.3 Build a clearly labeled replay of actual recorded tests: worker failure, lease expiry, recovery, stale-report rejection, and attempt timeline. Expose the capture metadata/source and distinguish explanatory annotations from recorded events. Support play/pause, restart, and stepping without requiring animation.
-- [ ] P8.4 Present actual benchmark results with hardware, workload, methodology, and limitations. Omit unmeasured numerical claims. Keep replay data and site navigation independent of live engine availability.
-- [ ] P8.5 Verify keyboard controls, focus visibility, contrast, reduced motion, narrow layouts, static diagram comprehension, and Vite production build. Ensure the published bundle contains no shared API token or privileged live controls.
+- [x] P8.1 Establish the visual direction, information hierarchy, responsive layout, and accessible interaction model before UI implementation. Keep the product an explanation of the engine and its evidence.
+- [x] P8.2 Build the introduction, developer use cases, architecture explorer, lifecycle explanation, guarantees/limitations, quickstart, and repository links. Include the accepted Griffin-inspired pixel/ASCII motif using Relevo's original pattern and design tokens. Include the grouped footer with `llms.txt` and Sitemap (`sitemap.xml`) links under About; prepare factual static utility-file contents alongside the public pages.
+- [x] P8.3 Build the Engine page's Replay tab with clearly labeled actual recorded tests: worker failure, lease expiry, recovery, stale-report rejection, and attempt timeline. Share the workspace with the Flow tab, show one active panel/scenario, and pause hidden playback. Expose the capture metadata/source and distinguish explanatory annotations from recorded events. Support play/pause, restart, and stepping without requiring animation.
+- [x] P8.4 Present actual benchmark results with hardware, workload, methodology, and limitations. Omit unmeasured numerical claims. Keep replay data and site navigation independent of live engine availability.
+- [x] P8.5 Verify keyboard controls, tab/focus behavior, direct links to Flow/Replay, hidden-playback pause, contrast, reduced motion, narrow layouts, static diagram comprehension, and Vite production build. Check the decorative pixel/ASCII effect's pause/static modes, offscreen/hidden rendering suspension, text readability, and bounded mobile cost. Validate the footer utility links, readable/factual `llms.txt`, and well-formed sitemap with the intended canonical public page set. Ensure the published bundle contains no shared API token or privileged live controls.
 
 **Completion check:** a visitor can explain a job's lifecycle and the failure/recovery evidence without running the backend. The site remains useful when the live engine is offline.
 
-**Evidence:** pending implementation.
+**Evidence:** design conversation started 2026-10-18. Reference roles: [Cierto](https://cierto-beta.vercel.app/) for structure/supporting pages/light-dark blocks, [Griffin](https://www.griffin.com/) for breakdown/design inspiration, [Etched](https://www.etched.com/) for schematic footer artwork. Choose Relevo's own colours. References inspected in the browser. The user accepted merging Engine and Replay into one page with Flow/Replay tabs; [D028](decision.md#d028---one-engine-page-with-flow-and-replay-tabs) records the rationale. [design.md](design.md) now proposes six total content pages plus a not-found view, an Engine/Results/Docs header plus GitHub, and Product/Evidence/Build/About footer groups with Replay linking to `/engine/#replay`. The merge/tab model is accepted; remaining scope, palette, compositions, final accessible/responsive interaction model, and UI verification are pending. P8.1 is not complete.
+
+**LLM content checkpoint (2026-10-18):** [llms.txt](llms.txt) now exists as a repository source draft matching the user's Cierto screenshot: title, summary, key facts, and grouped descriptive Docs/Evidence/Results/Project/Optional links. It uses existing repository resources and labels the website as unbuilt. Source-link paths and dated verification references are checked locally; frontend publication, sitemap, final site URLs, and P8.2/P8.5 completion remain pending.
+
+**Walkthrough checkpoint (2026-10-18):** `design.md` now elaborates the proposed visitor journey, page/workspace layouts, and mobile/motion/loading/error behavior for the user's requested review. These are planning details, not visual approval or implemented UI. Palette/type/final compositions remain open; no P8 task is marked complete by this walkthrough.
+
+**Palette proposal (2026-10-18):** `design.md` records a warm chalk/graphite/burnt-orange recommendation and semantic state colours. Fourteen intended opaque text/surface pairs were calculated (minimum 4.81:1). A conversation preview displays the proposed light/dark colours; this is design evidence only. User acceptance and final rendered UI checks remain pending; P8.1/P8.5 stay open.
+
+**Pixel/ASCII direction (2026-10-18):** the user accepted Griffin's pixelated landing-page motif. Browser inspection confirms its ASCII-pattern canvas banner. `design.md` records the accepted motif and proposed original Relevo treatment: a hero-edge band, sparse transitions, decorative labeling/meaning, pause/static modes, and bounded rendering. Exact layout, renderer, motion, palette acceptance, implementation, and checks remain pending; no P8 task closes from this design choice.
+
+**Implementation checkpoint (2026-10-18):** the user authorized the reviewed
+direction and original SVG/Canvas implementation. [PRODUCT.md](PRODUCT.md),
+[the pre-build direction contract](artifacts/design/site-direction.md), and
+[D029](decision.md#d029---static-evidence-site-with-original-reusable-system-art)
+record the direction. Six pages and a 404 are implemented in [frontend](frontend/).
+The build copies allowlisted sanitized recordings, factual `llms.txt`, font
+licenses, source documents, and a six-page canonical sitemap. The original SVG
+system supports the homepage breakdown and Engine's manual Flow/recorded Replay.
+Results derives charts/tables from retained raw experiments, including regressions.
+
+**Verification checkpoint (2026-10-18):** `./scripts/frontend.ps1 build` passes
+with project-local Node 24.22.0/Vite 8.3.4. Four [data/artifact checks](frontend/tests/evidence.test.mjs)
+pass: source-event/attempt identity and timestamps, provenance rejection,
+raw-to-chart measurement reproduction, canonical entries, and private-token/design-
+contract absence from public files. Nine [browser checks](frontend/tests/browser/site.spec.js)
+pass in 29.3 seconds; [actual report](artifacts/verification/frontend-browser.json).
+They cover six direct production-base routes at 1440/390/320 px, no overflow,
+asset/JavaScript errors, or privileged requests; tab keys/focus/history; scenario
+switching, interventions, actual outcomes; hidden/reduced-motion replay; exact
+confirmation values and regression; mobile menu/FAQ/copy/preference; evidence
+retry; instrumented Canvas suspension when paused/offscreen/hidden; and axe
+WCAG A/AA checks across all six pages and both Engine views. These automated
+checks supplement static diagram and screenshot review, not a
+claim of universal accessibility certification. Desktop/mobile captures are in
+`.impeccable/review/`, with font/overflow metadata in `capture.json`. The one
+Impeccable mechanical scan returned no findings. Design finish review and the
+shipped design-system record remain in progress, so P8.5 is still open.
+
+**Phase 8 closeout (2026-10-18):** after the finish review's two material fixes,
+all **10 browser checks pass in 31.9s**. The added check directly retrieves
+`llms.txt`, parses the sitemap as XML against its six expected canonical URLs,
+and verifies the 404 recovery link. The updated mobile check exercises the
+diagram's shared manual layer selector. Test conditions now use readable 14px
+text at every viewport. The reviewer scored both requested fixes **resolved**,
+with disposition **ship** at the fix-list scope; [review record](.impeccable/review/finish-review.md).
+All fourteen desktop/mobile captures were refreshed. The new-world record in
+[design.md](design.md) and [.impeccable/design.json](.impeccable/design.json) derives
+from the finished code. The earlier design discussion is preserved intact in
+[discussion-history.md](artifacts/design/discussion-history.md). Missing separate
+QUALITY BAR cards and standalone seed-roll archival evidence are disclosed;
+no whole-surface certification is claimed. [Local verification](artifacts/verification/frontend-local.json)
+records runtime, build, tests, review scope, and 27 frontend source hashes.
+**P8.1-P8.5 are complete locally.** Public hosting and hosted frontend CI remain
+Phase 9 verification, not claimed by these local checks.
+
+### Phase 8 revision - user feedback of 2026-10-19
+
+The original baseline is locally verified but its structure was rejected by the
+user. Their supplied lifecycle screenshot and seven concrete criticisms take
+priority over the old fix-scoped review. Preserve the original task IDs above;
+the revision is tracked separately here.
+
+- [x] P8.R1 Revisit Griffin through Playwright CLI, inspect baseline using Taste,
+  and record the argument, section structure, and direction before implementation.
+  See [revision record](artifacts/design/revision-2026-10-19.md), research captures,
+  and the persisted surface brief. Palette and typography assets are retained.
+- [x] P8.R2 Replace the repeated hero graphic with a readable handoff interaction;
+  give the original pixel field sufficient contrast and retain pause/static modes.
+- [x] P8.R3 Keep one compact exploded architecture moment and replace the rejected
+  lifecycle/recovery duplication with one continuous actual job/attempt history.
+- [x] P8.R4 Use distinct Flow/Replay visuals and reduce repeated Engine invitations;
+  normalize decorative action icons across all six pages.
+- [x] P8.R5 Animate FAQ opening/closing with accessible buttons/regions, reversal,
+  one open answer, and a true zero-duration reduced-motion fallback.
+- [x] P8.R6 Verify routes, contrast, mobile/tablet/desktop, source data, interaction,
+  animation/pixel behavior, production build, and a fresh full design review.
+- [x] P8.R7 Update the shipped design system and behavior/setup/decision records
+  from the reviewed revision. Preserve prior evidence as historical checkpoints.
+
+**Revision verification (2026-10-19):** production build and four data/artifact
+checks pass. All **14 browser checks pass in 34.2s**; [report](artifacts/verification/frontend-browser-revision.json).
+The added regressions directly verify one exploded view, at most two Home main
+Engine links, distinct Flow/Replay visuals, unchanged illustrative job identity
+with one owner, FAQ reversal/single-open/zero reduced-motion duration, and visible
+glyph pixels on graphite. Existing route, evidence, keyboard, axe A/AA, utility,
+Canvas suspension, mobile, hidden-playback and error recovery checks still pass.
+All six routes were checked at 1440/390/320px. Fresh desktop/mobile screenshots
+and a 768px Taste inspection are captured.
+
+**Review correction (2026-10-19):** the fresh full review identified one material
+issue: later CSS erased selected states in scenario/effect/measurement filters.
+The correction adds a persistent selected fill distinct from hover/focus. The
+new regression checks all four filter groups at desktop/mobile using pointer and
+keyboard selection. All **15 browser checks pass in 45.8s**, plus the four data
+checks and production build. All desktop/mobile captures were refreshed; changed
+filter-state captures were added. The [reviewer](.impeccable/review/revision-finish-review.md)
+scored the one requested fix **resolved**, disposition **ship** at fix scope.
+The shipped system is recorded in [design.md](design.md) and its schema-version-2
+sidecar. The 18 October system is preserved in `artifacts/design/baseline-2026-10-18/`;
+discussion history remains intact. README, working guide, D030 and project memory
+describe the revision. [Revision verification](artifacts/verification/frontend-revision.json)
+records source/design hashes, scope and limits; [tool verification](artifacts/verification/agent-tooling-2026-10-19.json)
+records the separately requested Trail Code/Anatomy installations. **P8.R1-R7 are
+complete locally.** Deployment remains deferred.
+
+### Phase 8 design round - user approval of 2026-10-21
+
+The user rejected the 19 October composition and technical copy. Preserve all
+earlier task IDs and verification as history, not acceptance of the new design.
+The approved workflow is mockups first on Impeccable's native decision page,
+then the selected desktop build, then desktop review before responsive work.
+
+- [x] P8.D1 Record the Cierto page/interaction study and the revised newcomer-first
+  brief, distinguishing observed behavior from its demo's unverified startup.
+  Verification: saved page/route inventory, eight public-page and seven Docs
+  reports, utility responses, before/mid/after FAQ measurements, hover/SDK/menu/
+  Docs observations, and selected desktop captures under
+  `artifacts/design/research/cierto-2026-10-21/`. Source session:
+  `cierto-study-v2`; native direction roll: `0385e4c2`, API pool `c3b204a1eed6`.
+- [x] P8.D2 Present three polished Home/Engine visual directions on the actual
+  Impeccable decision page, with selection, feedback, and same-page re-roll.
+  Notify the user when the mockups are ready. No frontend build before selection.
+  Verification: six 1536x1024 builtin mockups inspected; all six contain embedded
+  exact prompts (`embed-prompt --scan`: 6 rasters, 0 missing). Native decision
+  page at `http://127.0.0.1:55091/` shows three Home options; matching Engine PNGs
+  load in adjacent Chrome tabs through the local static preview. Readiness
+  capture/report are in `artifacts/design/research/cierto-2026-10-21/`;
+  [mockup manifest](artifacts/design/relevo-mockups-2026-10-21.json) records paths,
+  dimensions, hashes, source prompts, and explicit unapproved status. User notified.
+  This checks presentation only; no website behavior or responsiveness is verified.
+- [x] P8.D3 Record the selected direction and approved mockups; build desktop
+  Home/Engine section by section with one scroll-driven Anatomy exploded view,
+  edge-to-edge pixels, simple copy, short navigation, and fewer CTAs.
+  Revised sequence authorized in chat: whole-site clickable desktop demo first;
+  final website after demo feedback. The prior main source is archived; the
+  isolated demo remains available as a historical comparison.
+  - [x] P8.D3a Record regional hybrid approval and the isolated demo contract in
+    `artifacts/design/desktop-demo-direction.md`: Museum colours, Exhibition
+    type/hero, Assembly model content/composition, Museum Engine layout.
+  - [x] P8.D3b Build the separate six-page clickable desktop demo with shared
+    navigation/footer, actual evidence, model scroll and representative states.
+    Verification: isolated bundle builds; all nine dedicated desktop checks pass
+    (77.6 s, widths 1440/1920 only), plus four existing evidence/artifact checks.
+    Zero axe A/AA violations across six routes and both Engine views. Actual
+    source comparison confirms all 23 baseline `frontend/src` files unchanged.
+    See `artifacts/verification/desktop-demo.json` and linked browser report.
+  - [x] P8.D3c Verify/review the desktop demo, open it, and stop for user feedback.
+    User accepted the structure and requested the D033 production corrections.
+    This is user review and recorded checks; the interrupted prototype reviewer
+    did not give a final ship verdict.
+  - [x] P8.D3d Apply demo feedback and complete the approved main-site Home/Engine.
+- [x] P8.D4 Verify desktop functionality and a fresh full desktop design review;
+  show the working result and stop before tablet/phone changes or responsive tests.
+- [x] P8.D5 After the desktop review, apply the chosen direction to the remaining
+  pages and update the shipped design record from the actual implementation.
+  Latest explicit approval includes all six desktop pages in this production pass.
+- [x] P8.D6 In the later responsive stage, adapt and verify tablet/phone layouts;
+  complete the full frontend gate only with actual evidence.
+- [x] P8.D7 Apply the subsequent desktop feedback: consistent branding/type,
+  larger hero with the subsequently authorized illustrative handoff, compact
+  immersive model scroll, smooth illustration hover, retained non-fluid pixels,
+  explicit Application/Recovery Flow states and Docs scrollspy. Preserve Replay
+  and verify/review desktop changes before the responsive stage. Evidence below.
+- [x] P8.D8 Replace the rejected worker-node hero animation with a minimal
+  functional example over active random pixels inside the hero background only;
+  remove the bottom strip and reveal Home content on viewport entry. Verify desktop behavior,
+  reduced motion and fresh design review; retain the approved system/model.
+
+- [x] P8.D9 Keep navigation visible with slight scroll transparency; remove the
+  Home hero report animation while retaining its pixels. Verify desktop anchor
+  access, Docs index and the model below navigation; refresh the current records.
+
+**Earlier D033 production desktop checkpoint (2026-10-21):** P8.D1-D5 and P8.D3a-d are
+complete locally. The user accepted the demo structure and authorized D033's
+production corrections across all six pages. Build and four data/artifact checks
+pass. All **11 dedicated desktop browser checks pass** (one worker, no retries,
+1440/1920px; final clean serial run about 1.3 minutes). They cover routes/base URLs,
+four model depths and reverse/fast scroll, Canvas movement/coverage/suspension,
+hover/focus/press/selected states, both Flow paths, actual Replay, Results,
+FAQ reversal, keyboard access, reduced motion and recoverable errors. Seven axe
+scans across six pages and both Engine views report zero violations.
+
+The fresh full [desktop design review](.impeccable/review/production-desktop-finish-review.md)
+requested a 40px closing Home heading and replacement of inherited design
+records. The reviewer subsequently scored **both fixes resolved**, disposition
+**ship at fix scope**. The corrected section was computed/captured at 1440/1920;
+[fix evidence](artifacts/verification/production-desktop-review-fix.json).
+The shipped documenter derived design.md and .impeccable/design.json from
+the actual implementation. The one detector warning concerns user-pinned type;
+Taste's generic photo/video/larger-type/palette recommendations do not override
+the explicit selected hybrid. Their dispositions are retained in the review.
+
+[Verification manifest](artifacts/verification/production-desktop.json) records
+source/design/capture hashes, reports, resource limits and deferred work.
+The prior main is archived under
+artifacts/design/baseline-2026-10-21-pre-integration; the earlier demo remains
+in frontend/prototype. Backend APIs and retained evidence are unchanged.
+Preview: http://127.0.0.1:4173/Relevo/ . Stop for user desktop feedback.
+**P8.D6 remains open: no tablet/phone adaptation or responsive verification was
+performed for this redesign. The complete frontend gate and deployment remain open.**
+
+
+**Earlier D034 desktop refinement checkpoint (2026-10-21):** P8.D7 is complete locally.
+The production build and four data/artifact checks pass. All **14 dedicated
+desktop checks pass** (one worker, no retries; 1440/1920px, about 1.5 minutes).
+They include four model depths/containment/reversal, fixed pixel positions with
+live opacity and rendering suspension, bounded hero playback/replay/hidden-tab
+and reduced-motion states, branding/type/hover, Application and Recovery Flow
+highlights, actual Replay, Results, FAQ, keyboard access and recoverable errors.
+Seven automated axe scans report zero desktop A/AA violations. After that full
+run, cold Docs fragment alignment was corrected; its enhanced entry/reload and
+bidirectional reading-position check passed again. No other UI changed.
+
+The fresh full [refinement review](.impeccable/review/desktop-refinement-finish-review.md)
+found no material UI defect and requested only current design records. The
+documenter refreshed design.md and its schema-v2 sidecar from final source; the
+reviewer scored that persistence fix resolved, **ship at fix scope**. The detector
+ran once before the final hero addition; the fresh reviewer manually inspected
+that addition. No second detector or new option round was run.
+
+[Refinement manifest](artifacts/verification/desktop-refinement.json) links reports,
+source/capture hashes, the final targeted Docs confirmation and limits. Earlier
+Chrome network suspension is retained as intermediate environment evidence; the
+clean serial run passed. Backend APIs, recordings and measurement formats remain
+unchanged. The desktop preview is ready for user feedback. **P8.D6 remains open;
+no tablet/phone adaptation, responsive testing or public deployment is claimed.**
+
+**Home motion verification (2026-10-22):** P8.D8 is complete locally. The old
+worker-node hero is replaced with an explicitly illustrative report example;
+one random pixel field fills the hero background, with no bottom strip. Home
+groups reveal on entry, remain visible on return and appear immediately for
+keyboard focus/reduced motion. The original four-depth model is preserved.
+
+All **15 distinct desktop checks are verified** at 1440/1920px across the main
+run (12 passes) and a three-check confirmation. The latter covers all six routes,
+hero pixel pattern/coverage/suspension and seven settled-state axe scans with
+zero violations. The main run's route fixture had a Chrome launch failure; its
+pixel edge test assumed the old strip's density, and its scan began before the
+lazy Home page mounted. Tests now wait for actual content and sample the hero's
+intentionally sparse left region. The initial pass also caught and fixed footer
+mounting before page load; it is verified to wait and enter on scroll. Build
+and four data/artifact checks pass. No failed result was silently overwritten.
+
+Fresh [Home review](.impeccable/review/home-motion-finish-review.md) and the
+source-derived design record are complete. The review found only stale product
+context; its refresh was scored resolved, ship at fix scope. The detector ran
+once and returned no findings. [Evidence](artifacts/verification/desktop-home-motion.json) records
+the reports, combined check coverage, source/capture hashes and limits. Backend
+APIs, actual Replay and benchmark formats are unchanged. Stop for user desktop
+feedback; P8.D6 responsiveness and Phase 9 publication remain open.
 
 ## Phase 9 - Package and deploy within INR 0
 
@@ -234,7 +485,7 @@ Stop after Phase 7 for that discussion; do not start Phase 8 automatically.
 - [ ] P9.2 Publish concise actual setup/troubleshooting instructions, the architecture/working guide, benchmarks/raw results, and a short recorded failure-recovery demonstration. Replace planned paths/commands only with verified ones.
 - [ ] P9.3 Recheck GitHub Pages eligibility/current terms and configure the Vite base path for the actual repository before deploying the static site. Its free `github.io` address is the proposed public URL; a paid domain is outside scope.
 - [ ] P9.4 Assess a live engine only if an Oracle Cloud Always Free instance is actually available and the full configuration fits ongoing free quotas. Recheck current terms, capacity, architecture compatibility, storage, and network exposure before provisioning. If unavailable, ship local Compose plus recorded evidence; do not substitute paid hosting or trial credits.
-- [ ] P9.5 Verify a clean-clone build, CI, local demonstration, frontend links/assets, and secret-free artifacts. For any live engine, verify token-protected controls, private database/metrics access, persistence, backup/restore, and restart behavior. Record the actual hosting outcome and limitations.
+- [ ] P9.5 Verify a clean-clone build, CI, local demonstration, frontend links/assets, and secret-free artifacts. Check that the deployed `llms.txt` and `sitemap.xml` are directly retrievable and that their URLs respect the actual origin/base path and resolve to published pages. For any live engine, verify token-protected controls, private database/metrics access, persistence, backup/restore, and restart behavior. Record the actual hosting outcome and limitations.
 
 **Completion check:** another developer can run and test Relevo, reproduce its evidence, and understand its guarantees. The public explanation does not depend on a paid or continuously available live service.
 
@@ -242,4 +493,19 @@ Stop after Phase 7 for that discussion; do not start Phase 8 automatically.
 
 ## Next session
 
-Backend work through **Phase 7 is complete**. Have the requested conversation about frontend direction and scope before P8.1. Phase 8 frontend and Phase 9 free deployment remain; do not start them automatically. Keep the 50 ms default unless workload-specific measurements justify the optional setting, and preserve the verified guarantees/limitations in the public explanation.
+Current priority (1 November2026): finish P9.R6 hosted CI against the patched lockfile, and P9.R7 independent final design review. Draft PR#1 is open. Earlier desktop-only stops are historical and superseded by the user's responsive release authorization. No merge/deploy.
+
+## Deployment readiness release — user authorization 31 October 2026
+
+Supersedes desktop-only scope and earlier GitHub Pages/Oracle assumptions.
+- [x] P9.R1 Preserve release branch, inventory/clean sources, archives and secrets.
+- [x] P9.R2 Root-path Vercel build, canonical/sitemap/LLM utilities and headers.
+- [x] P9.R3 Complete six-page responsive layout and functional/a11y verification.
+- [x] P9.R4 Fresh backend lint/unit/PostgreSQL/network/crash verification.
+- [x] P9.R5 Isolated database backup/restore proof and deployment runbook.
+- [x] P9.R6 Exact committed checkout, hosted CI and release PR; no merge/deploy.
+- [x] P9.R7 Final evidence-based verdict; cloud-only checks explicitly deferred.
+
+**Release evidence (1 November2026):** root-path build and4artifact tests passed; all23Chromium tests passed with21zero-violation axe scans. Tests cover widths320/360/390/768/1024/1440/1920, short landscape, four model stages/reversal, reduced motion, Flow/Replay/Results/FAQ/Docs/keyboard and error recovery. Locked backend197tests passed with84% coverage; Ruff79files passed. Worker, recovery and component-restart smokes passed; isolated dump/restore compares complete rows/schema. See release-local.json, release-browser.json, release-*-accessibility.json, backup-restore.json and release-*-recovery/restarts captures in artifacts/verification. Fresh committed clone5e7d456 passed startup, new credentials, CLI before/after restarts,197tests, frontend npm ci/build and4artifact tests. Current certifi2026.10.23 patch has zero active PyPI advisories across53locked registry packages; rerun exact patched commit in CI before final verdict. Bound secret scan found no patterns/current credentials in233files and572reachable blobs at its checkpoint. No certification of arbitrary secrets, image OS vulnerabilities, real-device browsers or cloud resources. Independent reviewer/documenter agents failed with usage limits; source-derived design refresh is recorded but no fresh independent signoff.
+
+**Release closeout (1 November 2026):** independent Impeccable review returned **ship** after inspecting 55 authoritative captures, with remote quality-card comparison unavailable. Documenter refreshed both records. Patched clean clone9fef034 passes startup/new credentials/CLI/restart/197tests. Both hosted workflows passed that exact SHA (links in RELEASE-READINESS.md); final record-only commit must also pass before merge. P9.R1–R7 preparation is complete; actual cloud deployment and owner's smoke tests remain outside this release. No production availability or compatible continuous INR0 Render backend is claimed. Read RELEASE-READINESS.md and DEPLOYMENT.md for separate frontend/backend/hosting verdicts. Earlier usage-limit review blockers were resolved on resumption.
