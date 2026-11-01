@@ -4,7 +4,7 @@
 
 Key facts:
 
-- Last reviewed: 2026-10-31. Responsive Vercel release preparation and private-token backend; current verification is in RELEASE-READINESS.md. Deployment and cloud availability are unclaimed.
+- The website is https://relevo-engine.vercel.app/. It uses recorded demonstrations independently of the engine. The backend runs locally through Docker Compose; no public live engine is claimed. Verification and reproduction commands are in docs/testing.md.
 - An acknowledged submission is saved only after its database transaction commits. Required idempotency keys deduplicate identical normalized requests and reject conflicting reuse.
 - PostgreSQL is the durable authority. Claims use short transactions and FOR UPDATE SKIP LOCKED. Workers execute task code outside database locks.
 - A job is pending, running, succeeded, or failed. An expired attempt can lead to another attempt within the stored retry budget; expiry is not a separate job state.
@@ -12,15 +12,15 @@ Key facts:
 - Task execution may repeat. Fencing protects executor state; external business effects require their own idempotency protection. Relevo does not claim exactly-once execution, guaranteed uptime, or recovery after database storage is destroyed.
 - Built-in handlers hash a payload, wait for a configured duration, or deliberately fail a configured number of attempts. Report generation and other application workloads are integration examples, not implemented built-in handlers.
 - Defaults include a 15-second lease, 5-second heartbeat interval, 2-second recovery scan interval, and three total attempts. These are configuration defaults, not recovery-time guarantees.
-- The final backend code checkpoint 9af3ab8 passed 197 tests on Windows, Linux, a fresh checkout, and hosted CI. Treat these as dated verification results, not a live test counter.
+- Release checkpoint 0d4e5ac passed hosted backend and frontend CI. Retained verification includes 197 backend tests and 23 Chromium browser tests. Treat these as dated results, not live test counters.
 - Retained benchmark experiments contain 1,440 measured jobs. The 50 ms worker monitor remains the default; optional 5 ms tuning helped some short-task cases and regressed timed workloads. Results describe the recorded revisions and local conditions, not a universal speedup or production capacity guarantee.
 - The website demonstrates labeled playback of real recordings, independent of a running engine. Engine has illustrative Flow and recorded Replay tabs; Results presents retained measurements. Some business-effect recordings use explicit test lease expiry and instrumented transactions; interventions and untimed harness observations stay separate from committed transition events.
 
 ## Docs
 
-- [Quickstart and local setup](https://github.com/Tirthpanchori/Relevo/blob/main/README.md#running-and-testing): Prerequisites, local configuration, Docker Compose startup, tests, submission, and optional monitoring.
-- [How the engine works](https://github.com/Tirthpanchori/Relevo/blob/main/working.md): Plain-language architecture, job lifecycle, ownership, recovery, stored history, and limitations.
-- [CLI and Python client guide](https://github.com/Tirthpanchori/Relevo/blob/main/README.md#source-map): Client configuration, submit/inspect/attempts/wait operations, and an installed Compose demonstration.
+- [Quickstart and local setup](https://github.com/Tirthpanchori/Relevo/blob/main/README.md#run-the-engine-locally): Prerequisites, local configuration, Docker Compose startup, tests, submission, and optional monitoring.
+- [How the engine works](https://github.com/Tirthpanchori/Relevo/blob/main/docs/how-it-works.md): Plain-language architecture, job lifecycle, ownership, recovery, stored history, and limitations.
+- [CLI and Python client guide](https://github.com/Tirthpanchori/Relevo/blob/main/backend/src/relevo/client/cli.py): Client configuration, submit/inspect/attempts/wait operations, and an installed Compose demonstration.
 - [HTTP API implementation](https://github.com/Tirthpanchori/Relevo/blob/main/backend/src/relevo/api/app.py): The actual routes, authentication, health, metrics, and error handling.
 - [Request and response contracts](https://github.com/Tirthpanchori/Relevo/blob/main/backend/src/relevo/api/schemas.py): Source definitions for the public job operations and internal worker coordination messages.
 
@@ -32,7 +32,7 @@ Key facts:
 - [Business-effect tests](https://github.com/Tirthpanchori/Relevo/blob/main/backend/tests/integration/test_effects.py): Repeated execution creates duplicate unprotected effects; a stable business key protects the separate effect transaction.
 - [Additional-expiry diagnostic](https://github.com/Tirthpanchori/Relevo/blob/main/artifacts/replays/additional-expiry-diagnostic.json): A retained three-attempt run with one injected worker death. The additional expiry's cause is unassigned.
 - [Clean-checkout verification](https://github.com/Tirthpanchori/Relevo/blob/main/artifacts/verification/clean-checkout.json): Fresh credentials, Compose startup, CLI before/after restart, terminal-state preservation, and the complete backend suite.
-- [Verified backend CI run](https://github.com/Tirthpanchori/Relevo/actions/runs/39067364211): Successful hosted verification for backend code checkpoint 9af3ab8.
+- [Verified backend CI run](https://github.com/Tirthpanchori/Relevo/actions/runs/41231401626): Successful hosted verification for release checkpoint 0d4e5ac.
 
 ## Results
 
@@ -45,7 +45,7 @@ Key facts:
 ## Project
 
 - [Source repository](https://github.com/Tirthpanchori/Relevo): Backend implementation, locked dependencies, tests, scripts, documentation, and recorded evidence.
-- [Technical decisions](https://github.com/Tirthpanchori/Relevo/blob/main/decision.md): Choices, alternatives, consequences, and verification, including PostgreSQL authority, fenced ownership, effect idempotency, and measured tuning.
+- [Technical decisions](https://github.com/Tirthpanchori/Relevo/blob/main/docs/architecture.md): Choices, alternatives, consequences, and verification, including PostgreSQL authority, fenced ownership, effect idempotency, and measured tuning.
 
 ## Optional
 

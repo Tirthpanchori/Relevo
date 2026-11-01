@@ -1,134 +1,95 @@
 # Relevo
 
-**A durable task execution engine.** An application saves background work;
-independent workers execute it, and PostgreSQL tracks ownership, attempts and
-recovery. Relevo is a backend engineering portfolio project, not a multi-tenant
-hosted task service or a promise of exactly-once execution.
+A durable background-task engine built with Python and PostgreSQL. Relevo saves work before acknowledging it, assigns it to workers, and recovers expired assignments within a bounded retry budget.
 
-## Release status
+**[Explore the website](https://relevo-engine.vercel.app/)** · [How it works](docs/how-it-works.md) · [Architecture](docs/architecture.md) · [Measurements](benchmarks/README.md)
 
-Deployment preparation is complete on `release/deployment-readiness`; see [release PR #1](https://github.com/Tirthpanchori/Relevo/pull/1).
-The current website uses the approved forest/cream/lime design, sticky translucent
-navigation, active hero pixels, and six pages. The hero report card is removed.
-Desktop/tablet/phone Chromium checks and the independent UI review passed. See the current
-audit and exact verification results in [RELEASE-READINESS.md](RELEASE-READINESS.md).
-Earlier tests and recordings remain dated evidence; they do not prove a cloud
-deployment. No resources have been provisioned and no release has been deployed.
+## Why it exists
 
-**Deploy it yourself:** [DEPLOYMENT.md](DEPLOYMENT.md) covers Vercel, backend
-services, Supabase connections, secrets, migrations, smoke checks and rollback.
-The frontend target is Vercel at origin root. A continuously running INR0 backend
-on Render/Supabase is not established: sleeping web instances and paid workers
-must not be described as free continuous recovery.
+A worker can crash after accepting a task. A network response can disappear after a result was saved. An earlier worker can return after another attempt has started. Relevo coordinates those cases while preserving the job, each attempt, and committed history.
 
-## Running and testing
+It is a systems engineering portfolio project with reproducible failure tests and recorded evidence. It is not a hosted multi-tenant task service.
 
-Requirements: Git, Docker Desktop with Linux containers, and Python for the
-standard-library setup scripts. Backend development uses Python3.13; Compose
-provides the pinned Python/PostgreSQL runtime without a machine-wide upgrade.
-Never replace existing `.env` credentials to fix Docker startup.
+## What it does
 
-```powershell
+- Commits accepted tasks and deduplicates matching idempotency keys.
+- Claims eligible work through short PostgreSQL transactions.
+- Uses renewable leases, worker identities and fencing tokens to validate updates.
+- Supervises registered handlers in separate processes with execution deadlines.
+- Recovers expired assignments with backoff and a saved attempt limit.
+- Keeps attempts and transition history alongside immutable terminal outcomes.
+
+Execution may repeat. External effects need their own idempotency protection; Relevo does not promise exactly-once execution or uninterrupted availability.
+
+## Architecture
+
+```mermaid
+flowchart LR
+    App[Application or CLI] --> API[Coordinator API]
+    API --> DB[(PostgreSQL)]
+    Worker[Worker supervisor] --> API
+    Worker --> Handler[Handler process]
+    Recovery[Recovery scheduler] --> DB
+```
+
+The website explains the engine using static recordings and measurements. It runs independently of the backend and never receives its private token.
+
+## Run the engine locally
+
+Requires Git, Python for the setup script, and Docker with Linux containers. Docker supplies the backend Python and PostgreSQL runtimes.
+
+```bash
+git clone https://github.com/Tirthpanchori/Relevo.git
+cd Relevo
 python scripts/configure.py
-docker compose up --build -d --wait --wait-timeout 60
+docker compose up --build -d --wait --wait-timeout 90
 docker compose exec -T api python -m relevo --api-url http://127.0.0.1:8000 demo --key my-first-task
 ```
 
-API: [localhost:8000/docs](http://127.0.0.1:8000/docs). Readiness:
-[/health/ready](http://127.0.0.1:8000/health/ready). PostgreSQL is bound to localhost
-55432 and persists in a named volume. `docker compose stop` preserves data.
-Never run `down -v` against development or production as routine cleanup.
+The setup script creates private `.env` credentials once and preserves existing values. The demo submits a hashing task, waits for completion and prints its history. Built-in handlers hash a payload, wait, or deliberately fail a configured number of attempts. Report generation is an integration example, not a built-in handler.
 
-```powershell
-docker compose --profile test run --build --rm tests
-python scripts/backup_database.py restore-drill
-python scripts/backup_database.py backup --output backups/relevo-YYYYMMDD.dump
+API documentation: [localhost:8000/docs](http://localhost:8000/docs). Readiness: [localhost:8000/health/ready](http://localhost:8000/health/ready). Task operations require the server-side bearer token.
+
+```bash
+docker compose stop
 ```
 
-Tests use a separate ephemeral database on55433. The restore drill requires its
-migrated schema, creates only uniquely named disposable databases, compares full
-rows and drops those databases. Keep backups private and outside the Docker disk.
+Stopping preserves the database volume. See [deployment and backups](docs/deployment.md) before changing storage or exposing the API.
 
-For local Python development: install uv, then `uv sync --project backend --locked`.
-Run `uv run --project backend ruff check backend scripts` and
-`uv run --project backend ruff format --check backend scripts`. Docker tests
-exercise real PostgreSQL, concurrency and controlled TCP faults.
+## Run the website locally
 
-### Frontend
+With Node.js 24 installed:
 
-Windows uses the existing project-local Node24 runtime through the wrapper:
-
-```powershell
-./scripts/frontend.ps1 dev
-./scripts/frontend.ps1 build
-./scripts/frontend.ps1 preview
-./scripts/frontend.ps1 test
-./scripts/frontend.ps1 test:desktop
+```bash
+cd frontend
+npm ci
+npm run dev
 ```
 
-Development: http://127.0.0.1:5173/ . Production preview: http://127.0.0.1:4173/ .
-With Node24 on PATH, run from `frontend`: `npm ci`,
-`npx playwright install chromium`, `npm run build`, `npm test`,
-`npm run test:e2e`. The last command includes desktop and responsive checks.
-Linux browser testing needs `npx playwright install --with-deps chromium`.
-Run browser jobs serially on memory-limited machines.
+Open [localhost:5173](http://localhost:5173/). The backend is not required for the website's Flow, recorded Replay or Results.
 
-The build creates six HTML directories and404, self-hosted fonts, allowlisted
-sanitized evidence, source docs, `llms.txt` and sitemap. Generated files are
-ignored. Configure `RELEVO_SITE_URL` or Vercel's production-origin variable for
-canonical URLs. No backend secret belongs in frontend environment variables.
+On Windows, `./scripts/frontend.ps1 dev` from the repository root can prepare a project-local Node runtime instead. See [testing](docs/testing.md) for production-build and browser-check commands.
 
-## Behavior and boundaries
+## Evidence
 
-- Submissions are acknowledged after commit; matching idempotency keys deduplicate.
-- Short PostgreSQL transactions claim eligible jobs; handlers run outside locks.
-- Renewable leases, worker identity and fencing tokens protect current updates.
-- Expired assignments can retry within the saved budget. Retry restarts a handler.
-- Heartbeats do not remove the execution deadline or make recovery instantaneous.
-- Attempts and transition events remain recorded; terminal outcomes are immutable.
-- External effects can repeat and need their own idempotency protection.
-- Durable storage is required. Storage destruction, unlimited retries, guaranteed
-  uptime and universal benchmark speedups are not promised.
+The release verification recorded **197 backend tests**, **23 browser tests**, and **21 automated accessibility scans with zero violations**. These are dated results, not a live test counter or cloud certification.
 
-The public site is independent of engine uptime. Flow is illustrative; Replay
-uses actual sanitized tests with interventions distinguished from committed
-events. Results preserve1,440 recorded measured jobs and their limitations.
-Report generation is an example integration, not a built-in handler. Actual
-handlers hash payloads, wait, or fail a configured number of attempts.
+- [Testing and verification](docs/testing.md): commands, CI and verification limits.
+- [Failure recordings](artifacts/replays/README.md): worker crashes, restarts and repeated business effects.
+- [Benchmark methodology](benchmarks/README.md): 1,440 measured jobs, raw data, regressions and exclusions.
 
-The shared bearer token is trusted-cluster access, not user tenancy. Keep API
-access private to trusted clients, metrics/database ports private, and registered
-handlers trusted. The worker is not an arbitrary-code sandbox. See
-[security scope](SECURITY.md) and [working guide](working.md).
+The default worker monitor interval remains 50 ms. Optional 5 ms polling helped some short-task cases and regressed timed workloads; the results do not establish a universal speedup.
 
-## Source map
+## Documentation
 
-| Location | Purpose |
+| Guide | Covers |
 |---|---|
-| `backend/src/relevo` | API, durable engine, migrations, worker, scheduler, client |
-| `backend/tests` | Unit, PostgreSQL, race, TCP-fault and effect tests |
-| `frontend/src` | Six React/JavaScript pages, original model, evidence readers |
-| `frontend/tests` | Browser, responsive, accessibility and artifact checks |
-| `scripts` | Credentials, fault smokes, backups, release checks and local tooling |
-| `deploy` | Private backend environment template and Supabase privilege script |
-| `artifacts/replays`, `benchmarks` | Original recordings/raw measurements and methodology |
-| `artifacts/verification` | Dated verification evidence, not live status |
+| [How it works](docs/how-it-works.md) | Lifecycle, terminology, recovery and limitations |
+| [Architecture](docs/architecture.md) | Transactions, ownership, idempotency and technical tradeoffs |
+| [Deployment](docs/deployment.md) | Vercel website, local Docker engine and backups |
+| [Testing](docs/testing.md) | Reproduction commands and retained verification |
+| [Security](SECURITY.md) | Trusted-cluster access and credential handling |
 
-Project records: [plan](implementation-plan.md), [decisions](decision.md),
-[working guide](working.md), [design](design.md), [memory](PROJECT_MEMORY.md).
-Historical design explorations and previous source snapshots remain local archive
-material, excluded from the production bundle; current source is the release authority.
-The MIT Anatomy projection kit has [provenance](frontend/src/anatomy/NOTICE.md).
-Font licences are copied into the built site. Research screenshots are not shipped.
+Source: `backend/src/relevo` contains the engine, API, client, workers and migrations; `frontend/src` contains the explanatory website; `scripts` contains setup, smoke, benchmark and backup tools. `infra` contains optional monitoring and network-fault configuration.
 
-## CI and handoff
-
-Backend CI installs locked dependencies, lints, tests with real PostgreSQL/TCP
-faults and runs the restore drill. Frontend CI installs its lockfile, builds at
-root, verifies evidence and runs desktop/tablet/phone browser checks. Release
-verification must refer to the exact commit and actual hosted run.
-
-The agent prepares a branch/PR and instructions only. You control account signup,
-secrets, merge, resource creation, deployment and the post-deployment smoke checks.
-The recurring budget is INR0: paid hosting, paid domains and expiring trials are
-outside authorization. See the readiness report for actual remaining blockers.
+The original model uses the MIT-licensed Anatomy projection kit; see its [notice](frontend/src/anatomy/NOTICE.md). Self-hosted font licences are included in the website build.

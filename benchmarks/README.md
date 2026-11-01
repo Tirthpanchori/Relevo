@@ -41,7 +41,7 @@ and their per-job CSV files. Together they contain 1,440 retained measured jobs.
 The confirmation uses one updated runtime image after correctness checks, with
 the scoped stay-awake request active. The shorter interval helped short jobs
 with one/three workers but regressed timed work, so it was not promoted globally.
-See [D026](../decision.md#d026---bounded-measurement-and-worker-monitor-experiment).
+See the [worker monitor decision](../docs/architecture.md#worker-monitor-tuning).
 
 From the root, after a committed source checkpoint and locked dependency install:
 

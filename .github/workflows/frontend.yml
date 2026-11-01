@@ -1,9 +1,9 @@
 name: Frontend checks
 on:
   push:
-    paths: ['frontend/**', 'vercel.json', 'package.json', 'llms.txt', '*.md', 'benchmarks/**', 'artifacts/replays/**', '.github/workflows/frontend.yml']
+    paths: ['frontend/**', 'vercel.json', 'package.json', 'llms.txt', '*.md', 'docs/**', 'benchmarks/**', 'artifacts/replays/**', '.github/workflows/frontend.yml']
   pull_request:
-    paths: ['frontend/**', 'vercel.json', 'package.json', 'llms.txt', '*.md', 'benchmarks/**', 'artifacts/replays/**', '.github/workflows/frontend.yml']
+    paths: ['frontend/**', 'vercel.json', 'package.json', 'llms.txt', '*.md', 'docs/**', 'benchmarks/**', 'artifacts/replays/**', '.github/workflows/frontend.yml']
 permissions:
   contents: read
 jobs:
