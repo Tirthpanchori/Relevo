@@ -1,12 +1,5 @@
 # How Relevo works
 
-Last updated: 2026-11-01 (Asia/Calcutta).
-
-**Current release status:** responsive frontend and backend checks passed locally and at the patched CI checkpoint; the release remains unmerged. See [RELEASE-READINESS.md](RELEASE-READINESS.md)
-for evidence and [DEPLOYMENT.md](DEPLOYMENT.md) for user-operated setup.
-The site uses origin-root URLs; its hero has copy/pixels only and navigation
-stays visible while scrolling. No cloud resources are provisioned or merged.
-
 ## The idea in simple terms
 
 Relevo handles background work for another application. An application gives it a task, gets a job ID after the task is saved, and checks that ID for progress or a result. Separate programs called workers do the actual work.
@@ -73,7 +66,7 @@ A **lease** is time-limited permission to report new progress/outcomes for an as
 
 A **fencing token** is a number that increases for each new attempt on the same job. If an earlier worker comes back, its old attempt/token cannot change the newer job state. The engine also checks worker identity and expiry. PostgreSQL time makes that decision, so disagreeing worker clocks do not decide ownership.
 
-The ownership API now checks this after obtaining database locks and again at its guarded ownership write. If a request starts in time but waits for a lock until its lease expires, it is rejected. Heartbeats extend an existing lease without shortening it; they do not create another attempt or transition event.
+The ownership API checks this after obtaining database locks and again at its guarded ownership write. If a request starts in time but waits for a lock until its lease expires, it is rejected. Heartbeats extend an existing lease without shortening it; they do not create another attempt or transition event.
 
 The worker receives lease duration from the coordinator and counts elapsed time with a monotonic clock. It does not decide ownership by comparing the database timestamp to its own wall clock. The child writes a bounded result atomically into a private temporary directory; the supervisor keeps checking deadlines and heartbeats while the child runs. On an unconfirmed renewal it stops and reaps the child. Spawned-handler and supervisor tests pass on Windows and Linux.
 
@@ -102,7 +95,7 @@ The outcome response is the original historical acknowledgment. For example, rep
 
 These rules resolve lost responses around engine transactions. They do not automatically prevent a handler's business effect from happening twice.
 
-For example, a handler might update another application's balance and then crash before reporting completion. Relevo may run it again. The implemented demonstration compares two ledger effects after repeated unprotected execution with one protected effect. A stable business-operation key, checked in the same transaction as the effect, protects that operation. An attempt ID is unsuitable because it changes on retry. The instrumented harness and real committed records are explained in the [recording guide](artifacts/replays/README.md).
+For example, a handler might update another application's balance and then crash before reporting completion. Relevo may run it again. The implemented demonstration compares two ledger effects after repeated unprotected execution with one protected effect. A stable business-operation key, checked in the same transaction as the effect, protects that operation. An attempt ID is unsuitable because it changes on retry. The instrumented harness and real committed records are explained in the [recording guide](../artifacts/replays/README.md).
 
 Relevo does not guarantee exactly-once execution or exactly-once external effects. A remote service needs its own effect-safety mechanism.
 
@@ -131,11 +124,11 @@ Defaults are a 60-second execution limit, 64 KB payload/result limits, and three
 
 Handlers are registered in trusted Python code. Users cannot upload executable tasks. The v1 cluster uses a shared environment-provided API token; it does not provide tenant isolation or separate user accounts. That token must never appear in the public frontend.
 
-PostgreSQL persistence is essential. The design targets process crashes and temporary network failures with surviving durable storage. It does not promise recovery from destroyed storage, uninterrupted availability, or successful execution of every task. Backups and an actually tested restore procedure are separate operational work.
+PostgreSQL persistence is essential. The design targets process crashes and temporary network failures with surviving durable storage. It does not promise recovery from destroyed storage, uninterrupted availability, or successful execution of every task. The isolated backup/restore procedure is documented in [deployment](deployment.md#backups-and-stopping-safely). Storage loss still requires a usable backup.
 
-## How we will demonstrate this
+## Evidence and measurements
 
-PostgreSQL/TCP tests cover the failure matrix and check accounting after every test. Actual smoke scripts kill workers and PostgreSQL, pause recovery, restart components, and verify acknowledged jobs and terminal outcomes survive. Sanitized recordings preserve committed events and label controlled interventions. Identical workloads have been measured with 1, 3, and 5 workers; [the comparison](benchmarks/comparison.md) and [confirmation](benchmarks/confirmation.md) include raw timings, resource use, variation, and limitations.
+PostgreSQL/TCP tests cover the failure matrix and check accounting after every test. Actual smoke scripts kill workers and PostgreSQL, pause recovery, restart components, and verify acknowledged jobs and terminal outcomes survive. Sanitized recordings preserve committed events and label controlled interventions. Identical workloads have been measured with 1, 3, and 5 workers; [the comparison](../benchmarks/comparison.md) and [confirmation](../benchmarks/confirmation.md) include raw timings, resource use, variation, and limitations.
 
 We also tried checking for finished child processes more often: every 5 ms instead
 of 50 ms. It helped some short-task cases but slowed timed work in the confirmation.
@@ -143,83 +136,10 @@ The default remains 50 ms; 5 ms is an optional worker setting for workloads wher
 local measurements justify it. Starting a separate process for every task still
 has a cost. These are local measurements, not a promise about other machines.
 
-The backend gate has passed, including a fresh-checkout run and hosted CI. The
-required frontend conversation happened and the six-page frontend now builds
-locally. The complete engine runs through Compose. The build order and evidence
-are in [implementation-plan.md](implementation-plan.md).
+## The website
 
-## How the website works
+The public website is a static React application built with Vite. Home explains the problem and four engine responsibilities; Engine combines an illustrative Flow with Replay of actual sanitized recordings. Results shows measured comparisons and their limitations. Docs, About and Privacy complete the six pages.
 
-The website is an explanation that runs independently of the engine. Vite builds
-an HTML entry for each of six pages. React displays the page, and its fonts,
-drawings, documentation, and sanitized evidence come from static files on the
-same host. There is no account, API-token input, or request to run a live job.
+The browser loads recordings and benchmark evidence from static files, independently of the Python engine. There is no public job-submission form or browser API token. Test interventions are labeled separately from committed events. The model is an illustration of responsibilities, not a live status display.
 
-The navigation stays visible at the top while scrolling. Its forest background
-becomes slightly transparent after scrolling; link text stays fully opaque. The
-model and Docs positions leave room beneath it. Home starts with a short
-explanation and one Engine action, over its active pixel background. The hero's
-monthly report animation is removed; the lower illustrative example remains.
-
-One random pixel field sits inside the hero background. Its stationary cells
-change occupancy and brightness visibly, with lower density behind the text.
-There is no pixel strip below the hero, liquid movement or pointer displacement.
-The Canvas stops rendering offscreen/hidden and shows a still for reduced motion.
-Home's content groups enter when reached by scrolling, stay visible on return,
-and reveal immediately for keyboard focus. Reduced motion shows all the content.
-
-Home's single Anatomy
-model has four functional assemblies. As ordinary scrolling separates the rack,
-the stage marker and explanation change together: Coordinator accepts and checks
-updates; Workers run handlers; Recovery schedules eligible attempts after expiry;
-Saved record keeps the task, attempts and outcome together. The task cartridge
-stays attached to storage. A shorter scroll sequence exposes the layers
-continuously; the camera fits their translated bounds, and alignment guides show
-where the raised assembly seats. Scrolling upward reverses the same geometry. The
-model is an illustration of responsibilities, not a literal machine or a live
-status display. Reduced motion shows a separated still and all four explanations.
-
-A report example explains a possible integration; report generation is not a
-built-in handler. A short recovery story describes a retained worker-crash test.
-Engine uses different visuals: Flow starts with the application's request,
-explains normal and interrupted paths and highlights Recovery during recovery.
-Recovery is standing by during normal completion. Replay steps through actual
-committed events with friendly worker names. Exact identities, times and source
-metadata remain available in optional technical details. Playback shortens waits
-to 1.8 seconds per step, without changing the recording. Switching views
-resets playback; a hidden browser tab pauses it. Reduced motion keeps
-manual stepping available.
-
-The harness may kill a worker, stop a scheduler, or force expiry during a test.
-Those interventions are described beside the recording. Harness observations
-without timestamps appear separately; they are never invented as timed events.
-Capture metadata and original JSON remain inspectable. The two effect recordings
-show two unprotected effects versus one stable-key-protected effect in their
-explicitly instrumented scenario.
-
-Results reads a summary generated from the retained raw benchmark files at build
-time. It lets visitors change experiment, workload, and measurement. Repeated
-figures are medians of three per-run measurements, not pooled percentiles.
-Confirmation has one run per setting. Reports, raw JSON, CSV, and limitations
-are linked alongside the figures.
-
-The FAQ opens one answer at a time with a reversible height/opacity transition;
-closed answers cannot receive keyboard focus. Reduced motion makes it immediate.
-Primary actions use a fill sweep, coordinated label/arrow movement and press
-feedback. Selected Flow/Replay and Results controls retain their selected fill
-when another control is hovered. Informational drawings keep a normal cursor.
-
-Docs explains local setup; About explains the project and credits; Privacy
-describes the browser behavior. The decorative edge-to-edge pixel Canvas shimmers
-through opacity changes on a fixed grid. It has no liquid movement or pointer
-displacement. Rendering is capped at 30 frames per
-second and a 1.5 device-pixel ratio, stops offscreen or in a hidden tab, and shows
-a still for reduced motion. It has no sentences, pause control, saved browser
-preference, execution status or required meaning. The site uses CSS for simple
-states and the installed Motion package for coordinated React transitions.
-Docs highlights the section currently being read, including when scrolling up
-or following a fragment link. It does not add history entries during ordinary
-scrolling. The same Relevo wordmark appears in the header, footer and About;
-browser titles and the favicon share its branding.
-The footer links to the factual Markdown `llms.txt` and six-page `sitemap.xml`.
-These files are generated into the local build; public hosting is still pending.
+Navigation, manual playback, keyboard focus and reduced-motion alternatives keep the explanation usable without a live backend. The current arrangement hosts this website on Vercel and runs the engine locally through Docker Compose.

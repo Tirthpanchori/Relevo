@@ -1,9 +1,0 @@
-{
-    "demo_job_id":  "641448d3-f792-4fd6-993f-529020e165de",
-    "observed_seconds":  0.005,
-    "source":  "Compose environment override, installed WorkerSettings, installed CLI demo",
-    "restored_seconds":  0.05,
-    "requested_seconds":  0.005,
-    "captured_at":  "2026-10-17T20:39:45.6924209Z",
-    "demo_state":  "succeeded"
-}

@@ -1,5 +1,5 @@
 import { mkdir, readFile, writeFile, copyFile } from 'node:fs/promises';
-import { resolve, dirname } from 'node:path';
+import { resolve, dirname, posix } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { site } from '../site.mjs';
 import { benchmarkGroups } from '../src/lib/evidence.mjs';
@@ -23,8 +23,12 @@ ${page.slug === '404' ? '<meta name="robots" content="noindex"/>' : `<link rel="
 const files = [
   ['llms.txt', 'llms.txt'],
   ['README.md', 'docs/quickstart.md'],
-  ['working.md', 'docs/engine.md'],
-  ['decision.md', 'docs/decisions.md'],
+  ['docs/how-it-works.md', 'docs/engine.md'],
+  ['docs/architecture.md', 'docs/decisions.md'],
+  ['docs/how-it-works.md', 'docs/how-it-works.md'],
+  ['docs/architecture.md', 'docs/architecture.md'],
+  ['docs/deployment.md', 'docs/deployment.md'],
+  ['docs/testing.md', 'docs/testing.md'],
   ['benchmarks/README.md', 'docs/benchmarks.md'],
   ['benchmarks/comparison.md', 'evidence/comparison.md'],
   ['benchmarks/confirmation.md', 'evidence/confirmation.md'],
@@ -37,7 +41,15 @@ const files = [
 ];
 for (const [source, destination] of files) {
   await mkdir(dirname(resolve(publicDir, destination)), { recursive: true });
-  await copyFile(resolve(repository, source), resolve(publicDir, destination));
+  if (source.endsWith('.md')) {
+    const markdown = await readFile(resolve(repository, source), 'utf8');
+    // Downloadable source docs keep working links outside GitHub's renderer.
+    const linked = markdown.replace(/(\[[^\]]*\]\()([^\s)]+)(\))/g, (match, start, href, end) => {
+      if (/^(?:[a-z][a-z\d+.-]*:|\/|#)/i.test(href)) return match;
+      return `${start}${site.repository}/blob/main/${posix.normalize(posix.join(posix.dirname(source), href))}${end}`;
+    });
+    await writeFile(resolve(publicDir, destination), linked);
+  } else await copyFile(resolve(repository, source), resolve(publicDir, destination));
 }
 const fontLicenses = [['instrument-sans', 'Instrument Sans'], ['ibm-plex-mono', 'IBM Plex Mono']];
 let licenses = '';

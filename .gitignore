@@ -50,3 +50,32 @@ frontend/prototype/
 frontend/.cache/
 backups/
 *.dump
+
+# Private development records stay on this laptop, outside the public repository.
+/AGENTS.md
+/PRODUCT.md
+/PROJECT_MEMORY.md
+/implementation-plan.md
+/design.md
+/RELEASE-READINESS.md
+/working.md
+/decision.md
+/DEPLOYMENT.md
+/.impeccable/
+/artifacts/design/
+/scripts/trail.ps1
+
+# Keep current evidence snapshots; historical/generated development reports stay local.
+/artifacts/verification/*
+!/artifacts/verification/backup-restore.json
+!/artifacts/verification/clean-checkout.json
+!/artifacts/verification/host-power.json
+!/artifacts/verification/release-browser.json
+!/artifacts/verification/release-component-restarts.json
+!/artifacts/verification/release-design-review.md
+!/artifacts/verification/release-desktop-accessibility.json
+!/artifacts/verification/release-local.json
+!/artifacts/verification/release-npm-audit.json
+!/artifacts/verification/release-python-advisories.json
+!/artifacts/verification/release-responsive-accessibility.json
+!/artifacts/verification/release-worker-recovery.json

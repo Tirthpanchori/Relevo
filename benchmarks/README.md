@@ -41,13 +41,13 @@ and their per-job CSV files. Together they contain 1,440 retained measured jobs.
 The confirmation uses one updated runtime image after correctness checks, with
 the scoped stay-awake request active. The shorter interval helped short jobs
 with one/three workers but regressed timed work, so it was not promoted globally.
-See [D026](../decision.md#d026---bounded-measurement-and-worker-monitor-experiment).
+See the [worker monitor decision](../docs/architecture.md#worker-monitor-tuning).
 
-From the root, after a committed source checkpoint and locked dependency install:
+From the root, with uv available, a committed source checkpoint and dependencies installed using `uv sync --project backend --locked`:
 
 ```powershell
 docker compose --profile benchmark up --build -d --wait --wait-timeout 90 postgres-benchmark benchmark-migrate benchmark-api benchmark-scheduler
-.tools/Scripts/uv.exe run --project backend --env-file .env --no-sync python scripts/benchmark.py --variant baseline --monitor 0.05 --output benchmarks/raw/baseline.json
+uv run --project backend --env-file .env --no-sync python scripts/benchmark.py --variant baseline --monitor 0.05 --output benchmarks/raw/baseline.json
 ```
 
 An initial harness run was discarded because Windows Docker's ANSI control
@@ -86,8 +86,8 @@ monitoring scrapes are off in the benchmark profile; telemetry collection stays
 enabled. Recompute the reports with:
 
 ```powershell
-.tools/Scripts/uv.exe run --project backend --no-sync python scripts/report_benchmarks.py benchmarks/raw/baseline-complete.json benchmarks/raw/monitor-5ms.json --notes benchmarks/experiment-notes.md
-.tools/Scripts/uv.exe run --project backend --no-sync python scripts/report_benchmarks.py benchmarks/raw/confirmation-awake-50ms.json benchmarks/raw/confirmation-awake-5ms.json --output benchmarks/confirmation.md --notes benchmarks/confirmation-notes.md
+uv run --project backend --no-sync python scripts/report_benchmarks.py benchmarks/raw/baseline-complete.json benchmarks/raw/monitor-5ms.json --notes benchmarks/experiment-notes.md
+uv run --project backend --no-sync python scripts/report_benchmarks.py benchmarks/raw/confirmation-awake-50ms.json benchmarks/raw/confirmation-awake-5ms.json --output benchmarks/confirmation.md --notes benchmarks/confirmation-notes.md
 ```
 
 For optional short-task tuning, set `RELEVO_WORKER_MONITOR_SECONDS=0.005` in your
